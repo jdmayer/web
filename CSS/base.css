@@ -1,0 +1,57 @@
+/* base - background, main text/structure */
+html, body {
+    padding: 0;
+    margin: 0;
+}
+
+/* basefont */
+html {
+    font-family: Lucida, Helvetica, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+/*BACKGROUND COLOR
+    best - white, only color particular spots of the page
+    -> attraction drawing */
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: bold;
+    word-spacing: 1px;
+    margin: 1em;
+
+    /*in all directions the same - only margin: xy em
+      else - margin: 10px 0 10px 0
+      margin: top right bottom left 
+      or margin: vertical horizontal (both the same)*/
+}
+
+
+/* Headlines */
+h1 {
+    
+    font-size: 2rem;
+}
+
+h2 {
+    font-size: 1,5rem;
+}
+
+h3 {
+    font-size: 1,4rem;
+}
+
+p {
+    margin: 1em;
+}
+
+/* Links */
+a {
+   color: #000;
+   text-decoration: none;
+}
+
+a:hover {
+    text-decoration: none;
+    color: #fff;
+}

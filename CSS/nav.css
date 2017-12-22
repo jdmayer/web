@@ -1,0 +1,71 @@
+/*navigation between sites*/
+
+/*
+top
+*/
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border-bottom: 0.5px solid #000;
+}
+
+.main-nav a {
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+}
+
+/*side by side*/
+@media only screen and (min-width: 200px) /*200 as only 3 links*/
+{
+    .main-nav ul {
+        display: flex;
+        background-color: rgba(9, 123, 89, 0.45)
+    }
+
+    .main-nav li {
+        flex: 1;
+    }
+
+    .main-nav a {
+        text-align: center;
+        border-bottom: 0;
+        border-right: 1px solid #000;
+    }
+    .main-nav li:last-child a {
+        border-right: 0;
+    }
+}
+
+
+/*
+footer
+*/
+.footer ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.footer a {
+    display: block;
+    text-decoration: none;
+}
+
+/*side by side*/
+@media only screen and (min-width: 200px) /*200 as only 3 links*/
+{
+    .footer ul {
+        display: flex;
+    }
+
+    .footer li {
+        flex: 1;
+    }
+
+    .footer{
+        text-align: center;
+    }
+}

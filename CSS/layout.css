@@ -1,0 +1,30 @@
+/*layout*/
+
+.header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  box-sizing: border-box;
+  z-index: 0;
+}
+
+.footer {
+  background-color: rgb(9, 123, 89);
+  padding: 20px 10px;
+  margin: 0;
+  border-top: 0.5px solid #000;
+}
+
+.header-content h2{
+  text-align: center;
+  background-color: rgb(9, 123, 89);
+  border-bottom: 0.5px solid #000;
+  padding: 20px 10px;
+  margin: 0;
+}
+
+main {
+  padding: 10px;
+  flex: 1; /*even distribution over the side*/
+  /* 1 0 . can never get smaller and orientates on the original height*/
+}
