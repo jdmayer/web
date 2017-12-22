@@ -1,5 +1,5 @@
 /*layout*/
-
+/*COLOURING - BETTER MATCH1+7
 .header {
   position: fixed;
   top: 0;
@@ -9,7 +9,7 @@
 }
 
 .footer {
-  background-color: rgb(9, 123, 89);
+  background-color: darkred;/*rgb(9, 123, 89);*/
   padding: 20px 10px;
   margin: 0;
   border-top: 0.5px solid #000;
@@ -17,7 +17,7 @@
 
 .header-content h2{
   text-align: center;
-  background-color: rgb(9, 123, 89);
+  background-color: darkred;/*rgb(9, 123, 89);*/
   border-bottom: 0.5px solid #000;
   padding: 20px 10px;
   margin: 0;
