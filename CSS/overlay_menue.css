@@ -14,6 +14,9 @@
 }
 
 .overlay-content {
+    font-size: 16px;
+    text-align: center;
+    line-height: 2em;
     position: relative;
     top: 25%;
     width: 100%;
@@ -26,38 +29,71 @@
     text-decoration: none;
 }
 
-.overlay a:hover, .overlay a:focus {
+.overlay a:hover {
     color: #270b0b;
 }
 
 .overlay .closebtn {
     position: absolute;
-    top: 20px;
-    right: 20px;
+    top: 8px;
+    right: 21px;
     font-size: 45px;
 }
 
-/*Game Explanation
-DROPDOWN INSTEAD - index-z doesnt work properly*/
-.tooltip {
-    position: relative;
-    display: inline-block;
+.authors {
+    cursor: context-menu;
+    margin-top: 100px;
+    line-height: 1.5em;
 }
 
-.tooltip .tooltiptext {
-    position: absolute;
-    z-index: 1; /*so shown before other elements*/
-    visibility: hidden;
-    width: 320px;
-    background-color: black;
-    color: #fff;
+.uni {
+    text-decoration: underline;
+    margin-bottom: 2em;
+}
+
+.ol-menue {
+    padding: 10px 10px
+}
+
+
+/*
+Game Explanation
+*/
+
+.explanation {
+    color: white;
+    height: 100%;
+    width: 0%;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: rgba(131, 10, 10, 0.7);
+    overflow-x: hidden;
+    transition: 0s;
+}
+
+.explanation-content {
+    font-size: 16px;
     text-align: center;
-    border-radius: 10px;
-    padding: 5px 0;
-    top: -5px;
-    right: 105%;
+    line-height: 1.5em;
+    margin-left: 15px;
+    position: relative;
+    top: 25%;
+    width: 90%;
 }
 
-.tooltip:hover .tooltiptext {
-    visibility: visible;
+.exp-opener:hover {
+    size: 16px;
+}
+
+.exp-opener:hover {
+    color: #270b0b;
+}
+
+.explanation .closebtn {
+    position: absolute;
+    top: 8px;
+    left: 21px;
+    font-size: 45px;
 }

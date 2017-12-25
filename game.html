@@ -11,12 +11,9 @@
 
     <title>Monies</title>
     <style>
-        #game { 
-            border-style: solid;
-            border-color: rgb(6, 100, 53);
-        }
-        #playground {
+        .playground {
             text-align: center;
+            margin: 10px;
         }
     </style>
 </head>
@@ -27,48 +24,54 @@
     <script src="onload.js"></script>
     <script src="map.js"></script>
       
-    <div class="header-content">
-        <h2>Monies</h2>
+    <div id="header-content" class="header-content">
+        <h2>The not Pokemon Webproject</h2>
 
         <div id="overlay" class="overlay">
-            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+            <a href="javascript:void(0)" class="closebtn" onclick="closeOverlay()">&times;</a>
             <div class="overlay-content">
-                <ul><a href="game.html">Restart Game</a></ul>
-                <ul><a href="game.html">Start Tutorial</a></ul>
-                <ul><div class="tooltip">Explanation<span class="tooltiptext">
-                    Use the arrowkeys to navigate your player. M opens the menue and enter chooses an option 
-                    <br>Your goal in this game is to win battles against gangsters and take care of your monsters.
-                    If you are a good keeper they will help you in fights. <br> Give your best.
-                </span></div></ul>
-                <ul><h3>Authors</h3>
-                    <div id="hcard" class="vcard">
-                        <span class="uni">University of Applied Sciences Upper Austria</span>
-                        <br>---------------------------------------------------------<br>
+                <a href="game.html">Restart Game</a><br>
+                <a href="game.html">Start Tutorial</a><br>
+
+                <span class="exp-opener" style="cursor:pointer" onclick="openExp()">Explanation</span><br>
+
+                <div class="authors">
+                    <h3>Authors</h3>
+                        <span class="uni">University of Applied Sciences<br>Upper Austria</span>
                         <div class="names">
                             Iris Schlager &amp Janine Mayer
                         </div>
                         <div class="adr">
-                            <span class="street-address">Softwarepark 11</span><br>
-                            <span class="postal-code">4323 </span><span class="locality">Hagenberg</span><br>
-                            <span class="country-name">Austria</span>
+                            Softwarepark 11<br>4323 Hagenberg<br>Austria
                         </div>
-                    </div>
+                </div>
+                
             </div>
         </div>
-        <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
+        <span class="ol-menue" style="font-size:30px;cursor:pointer" onclick="openOverlay()">&#x2630;</span>
     </div>
         
-    <p>Popup before starting the game - explanation</p>
-
-    <div id="playground">	
-        <canvas id="game" width="650" height="450"></canvas>
+    <div id="explanation" class="explanation">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeExp()">&times;</a>
+        <div class="explanation-content">
+                The point of this game is to clear all levels and to beat the bad guys.<br><br>
+                How to do it? <br>
+                Simply use the arrow keys for navigation, 'enter' to choose between options
+                and 'm' to open the menue. <br><br>
+                You will meet a bunch of different creatures along your way. Some will love
+                to help you while you'll have to fight others. <br><br>
+                Good luck on your way!
+        </div>
     </div>
-
+    
+    <div class="playground">	
+        <canvas id="game" width="650" height="488"></canvas>
+    </div>
 </body>
 
 <footer>
     <div class=footer> 
-        &copy; 2017 Iris &amp Janine
+        &copy; 2017 S&ampM
     </div>
 </footer>
 </html>

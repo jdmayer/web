@@ -208,12 +208,9 @@ function drawGame(){
                  culling.offset[1] + player.position[1],
                  player.dimensions[0], player.dimensions[1]);
     
-    //var img = document.getElementById("nachtara");
-    //ctx.drawImage(img, 0, 0);
-
 
     ctx.fillStyle = "#ff0000";
-    ctx.fillText("Time " + currentSecond/(60*60), 10, 20);
+    ctx.fillText("Timer ", 20, 20);
 
     lastFrameTime = currentFrameTime;
     //when ready to call function again -> levels later
