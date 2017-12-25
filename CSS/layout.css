@@ -1,18 +1,11 @@
 /*layout*/
-/*COLOURING - BETTER MATCH1+7
+
 .header {
   position: fixed;
   top: 0;
   width: 100%;
   box-sizing: border-box;
-  z-index: 0;
-}
-
-.footer {
-  background-color: darkred;/*rgb(9, 123, 89);*/
-  padding: 20px 10px;
-  margin: 0;
-  border-top: 0.5px solid #000;
+  z-index: 1;
 }
 
 .header-content h2{
@@ -24,7 +17,20 @@
 }
 
 main {
-  padding: 10px;
+  padding: 0px;
   flex: 1; /*even distribution over the side*/
   /* 1 0 . can never get smaller and orientates on the original height*/
+}
+
+.footer {
+  text-align: center;
+  color: rgba(247, 224, 224, 0.849);
+  background-color: darkred;
+  border-top: 0.5px solid #000;
+  list-style: none;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  margin: 100;
+  padding: 10;
 }

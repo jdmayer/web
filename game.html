@@ -1,60 +1,74 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="css/base.css">
-        <link rel="stylesheet" href="css/layout.css">
-        <link rel="stylesheet" href="css/nav.css">
-        <link rel="stylesheet" href="css/modules.css">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/modules.css">
+        
+    <link rel="stylesheet" href="css/overlay_menue.css">
 
-        <title>Game Prototype</title>
-        <style>
-            #game { 
-                border-style: solid;
-                border-color: rgb(6, 100, 53);
-            }
-            #playground {
-                text-align: center;
-            }
-        </style>
+    <title>Monies</title>
+    <style>
+        #game { 
+            border-style: solid;
+            border-color: rgb(6, 100, 53);
+        }
+        #playground {
+            text-align: center;
+        }
+    </style>
+</head>
 
-    </head>
-
-    <body>
+<body>
+    <script src="overlay_menue.js"></script>
+    <script src="game.js"></script>
+    <script src="onload.js"></script>
+    <script src="map.js"></script>
       
-        <div class="header-content">
-            <h2>Game Prototype</h2>
+    <div class="header-content">
+        <h2>Monies</h2>
+
+        <div id="overlay" class="overlay">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+            <div class="overlay-content">
+                <ul><a href="game.html">Restart Game</a></ul>
+                <ul><a href="game.html">Start Tutorial</a></ul>
+                <ul><div class="tooltip">Explanation<span class="tooltiptext">
+                    Use the arrowkeys to navigate your player. M opens the menue and enter chooses an option 
+                    <br>Your goal in this game is to win battles against gangsters and take care of your monsters.
+                    If you are a good keeper they will help you in fights. <br> Give your best.
+                </span></div></ul>
+                <ul><h3>Authors</h3>
+                    <div id="hcard" class="vcard">
+                        <span class="uni">University of Applied Sciences Upper Austria</span>
+                        <br>---------------------------------------------------------<br>
+                        <div class="names">
+                            Iris Schlager &amp Janine Mayer
+                        </div>
+                        <div class="adr">
+                            <span class="street-address">Softwarepark 11</span><br>
+                            <span class="postal-code">4323 </span><span class="locality">Hagenberg</span><br>
+                            <span class="country-name">Austria</span>
+                        </div>
+                    </div>
+            </div>
         </div>
-        <nav class="main-nav">
-            <ul>
-                <li><a href="main.html">Start</a></li>
-                <li><a href="game.html"> Game </a></li> 
-                <li><a href="contact.html"> Contact </a></li>
-            </ul>
-        </nav>
-        <p>Do sthg about moving screen when playing</p>
+        <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
+    </div>
+        
+    <p>Popup before starting the game - explanation</p>
 
-        <!--player-->
-        <img id="nachtara" src="./img/Nachtara.jpg" alt="N" width="40" height="40">
+    <div id="playground">	
+        <canvas id="game" width="650" height="450"></canvas>
+    </div>
 
-        <div id="playground">	
-            <canvas id="game" width="750" height="500"></canvas>
-        </div>
-        <script src="game.js"></script>
-        <script src="onload.js"></script>
-        <script src="map.js"></script>
+</body>
 
-    </body>
-
-    <footer>
-        <div class=footer> 
-            <ul>
-                <li><a href="main.html">Start</a></li>
-                <li><a href="game.html"> Game </a></li> 
-                <li><a href="contact.html"> Contact </a></li>
-                <li>&copy; 2017 Iris and Janine</li>
-            </ul>
-        </div>
-    </footer>
+<footer>
+    <div class=footer> 
+        &copy; 2017 Iris &amp Janine
+    </div>
+</footer>
 </html>

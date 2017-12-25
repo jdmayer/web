@@ -1,0 +1,63 @@
+/*Overlay menue*/
+
+.overlay {
+    color: white;
+    height: 100%;
+    width: 0%; /*else on refresh adjust padding*/
+    position: fixed;
+    z-index: 2;
+    top: 0;
+    right: 0;
+    background-color: rgba(131, 10, 10, 0.7);
+    overflow-x: hidden; /*else see dots and underlinings while hidden*/
+    transition: 0.2s;
+}
+
+.overlay-content {
+    position: relative;
+    top: 25%;
+    width: 100%;
+    text-align: center;
+    margin-top: 30px;
+}
+
+.overlay a {
+    color: white;
+    text-decoration: none;
+}
+
+.overlay a:hover, .overlay a:focus {
+    color: #270b0b;
+}
+
+.overlay .closebtn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 45px;
+}
+
+/*Game Explanation
+DROPDOWN INSTEAD - index-z doesnt work properly*/
+.tooltip {
+    position: relative;
+    display: inline-block;
+}
+
+.tooltip .tooltiptext {
+    position: absolute;
+    z-index: 1; /*so shown before other elements*/
+    visibility: hidden;
+    width: 320px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 10px;
+    padding: 5px 0;
+    top: -5px;
+    right: 105%;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+}
