@@ -1,4 +1,3 @@
-
 var ctx; //context 
 var canvas;
 

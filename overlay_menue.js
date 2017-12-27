@@ -3,7 +3,7 @@ var overlayOpen = false;
 var expOpen = false;
 
 function openOverlay() {
-    document.getElementById("overlay").style.width = "23.1%";
+    document.getElementById("overlay").style.width = "22.3%";
     overlayOpen = true;
 }
 
@@ -14,7 +14,7 @@ function closeOverlay() {
 
 /*for explanation overlay*/
 function openExp() {
-    document.getElementById("explanation").style.width = "23.1%";
+    document.getElementById("explanation").style.width = "22.3%";
     expOpen = true;
 }
 
