@@ -1,5 +1,10 @@
+77
+//HERE ONLY MAIN FUNCTIONS FOR THE LEVELS CALLING OTHER FUNCS
+//
+
 var ctx; //context 
 var canvas;
+var level = 1;
 
 var currentSecond= 0, frameCount = 0, framesLastSecond = 0; 
 var lastFrameTime = 0;
@@ -15,117 +20,11 @@ var map = {
 };
 
 var keysDown = {
-    37: false, //left
-    38: false, //up
-    39: false, //right
-    40: false  //down
-};
-
-
-//call character
-var player = new Character();
-
-//bool so that you can't move when you fight
-var fight = false;
-
-
-//for culling (bigger map than initially shown)
-var culling = {   
-    screen: [0,0], 
-    startTile: [0,0],   //top left, visible
-    endTile: [map.width - 1, map.height - 1],     //bottom right, visible
-    offset: [0,0],      //to keep in the middle of the screen
-
-    update: function(px, py){
-        this.offset[0] = Math.floor((this.screen[0]/2) - px);
-        this.offset[1] = Math.floor((this.screen[1]/2) - py);
-
-        var tiles = [Math.floor(px / tile.width), Math.floor(py / tile.height)];
-
-    /* //NOT NEEDED - it draws when it comes on screen 
-        //saves spaces - BUT our maps are NOT so large to pay this off
-        //delete if not needed on finishing the game
-
-        this.startTile[0] = tiles[0] - Math.ceil((this.screen[0] / 2) / tile.width);
-        this.startTile[1] = tiles[1] - Math.ceil((this.screen[1] / 2) / tile.height);
-
-        if(this.startTile[0] < 0) {
-            this.startTile[0] = 0; console.log("hi");
-        }
-        if(this.startTile[1] < 0) {
-            this.startTile[1] = 0;
-        }
-
-        this.endTile[0] = tiles[0] + 1 + Math.ceil((this.screen[0] / 2) / tile.width);
-        this.endTile[1] = tiles[1] + 1 + Math.ceil((this.screen[1] / 2) / tile.height);
-
-        if(this.endTile[0] >= map.width){
-            this.endTile[0] = map.width - 1;
-        }
-        if(this.endTile[1] >= map.height){
-            this.endTile[1] = map.height - 1;
-        }
-        */
-
-        //replaced with same outcome - endtile instead of 0 -> map.height/width -1
-    }
-
-};
-
-function Character() {
-    this.tileFrom = [1,1];
-    this.tileTo = [1,1];
-    this.timeMoved = 0;
-    this.dimensions = [30,30];
-    this.position = [45,45];
-    this.speed = 200; 
-    //after testing change speed
-};
-
-Character.prototype.placeAt = function(x, y) {
-    this.tileFrom = [x, y];
-    this.tileTo = [x, y];
-    this.position = [((tile.width * x) + ((tile.width - this.dimensions[0])/2)),
-                     ((tile.height * y) + ((tile.height-this.dimensions[1])/2))]
-                                         //to be in the middle of a tile
-};
-
-Character.prototype.moves = function(t){
-    //doesn't move
-    if(this.tileFrom[0] == this.tileTo[0] && this.tileFrom[1] == this.tileTo[1]){
-            return false;
-    }
-
-    //moved
-    if((t - this.timeMoved) >= this.speed){
-        this.placeAt(this.tileTo[0], this.tileTo[1]);
-        //t is currentTimeFrame
-        //timeMoved gets currentTimeFrame after move
-        //places character
-    }
-    //moves
-    else {
-        this.position[0] = (this.tileFrom[0] * tile.width) + ((tile.width - this.dimensions[0])/2);
-        this.position[1] = (this.tileFrom[1] * tile.height) + ((tile.height - this.dimensions[1])/2);
-
-        //moving horizontally
-        if(this.tileTo[0] != this.tileFrom[0]){
-            var diff = (tile.width / this.speed) * (t - this.timeMoved);
-            this.position[0] += (this.tileTo[0] < this.tileFrom[0] ? 0 - diff : diff)
-        }
-
-        //moving vertically
-        if(this.tileTo[1] != this.tileFrom[1]){
-            var diff = (tile.height / this.speed) * (t - this.timeMoved);
-            this.position[1] += (this.tileTo[1] < this.tileFrom[1] ? 0 - diff : diff);
-        }
-
-        //could be needed with smaller tiles
-        //delete if not needed after last testing!!
-        this.position[0] = Math.round(this.position[0]);
-        this.position[1] = Math.round(this.position[1]);
-    }
-    return true;
+    37: false,  //left
+    38: false,  //up
+    39: false,  //right
+    40: false,  //down
+    13: false   //enter
 };
 
 //get Index in the map array
@@ -133,167 +32,69 @@ function getIndex(x, y){
     return ((y * map.width) +  x);
 }
 
-function drawGame(){
+function drawGame(){ //later rename to lvl1
     if(ctx==null){return;}
-
-    //delete if not needed!
-    var sec = Math.floor(Date.now()/1000); 
-    if(sec!=currentSecond){  
-        currentSecond = sec; 
-        framesLastSecond = frameCount; 
-        frameCount = 1; 
-    } else {  
-        frameCount++; 
-    } 
-    //-------------------
-
     var currentFrameTime = Date.now();
     var timeElapsed = currentFrameTime - lastFrameTime;
 
-    moveCharacter(currentFrameTime);
-
     culling.update(player.position[0], player.position[1]);
-
-    //fill with random trees!
-    ctx.fillStyle = "#000000";
-    ctx.fillRect(0, 0, culling.screen[0], culling.screen[1]);
-
     fillMap();
 
+    moveCharacter(currentFrameTime);
     lastFrameTime = currentFrameTime;
+    checkForAction();
 
-    //when ready to call function again -> levels later
+    //for testing - flower - exchange, as soon as other characters are added
+    if (gameMap[player.tileTo[1] * map.width + player.tileTo[0] - 1] == 9 ||
+        gameMap[player.tileTo[1] * map.width + player.tileTo[0] + 1] == 9 ||
+        gameMap[player.tileTo[1] * map.width + player.tileTo[0] - map.width] == 9 ||
+        gameMap[player.tileTo[1] * map.width + player.tileTo[0] + map.width] == 9 ){
+            characterTalk(0); // 0 -- normal chat // else - fight - not implemented
+        };
+
+    if (player.tileFrom[1] * map.width + player.tileFrom[0] == map.width * map.height - 1){
+        requestAnimationFrame(startLevel);
+        return true;
+    }
     requestAnimationFrame(drawGame);
 }
 
-function fillMap(){
-    var img = new Image();
 
-    for(var y = culling.startTile[1]; y <= culling.endTile[1]; y++){
-        for(var x = culling.startTile[0]; x <= culling.endTile[0]; x++){ 
-            switch(gameMap[((y*map.width)+x)]){
-                case 0:
-                    //ctx.fillStyle = "#999999";
-                    img.src = back.src;
-                    break;
-                case 1:
-                    //ctx.fillStyle = "#eeeeee";
-                    img.src = grass.src;
-                    break;
-                case 2:
-                    img.src = flower.src;
-                    break;
-                case 3:
-                    img.src = item.src;
-                    break;
-                case 4:
-                    img.src = trail1.src;
-                    break;
-                case 5:
-                    img.src = trail2.src;
-                    break;
-                case 6:
-                    img.src = trail3.src;
-                    break;
-                case 7:
-                    img.src = trail4.src;
-                    break;
-                case 8:
-                    img.src = trail5.src;
-                    break;
-                case 9:
-                    img.src = trail6.src;
-                    break;
-                case 10:
-                    img.src = tree1.src;
-                    break;
-                case 11:
-                    img.src = tree2.src;
-                    break;
-            }
-            ctx.fillRect(culling.offset[0] + x*tile.width,
-                         culling.offset[1] + y*tile.height,tile.width,tile.height);
-            ctx.drawImage(img,culling.offset[0] + x*tile.width,
-                culling.offset[1] + y*tile.height,tile.width,tile.height);
+function startLevel(){
+    //IF TIME COOL FADE OUT WITH WAITING SCREEN
+    ctx.fillStyle = "darkred"; 
+    ctx.fillRect(0, 0, culling.screen[0], culling.screen[1]);
+
+    ctx.fillStyle = "white";
+    ctx.font = "20pt Helvetica";
+    ctx.fillText("LEVEL " + level, 280, 244);
+    ctx.font = "10pt Helvetica";
+    ctx.fillText("Press Enter to Continue", 260, 280);
+ 
+    if(keysDown[13]){
+        console.log("start next level" + level);
+        if(level == 1){
+            level++;
+            requestAnimationFrame(drawGame);
+            return true;
+        }
+        else if(level == 2){
+            requestAnimationFrame(level2);
+            return true;
+
+        }
+        else if(level > 2){
+            alert("This level has not been developed yet");
         }
     }
-    ctx.fillStyle = "#b9f2cf";
-    
-    //player
-    ctx.drawImage(player_character, culling.offset[0] + player.position[0], 
-                  culling.offset[1] + player.position[1],
-                  player.dimensions[0], player.dimensions[1]);
-
-    ctx.fillStyle = "#ff0000";
-    ctx.fillText("Timer ", 20, 20);
+    requestAnimationFrame(startLevel);
 }
 
-function moveCharacter(currentFrameTime){
-    if(!player.moves(currentFrameTime)) {
-        //up
-        if(keysDown[38] && player.tileFrom[1] > 0 &&
-            gameMap[getIndex(player.tileFrom[0],
-                    player.tileFrom[1]-1)] <= 9
-            && !fight){
-            player.tileTo[1] -= 1;
-            checkForAction();
-        }
-        //down
-        else if(keysDown[40] && player.tileFrom[1] < (map.height - 1) &&
-                gameMap[getIndex(player.tileFrom[0],
-                        player.tileFrom[1]+1)] <= 9
-                && !fight){
-            player.tileTo[1] += 1;
-            checkForAction();
-        }
-        //left
-        else if(keysDown[37] && player.tileFrom[0] > 0 &&
-            gameMap[getIndex(player.tileFrom[0] - 1,
-                    player.tileFrom[1])] <= 9
-            && !fight){
-            player.tileTo[0] -= 1;
-            checkForAction();
-        }
-        //right
-        else if(keysDown[39] && player.tileFrom[0] < (map.width - 1) &&
-                gameMap[getIndex(player.tileFrom[0] + 1,
-                        player.tileFrom[1])] <= 9
-            && !fight){
-            player.tileTo[0] += 1;
-            checkForAction();
-        }
+function level2(){
+    console.log("Congratulation");
+    level++; //just exit
+    startLevel();
 
-        if(player.tileFrom[0] != player.tileTo[0] || player.tileFrom[1] != player.tileTo[1]){
-            player.timeMoved = currentFrameTime;
-        }
-    }
+    requestAnimationFrame(level2); 
 }
 
-function checkForAction(){
-    if (gameMap[getIndex(player.tileFrom[0],
-                player.tileFrom[1], player)]==1){
-        var r = Math.random();
-        if (r<=0.3){
-            fight = true;
-            startFight();
-        }
-    }
-    else if (gameMap[getIndex(player.tileFrom[0],
-                    player.tileFrom[1], player)]==3){
-        gameMap[getIndex(player.tileFrom[0],
-        player.tileFrom[1], player)]=0;
-        addItemToBag();
-    }
-};
-
-function addItemToBag(){
-    //TODO!
-}
-
-function startFight(){
-    ctx.drawImage(fight2,1,1); //???
-    //TODO!
-    console.log("fight!")
-
-    fight=false;
-}
