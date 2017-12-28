@@ -25,15 +25,9 @@ var keysDown = {
 //call character
 var player = new Character();
 
-//Images:
-var tree1 = new Image();
-tree1.src = "./img/tree1.png";
-var tree2 = new Image();
-tree2.src = "./img/tree2.png";
-var back = new Image();
-back.src = "./img/back1.png";
-player_character = new Image();
-player_character.src = "./img/Character_vorne_1.png";
+//bool so that you can't move when you fight
+var fight = false;
+
 
 //for culling (bigger map than initially shown)
 var culling = {   
@@ -179,19 +173,42 @@ function fillMap(){
         for(var x = culling.startTile[0]; x <= culling.endTile[0]; x++){ 
             switch(gameMap[((y*map.width)+x)]){
                 case 0:
-                    ctx.fillStyle = "#999999";
-                    img.src = tree1.src;
-                    break;
-                case 1:
-                    ctx.fillStyle = "#eeeeee";
+                    //ctx.fillStyle = "#999999";
                     img.src = back.src;
                     break;
+                case 1:
+                    //ctx.fillStyle = "#eeeeee";
+                    img.src = grass.src;
+                    break;
                 case 2:
-                    ctx.fillStyle = "#fff";
-                    img.src = tree2.src;
+                    img.src = flower.src;
                     break;
                 case 3:
-                    ctx.fillStyle = "#000";
+                    img.src = item.src;
+                    break;
+                case 4:
+                    img.src = trail1.src;
+                    break;
+                case 5:
+                    img.src = trail2.src;
+                    break;
+                case 6:
+                    img.src = trail3.src;
+                    break;
+                case 7:
+                    img.src = trail4.src;
+                    break;
+                case 8:
+                    img.src = trail5.src;
+                    break;
+                case 9:
+                    img.src = trail6.src;
+                    break;
+                case 10:
+                    img.src = tree1.src;
+                    break;
+                case 11:
+                    img.src = tree2.src;
                     break;
             }
             ctx.fillRect(culling.offset[0] + x*tile.width,
@@ -203,9 +220,6 @@ function fillMap(){
     ctx.fillStyle = "#b9f2cf";
     
     //player
-    ctx.fillRect(culling.offset[0] + player.position[0], 
-                 culling.offset[1] + player.position[1],
-                 player.dimensions[0], player.dimensions[1]);
     ctx.drawImage(player_character, culling.offset[0] + player.position[0], 
                   culling.offset[1] + player.position[1],
                   player.dimensions[0], player.dimensions[1]);
@@ -219,30 +233,67 @@ function moveCharacter(currentFrameTime){
         //up
         if(keysDown[38] && player.tileFrom[1] > 0 &&
             gameMap[getIndex(player.tileFrom[0],
-                player.tileFrom[1]-1)]==1){
-                    player.tileTo[1] -= 1;
+                    player.tileFrom[1]-1)] <= 9
+            && !fight){
+            player.tileTo[1] -= 1;
+            checkForAction();
         }
         //down
         else if(keysDown[40] && player.tileFrom[1] < (map.height - 1) &&
                 gameMap[getIndex(player.tileFrom[0],
-                        player.tileFrom[1]+1)] == 1){
-                    player.tileTo[1] += 1;
+                        player.tileFrom[1]+1)] <= 9
+                && !fight){
+            player.tileTo[1] += 1;
+            checkForAction();
         }
         //left
         else if(keysDown[37] && player.tileFrom[0] > 0 &&
             gameMap[getIndex(player.tileFrom[0] - 1,
-                player.tileFrom[1])] == 1){
+                    player.tileFrom[1])] <= 9
+            && !fight){
             player.tileTo[0] -= 1;
+            checkForAction();
         }
         //right
         else if(keysDown[39] && player.tileFrom[0] < (map.width - 1) &&
                 gameMap[getIndex(player.tileFrom[0] + 1,
-                        player.tileFrom[1])] == 1){
-                    player.tileTo[0] += 1;
+                        player.tileFrom[1])] <= 9
+            && !fight){
+            player.tileTo[0] += 1;
+            checkForAction();
         }
 
         if(player.tileFrom[0] != player.tileTo[0] || player.tileFrom[1] != player.tileTo[1]){
             player.timeMoved = currentFrameTime;
         }
     }
+}
+
+function checkForAction(){
+    if (gameMap[getIndex(player.tileFrom[0],
+                player.tileFrom[1], player)]==1){
+        var r = Math.random();
+        if (r<=0.3){
+            fight = true;
+            startFight();
+        }
+    }
+    else if (gameMap[getIndex(player.tileFrom[0],
+                    player.tileFrom[1], player)]==3){
+        gameMap[getIndex(player.tileFrom[0],
+        player.tileFrom[1], player)]=0;
+        addItemToBag();
+    }
+};
+
+function addItemToBag(){
+    //TODO!
+}
+
+function startFight(){
+    ctx.drawImage(fight2,1,1); //???
+    //TODO!
+    console.log("fight!")
+
+    fight=false;
 }
