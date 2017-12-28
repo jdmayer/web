@@ -35,11 +35,11 @@ var culling = {
         this.offset[0] = Math.floor((this.screen[0]/2) - px);
         this.offset[1] = Math.floor((this.screen[1]/2) - py);
 
-        var tiles = [Math.floor(px / tile.width), 
-                     Math.floor(py / tile.height)];
+        var tiles = [Math.floor(px / tile.width), Math.floor(py / tile.height)];
 
-        this.startTile[0] = tiles[0] - 1 - Math.ceil((this.screen[0] / 2) / tile.width);
-        this.startTile[1] = tiles[1] - 1 - Math.ceil((this.screen[1] / 2) / tile.height);
+        this.startTile[0] = tiles[0] - Math.ceil((this.screen[0] / 2) / tile.width);
+
+        this.startTile[1] = tiles[1] - Math.ceil((this.screen[1] / 2) / tile.height);
 
         if(this.startTile[0] < 0) {
             this.startTile[0] = 0;
@@ -67,7 +67,8 @@ function Character() {
     this.timeMoved = 0;
     this.dimensions = [30,30];
     this.position = [45,45];
-    this.delayMove = 700; //howlong it takes the char to move over 1 tile
+    this.speed = 200; 
+    //after testing change speed
 };
 
 Character.prototype.placeAt = function(x, y) {
@@ -75,59 +76,57 @@ Character.prototype.placeAt = function(x, y) {
     this.tileTo = [x, y];
     this.position = [((tile.width * x) + ((tile.width - this.dimensions[0])/2)),
                      ((tile.height * y) + ((tile.height-this.dimensions[1])/2))]
+                                         //to be in the middle of a tile
 };
 
 Character.prototype.moves = function(t){
-    //if the character moves
     //doesn't move
-    if(this.tileFrom[0] == this.tileTo[0] &&
-        this.tileFrom[1] == this.tileTo[1]){
+    if(this.tileFrom[0] == this.tileTo[0] && this.tileFrom[1] == this.tileTo[1]){
             return false;
-        } 
-    //moves
-    if((t-this.timeMoved) >= this.delayMove){
-        this.placeAt(this.tileTo[0], this.tileTo[1]);
     }
+
+    //moved
+    if((t - this.timeMoved) >= this.speed){
+        this.placeAt(this.tileTo[0], this.tileTo[1]);
+        //t is currentTimeFrame
+        //timeMoved gets currentTimeFrame after move
+        //places character
+    }
+    //moves
     else {
-        this.position[0] = (this.tileFrom[0] * tile.width) + 
-                            ((tile.width - this.dimensions[0])/2);
-        this.position[1] = (this.tileFrom[1] * tile.height) +
-                            ((tile.height - this.dimensions[1])/2);
+        this.position[0] = (this.tileFrom[0] * tile.width) + ((tile.width - this.dimensions[0])/2);
+        this.position[1] = (this.tileFrom[1] * tile.height) + ((tile.height - this.dimensions[1])/2);
 
         //moving horizontally
         if(this.tileTo[0] != this.tileFrom[0]){
-            var diff = (tile.width / this.delayMove) *
-                    (t - this.timeMoved);
-            this.position[0] += (this.tileTo[0] < this.tileFrom[0] ? 
-                    0 - diff : diff)
+            var diff = (tile.width / this.speed) * (t - this.timeMoved);
+            this.position[0] += (this.tileTo[0] < this.tileFrom[0] ? 0 - diff : diff)
         }
 
         //moving vertically
         if(this.tileTo[1] != this.tileFrom[1]){
-            var diff = (tile.height / this.delayMove) *
-                        (t - this.timeMoved);
-            this.position[1] += (this.tileTo[1] < this.tileFrom[1] ?
-                        0 - diff : diff);
+            var diff = (tile.height / this.speed) * (t - this.timeMoved);
+            this.position[1] += (this.tileTo[1] < this.tileFrom[1] ? 0 - diff : diff);
         }
 
+        //could be needed with smaller tiles
+        //delete if not needed after last testing!!
         this.position[0] = Math.round(this.position[0]);
         this.position[1] = Math.round(this.position[1]);
     }
-
-    //some movement has been done
     return true;
-
 };
 
+//get Index in the map array
 function getIndex(x, y){
     return ((y * map.width) +  x);
 }
 
 function drawGame(){
     if(ctx==null){return;}
- 
+
     var sec = Math.floor(Date.now()/1000); 
-    if(sec!=currentSecond){ //if not matching 
+    if(sec!=currentSecond){  
         currentSecond = sec; 
         framesLastSecond = frameCount; 
         frameCount = 1; 
@@ -138,48 +137,26 @@ function drawGame(){
     var currentFrameTime = Date.now();
     var timeElapsed = currentFrameTime - lastFrameTime;
 
-    if(!player.moves(currentFrameTime)) {
-        //up
-        if(keysDown[38] && player.tileFrom[1] > 0 &&
-            gameMap[getIndex(player.tileFrom[0],
-                player.tileFrom[1]-1)]==1){
-                    player.tileTo[1] -= 1;
-        }
-        //down
-        else if(keysDown[40] && player.tileFrom[1] < (map.height - 1) &&
-                gameMap[getIndex(player.tileFrom[0],
-                        player.tileFrom[1]+1)] == 1){
-                    player.tileTo[1] += 1;
-        }
-        //left arrow
-        else if(keysDown[37] && player.tileFrom[0] > 0 &&
-            gameMap[getIndex(player.tileFrom[0] - 1,
-                player.tileFrom[1])] == 1){
-            player.tileTo[0] -= 1;
-        }
-        //right
-        else if(keysDown[39] && player.tileFrom[0] < (map.width - 1) &&
-                gameMap[getIndex(player.tileFrom[0] + 1,
-                        player.tileFrom[1])] == 1){
-                    player.tileTo[0] += 1;
-        }
-        if(player.tileFrom[0] != player.tileTo[0] || player.tileFrom[1] != player.tileTo[1]){
-            player.timeMoved = currentFrameTime;
-        }
-    }
+    moveCharacter(currentFrameTime);
+    
 
     //culling
-    culling.update(
-        player.position[0] + (player.dimensions[0] / 2), 
-        player.position[1] + (player.dimensions[1] / 2)
-    );
+    culling.update(player.position[0] ,  player.position[1]);
 
+    //fill with random trees!
     ctx.fillStyle = "#000000";
     ctx.fillRect(9,0, culling.screen[0], culling.screen[1]);
 
+    fillMap();
+
+    lastFrameTime = currentFrameTime;
 
 
-    //drawing map
+    //when ready to call function again -> levels later
+    requestAnimationFrame(drawGame);
+}
+
+function fillMap(){
     for(var y = culling.startTile[1]; y <= culling.endTile[1]; y++){
         for(var x = culling.startTile[0]; x <= culling.endTile[0]; x++){ 
             switch(gameMap[((y*map.width)+x)]){
@@ -210,8 +187,37 @@ function drawGame(){
 
     ctx.fillStyle = "#ff0000";
     ctx.fillText("Timer ", 20, 20);
+}
 
-    lastFrameTime = currentFrameTime;
-    //when ready to call function again -> levels later
-    requestAnimationFrame(drawGame);
+function moveCharacter(currentFrameTime){
+    if(!player.moves(currentFrameTime)) {
+        //up
+        if(keysDown[38] && player.tileFrom[1] > 0 &&
+            gameMap[getIndex(player.tileFrom[0],
+                player.tileFrom[1]-1)]==1){
+                    player.tileTo[1] -= 1;
+        }
+        //down
+        else if(keysDown[40] && player.tileFrom[1] < (map.height - 1) &&
+                gameMap[getIndex(player.tileFrom[0],
+                        player.tileFrom[1]+1)] == 1){
+                    player.tileTo[1] += 1;
+        }
+        //left
+        else if(keysDown[37] && player.tileFrom[0] > 0 &&
+            gameMap[getIndex(player.tileFrom[0] - 1,
+                player.tileFrom[1])] == 1){
+            player.tileTo[0] -= 1;
+        }
+        //right
+        else if(keysDown[39] && player.tileFrom[0] < (map.width - 1) &&
+                gameMap[getIndex(player.tileFrom[0] + 1,
+                        player.tileFrom[1])] == 1){
+                    player.tileTo[0] += 1;
+        }
+
+        if(player.tileFrom[0] != player.tileTo[0] || player.tileFrom[1] != player.tileTo[1]){
+            player.timeMoved = currentFrameTime;
+        }
+    }
 }
