@@ -28,8 +28,8 @@ var player = new Character();
 var culling = {
     screen: [0,0], 
     startTile: [0,0],   //top left, visible
-    endTile: [0,0],     //bottom right, visible
-    offset: [0,0],      //keep distance, not loose screen
+    endTile: [map.width - 1, map.height - 1],     //bottom right, visible
+    offset: [0,0],      //to keep in the middle of the screen
 
     update: function(px, py){
         this.offset[0] = Math.floor((this.screen[0]/2) - px);
@@ -37,12 +37,15 @@ var culling = {
 
         var tiles = [Math.floor(px / tile.width), Math.floor(py / tile.height)];
 
-        this.startTile[0] = tiles[0] - Math.ceil((this.screen[0] / 2) / tile.width);
+    /* //NOT NEEDED - it draws when it comes on screen 
+        //saves spaces - BUT our maps are NOT so large to pay this off
+        //delete if not needed on finishing the game
 
+        this.startTile[0] = tiles[0] - Math.ceil((this.screen[0] / 2) / tile.width);
         this.startTile[1] = tiles[1] - Math.ceil((this.screen[1] / 2) / tile.height);
 
         if(this.startTile[0] < 0) {
-            this.startTile[0] = 0;
+            this.startTile[0] = 0; console.log("hi");
         }
         if(this.startTile[1] < 0) {
             this.startTile[1] = 0;
@@ -57,6 +60,9 @@ var culling = {
         if(this.endTile[1] >= map.height){
             this.endTile[1] = map.height - 1;
         }
+        */
+
+        //replaced with same outcome - endtile instead of 0 -> map.height/width -1
     }
 
 };
@@ -125,6 +131,7 @@ function getIndex(x, y){
 function drawGame(){
     if(ctx==null){return;}
 
+    //delete if not needed!
     var sec = Math.floor(Date.now()/1000); 
     if(sec!=currentSecond){  
         currentSecond = sec; 
@@ -133,19 +140,18 @@ function drawGame(){
     } else {  
         frameCount++; 
     } 
+    //-------------------
 
     var currentFrameTime = Date.now();
     var timeElapsed = currentFrameTime - lastFrameTime;
 
     moveCharacter(currentFrameTime);
-    
 
-    //culling
-    culling.update(player.position[0] ,  player.position[1]);
+    culling.update(player.position[0], player.position[1]);
 
     //fill with random trees!
     ctx.fillStyle = "#000000";
-    ctx.fillRect(9,0, culling.screen[0], culling.screen[1]);
+    ctx.fillRect(0, 0, culling.screen[0], culling.screen[1]);
 
     fillMap();
 
