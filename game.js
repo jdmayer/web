@@ -21,11 +21,22 @@ var keysDown = {
     40: false  //down
 };
 
+
 //call character
 var player = new Character();
 
+//Images:
+var tree1 = new Image();
+tree1.src = "./img/tree1.png";
+var tree2 = new Image();
+tree2.src = "./img/tree2.png";
+var back = new Image();
+back.src = "./img/back1.png";
+player_character = new Image();
+player_character.src = "./img/Character_vorne_1.png";
+
 //for culling (bigger map than initially shown)
-var culling = {
+var culling = {   
     screen: [0,0], 
     startTile: [0,0],   //top left, visible
     endTile: [map.width - 1, map.height - 1],     //bottom right, visible
@@ -157,23 +168,27 @@ function drawGame(){
 
     lastFrameTime = currentFrameTime;
 
-
     //when ready to call function again -> levels later
     requestAnimationFrame(drawGame);
 }
 
 function fillMap(){
+    var img = new Image();
+
     for(var y = culling.startTile[1]; y <= culling.endTile[1]; y++){
         for(var x = culling.startTile[0]; x <= culling.endTile[0]; x++){ 
             switch(gameMap[((y*map.width)+x)]){
                 case 0:
                     ctx.fillStyle = "#999999";
+                    img.src = tree1.src;
                     break;
                 case 1:
                     ctx.fillStyle = "#eeeeee";
+                    img.src = back.src;
                     break;
                 case 2:
                     ctx.fillStyle = "#fff";
+                    img.src = tree2.src;
                     break;
                 case 3:
                     ctx.fillStyle = "#000";
@@ -181,15 +196,19 @@ function fillMap(){
             }
             ctx.fillRect(culling.offset[0] + x*tile.width,
                          culling.offset[1] + y*tile.height,tile.width,tile.height);
-    
+            ctx.drawImage(img,culling.offset[0] + x*tile.width,
+                culling.offset[1] + y*tile.height,tile.width,tile.height);
         }
     }
-    ctx.fillStyle = "#0000ff";
+    ctx.fillStyle = "#b9f2cf";
+    
     //player
     ctx.fillRect(culling.offset[0] + player.position[0], 
                  culling.offset[1] + player.position[1],
                  player.dimensions[0], player.dimensions[1]);
-    
+    ctx.drawImage(player_character, culling.offset[0] + player.position[0], 
+                  culling.offset[1] + player.position[1],
+                  player.dimensions[0], player.dimensions[1]);
 
     ctx.fillStyle = "#ff0000";
     ctx.fillText("Timer ", 20, 20);
