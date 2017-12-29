@@ -21,9 +21,21 @@ var keysDown = {
     40: false  //down
 };
 
-
 //call character
 var player = new Character();
+
+var gameover=false;
+actionIsRunning=false;
+
+//index of the monser the player has:
+//0 ... they have no monster
+//1-8: bird, cat, dragon, hedgehog, owl, prince, rose, wolf
+//TODO: we need better names for the little monsters! 
+var monster_index = 3; //todo: zero in the beginning
+var opponent_index = 0;
+
+var item_count = 0;
+var chance_of_catching=0.2;
 
 //bool so that you can't move when you fight
 var fight = false;
@@ -131,7 +143,7 @@ Character.prototype.moves = function(t){
 //get Index in the map array
 function getIndex(x, y){
     return ((y * map.width) +  x);
-}
+};
 
 function drawGame(){
     if(ctx==null){return;}
@@ -156,15 +168,17 @@ function drawGame(){
 
     //fill with random trees!
     ctx.fillStyle = "#000000";
-    ctx.fillRect(0, 0, culling.screen[0], culling.screen[1]);
 
-    fillMap();
+    if (!fight && !gameover){
+        ctx.fillRect(0, 0, culling.screen[0], culling.screen[1]);
+        fillMap();
+    }
 
     lastFrameTime = currentFrameTime;
 
     //when ready to call function again -> levels later
     requestAnimationFrame(drawGame);
-}
+};
 
 function fillMap(){
     var img = new Image();
@@ -211,8 +225,8 @@ function fillMap(){
                     img.src = tree2.src;
                     break;
             }
-            ctx.fillRect(culling.offset[0] + x*tile.width,
-                         culling.offset[1] + y*tile.height,tile.width,tile.height);
+            //ctx.fillRect(culling.offset[0] + x*tile.width,
+            //             culling.offset[1] + y*tile.height,tile.width,tile.height);
             ctx.drawImage(img,culling.offset[0] + x*tile.width,
                 culling.offset[1] + y*tile.height,tile.width,tile.height);
         }
@@ -287,13 +301,175 @@ function checkForAction(){
 };
 
 function addItemToBag(){
-    //TODO!
+    item_count++;
+    //TODO: little message that item has been added to bag?
 }
 
 function startFight(){
-    ctx.drawImage(fight2,1,1); //???
-    //TODO!
-    console.log("fight!")
+    drawBackground();
+}
 
-    fight=false;
+function drawBackground(){
+    ctx.font = "15px Arial";
+    ctx.fillStyle = "black";
+
+    if (monster_index==0){
+        //player has no monster
+        ctx.drawImage(fight2, 0, 0, 650, 488);    
+    }
+    else{
+        //player has monster
+        ctx.drawImage(fight1, 0, 0, 650, 488);
+        ctx.fillText("Do you want to attack? - Press A",50,415); 
+        switch(monster_index){
+            case 1:
+                ctx.drawImage(bird_back,400,220,150,150);
+                break;
+            case 2:
+                ctx.drawImage(cat_back,400,220,150,150);
+                break;
+            case 3:
+                ctx.drawImage(dragon_back,400,220,150,150);
+                break;
+            case 4:
+                ctx.drawImage(hedgehog_back,400,220,150,150);
+                break;
+            case 5:
+                ctx.drawImage(owl_back,400,220,150,150);
+                break;
+            case 6:
+                ctx.drawImage(prince_back,400,220,150,150);
+                break;
+            case 7:
+                ctx.drawImage(rose_back,400,220,150,150);
+                break;
+            case 8:
+                ctx.drawImage(wolf_back,400,220,150,150);
+                break;
+        };
+    };
+
+    //opponent:
+    var r=Math.random();
+    if (r < 0.1){
+        ctx.drawImage(bird,140,10,140,140);
+        opponent_index = 1;
+    }
+    else if(r < 0.2){
+        ctx.drawImage(cat,140,10,140,140);
+        opponent_index = 2;
+    }
+    else if(r < 0.3){
+        ctx.drawImage(dragon,140,10,140,140);
+        opponent_index = 3;
+    }
+    else if(r < 0.4){
+        ctx.drawImage(hedgehog,140,10,140,140);
+        opponent_index = 4;
+    }
+    else if(r < 0.5){
+        ctx.drawImage(owl,140,10,140,140);
+        opponent_index = 5;
+    }
+    else if(r < 0.6){
+        ctx.drawImage(prince,140,10,140,140);
+        opponent_index = 6;
+    }
+    else if(r < 0.7){
+        ctx.drawImage(rose,140,10,140,140);
+        opponent_index = 7;
+    }
+    else if(r < 1){
+        ctx.drawImage(wolf,140,10,140,140);
+        opponent_index = 8;
+    }
+
+    ctx.fillText("Do you want to try to catch the little monster? - Press C",50,430); 
+    ctx.fillText("Do you want to feed the little monster? - Press F",50,445); 
+    ctx.fillText("Do you want to run away? - Press R",50,460); 
+}
+
+function runAway(){
+    actionIsRunning = true;
+    var r = Math.random();
+    if (r <= 0.4){
+        fight=false;
+    }
+    else{
+        ctx.strokeStyle="red";
+        ctx.fillStyle = "white";
+        ctx.fillRect(435,420,185,30);
+        ctx.strokeText("The monster stopped you!",445,435);
+        setTimeout(monsterAttacks,3000);
+    }
+    actionIsRunning = false;
+}
+
+function feedMonster(){
+    actionIsRunning = true;
+    ctx.strokeStyle="red";
+    ctx.fillStyle = "white";
+    ctx.fillRect(435,420,185,30);
+    ctx.strokeText("Is is eating...",445,435);
+    chance_of_catching += 0.1;
+    setTimeout(monsterAttacks,3000);
+    actionIsRunning = false;
+}
+
+function catchMonster(){
+    actionIsRunning = true;
+    var r = Math.random();
+    
+    ctx.strokeStyle="red";
+    ctx.fillStyle = "white";
+    ctx.fillRect(435,420,185,30);
+    ctx.strokeText("You threw a net...",445,435);
+
+    if (r <= chance_of_catching){
+        monster_index = opponent_index;
+        setTimeout(endFight, 3000);
+    }
+    else{
+        setTimeout(monsterAttacks,3000);
+    }
+    actionIsRunning = false;
+}
+
+function attackMonster(){
+    actionIsRunning = true;
+    var r = Math.random();
+    
+    ctx.strokeStyle="red";
+    ctx.fillStyle = "white";
+    ctx.fillRect(435,420,185,30);
+    ctx.strokeText("They are fighting!",445,435);
+
+    if (r <= 0.5){
+        setTimeout(endFight, 3000);
+    }
+    else{
+        setTimeout(monsterAttacks,3000);
+    }
+    actionIsRunning = false;
+}
+
+function monsterAttacks(){
+    r = Math.random();
+    ctx.fillStyle = "white";
+    ctx.fillRect(435,420,185,30);
+    ctx.strokeText("It attacked you!",445,435);
+    if (r < 0.15){
+        console.log("Game over");
+        gameover = true;
+        //TODO: Gameover screen
+    }
+}
+
+function endFight(msg){
+    ctx.strokeStyle="red";
+    ctx.fillStyle = "white";
+    ctx.fillRect(50,390,530,80);
+    ctx.font = "18px Arial";
+    ctx.strokeText("Y O U    W O N   !",50,435);
+    setTimeout(function(){fight = false;},2000);
 }
