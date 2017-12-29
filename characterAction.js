@@ -1,4 +1,13 @@
-//you can pick up goodies and rocks!
+function characterMeet(){
+    if (gameMap[player.tileTo[1] * map.width + player.tileTo[0] - 1] == 10 ||
+        gameMap[player.tileTo[1] * map.width + player.tileTo[0] + 1] == 10 ||
+        gameMap[player.tileTo[1] * map.width + player.tileTo[0] - map.width] == 10 ||
+        gameMap[player.tileTo[1] * map.width + player.tileTo[0] + map.width] == 10 ){
+            return true;
+            console.log("meet character");
+    }
+    return false;
+}
 
 function characterTalk(e){
     var rand = Math.floor(Math.random() * 12);
@@ -58,11 +67,7 @@ function characterTalk(e){
 
 function characterFight(){
     console.log("aggressive");
-    requestAnimationFrame(fightScene);
-}
-
-function fightScene(){
-    console.log("action");
+    //TODO -> do fight -> like random
 }
 
 function characterGivesItem(){
@@ -71,35 +76,3 @@ function characterGivesItem(){
     //add to menue - like timer no menue!
 }
 
-//in High Gras
-function checkForAction(){
-    //ONE ATTACKS
-    console.log("in");
-    if (gameMap[getIndex(player.tileFrom[0],
-                player.tileFrom[1], player)] == 1){
-        var r = Math.random();
-        if (r<=0.3){
-            fight = true;
-            //startFight();
-            console.log("fight");
-        }
-    }
-    //ADD SPECIAL ITEM
-    else if (gameMap[getIndex(player.tileFrom[0], player.tileFrom[1], player)] == 8){
-        gameMap[getIndex(player.tileFrom[0], player.tileFrom[1], player)] = 0;
-
-        addItemToBag();
-        //SUM UP COUNTER TODO
-    }
-}
-
-function addItemToBag(){
-    //TODO!
-    //I would leave away the bag and only be able to collect
-    //-- goodies
-    //-- stones
-    //-- special item (rename it later)
-    // and show these like the timer on the edge of the screen
-    // save A LOOOT of programming
-    // only disad. - can't administrate them but don't really need to anyway
-}

@@ -58,28 +58,28 @@ function fillMap(){
                     img.src = grass.src;
                     break;
                 case 2:
-                    img.src = trail1.src;
+                    img.src = flower.src;
                     break;
                 case 3:
-                    img.src = trail2.src;
-                    break;
-                case 4:
-                    img.src = trail3.src;
-                    break;
-                case 5:
-                    img.src = trail4.src;
-                    break;
-                case 6:
-                    img.src = trail5.src;
-                    break;
-                case 7:
-                    img.src = trail6.src;
-                    break;
-                case 8:                     
                     img.src = item.src;
                     break;
+                case 4:
+                    img.src = trail1.src;
+                    break;
+                case 5:
+                    img.src = trail2.src;
+                    break;
+                case 6:
+                    img.src = trail3.src;
+                    break;
+                case 7:
+                    img.src = trail4.src;
+                    break;
+                case 8:
+                    img.src = trail5.src;
+                    break;
                 case 9:
-                    img.src = flower.src;
+                    img.src = trail6.src;
                     break;
                 case 10:
                     img.src = tree1.src;
@@ -87,13 +87,15 @@ function fillMap(){
                 case 11:
                     img.src = tree2.src;
                     break;
+                case 20:
+                    img.src = next_level.src;
             }
             ctx.drawImage(img,culling.offset[0] + x*tile.width,
                 culling.offset[1] + y*tile.height,tile.width,tile.height);
         }
     }
-    
     ctx.fillStyle = "#b9f2cf";
+
     //player
     ctx.drawImage(player_character, culling.offset[0] + player.position[0], 
                   culling.offset[1] + player.position[1],

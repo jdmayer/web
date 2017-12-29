@@ -1,11 +1,10 @@
-
 function Character() {
     this.tileFrom = [1,1];
     this.tileTo = [1,1];
     this.timeMoved = 0;
     this.dimensions = [30,30];
     this.position = [45,45];
-    this.speed = 50; 
+    this.speed = 200; 
     //after testing change speed
 };
 
