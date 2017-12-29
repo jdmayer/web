@@ -11,7 +11,7 @@ window.onload = function() {
         } 
 
         if(e.keyCode == 70 || e.keyCode == 67 || e.keyCode == 82 || e.keyCode == 65) {
-            if (fight && !gameover && !actionIsRunning){
+            if (fight && !isgameover && !actionIsRunning){
                 switch(e.keyCode){
                     case 70:
                         feedMonster();
@@ -20,7 +20,9 @@ window.onload = function() {
                         catchMonster();
                         break;
                     case 65:
-                        attackMonster();
+                        if (monster_index!=0){
+                            attackMonster();
+                        }
                         break;
                     case 82:
                         runAway();
@@ -32,10 +34,6 @@ window.onload = function() {
 
     window.addEventListener("keyup", function(e){
         if(e.keyCode >= 37 && e.keyCode <= 40) {
-            keysDown[e.keyCode] = false;
-        } 
-
-        if(e.keyCode == 70 || e.keyCode == 67 || e.keyCode == 82 || e.keyCode == 65) {
             keysDown[e.keyCode] = false;
         } 
     });

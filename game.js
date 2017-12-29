@@ -24,13 +24,16 @@ var keysDown = {
 //call character
 var player = new Character();
 
-var gameover=false;
-actionIsRunning=false;
+var isgameover = false;
+var level = 1;
+var actionIsRunning = false;
 
 //index of the monser the player has:
 //0 ... they have no monster
 //1-8: bird, cat, dragon, hedgehog, owl, prince, rose, wolf
+
 //TODO: we need better names for the little monsters! 
+
 var monster_index = 3; //todo: zero in the beginning
 var opponent_index = 0;
 
@@ -169,7 +172,7 @@ function drawGame(){
     //fill with random trees!
     ctx.fillStyle = "#000000";
 
-    if (!fight && !gameover){
+    if (!fight && !isgameover){
         ctx.fillRect(0, 0, culling.screen[0], culling.screen[1]);
         fillMap();
     }
@@ -224,6 +227,8 @@ function fillMap(){
                 case 11:
                     img.src = tree2.src;
                     break;
+                case 20:
+                    img.src = next_level.src;
             }
             //ctx.fillRect(culling.offset[0] + x*tile.width,
             //             culling.offset[1] + y*tile.height,tile.width,tile.height);
@@ -246,32 +251,40 @@ function moveCharacter(currentFrameTime){
     if(!player.moves(currentFrameTime)) {
         //up
         if(keysDown[38] && player.tileFrom[1] > 0 &&
+            (gameMap[getIndex(player.tileFrom[0],
+                    player.tileFrom[1]-1)] <= 9 ||
             gameMap[getIndex(player.tileFrom[0],
-                    player.tileFrom[1]-1)] <= 9
+                    player.tileFrom[1]-1)] == 20)
             && !fight){
             player.tileTo[1] -= 1;
             checkForAction();
         }
         //down
         else if(keysDown[40] && player.tileFrom[1] < (map.height - 1) &&
+                (gameMap[getIndex(player.tileFrom[0],
+                        player.tileFrom[1]+1)] <= 9 ||
                 gameMap[getIndex(player.tileFrom[0],
-                        player.tileFrom[1]+1)] <= 9
+                        player.tileFrom[1]+1)] == 20)
                 && !fight){
             player.tileTo[1] += 1;
             checkForAction();
         }
         //left
         else if(keysDown[37] && player.tileFrom[0] > 0 &&
+            (gameMap[getIndex(player.tileFrom[0] - 1,
+                    player.tileFrom[1])] <= 9 ||
             gameMap[getIndex(player.tileFrom[0] - 1,
-                    player.tileFrom[1])] <= 9
+                    player.tileFrom[1])] == 20)
             && !fight){
             player.tileTo[0] -= 1;
             checkForAction();
         }
         //right
         else if(keysDown[39] && player.tileFrom[0] < (map.width - 1) &&
+                (gameMap[getIndex(player.tileFrom[0] + 1,
+                        player.tileFrom[1])] <= 9 || 
                 gameMap[getIndex(player.tileFrom[0] + 1,
-                        player.tileFrom[1])] <= 9
+                            player.tileFrom[1])] == 20)
             && !fight){
             player.tileTo[0] += 1;
             checkForAction();
@@ -284,19 +297,36 @@ function moveCharacter(currentFrameTime){
 }
 
 function checkForAction(){
-    if (gameMap[getIndex(player.tileFrom[0],
-                player.tileFrom[1], player)]==1){
+    if (gameMap[getIndex(player.tileTo[0],
+                player.tileTo[1], player)]==1){
         var r = Math.random();
         if (r<=0.3){
             fight = true;
             startFight();
         }
     }
-    else if (gameMap[getIndex(player.tileFrom[0],
-                    player.tileFrom[1], player)]==3){
-        gameMap[getIndex(player.tileFrom[0],
-        player.tileFrom[1], player)]=0;
+    else if (gameMap[getIndex(player.tileTo[0],
+                    player.tileTo[1], player)]==3){
+        gameMap[getIndex(player.tileTo[0],
+        player.tileTo[1], player)]=0;
         addItemToBag();
+    }
+    else if (gameMap[getIndex(player.tileTo[0],
+                    player.tileTo[1], player)]==20){
+        //next level:
+        player = new Character();
+        if (level = 1){
+            gameMap = gameMap_level2;
+            level++;
+        }
+        else if(level = 2){
+            gameMap = gameMap_level3;
+            level++;
+        }
+        else if (level = 3){
+            //TODO!
+        }
+
     }
 };
 
@@ -307,6 +337,8 @@ function addItemToBag(){
 
 function startFight(){
     drawBackground();
+    drawOpponent();
+    drawOptions();
 }
 
 function drawBackground(){
@@ -349,6 +381,16 @@ function drawBackground(){
         };
     };
 
+
+}
+
+function drawOptions(){
+    ctx.fillText("Do you want to try to catch the little monster? - Press C",50,430); 
+    ctx.fillText("Do you want to feed the little monster? - Press F",50,445); 
+    ctx.fillText("Do you want to run away? - Press R",50,460); 
+}
+
+function drawOpponent(){
     //opponent:
     var r=Math.random();
     if (r < 0.1){
@@ -383,10 +425,6 @@ function drawBackground(){
         ctx.drawImage(wolf,140,10,140,140);
         opponent_index = 8;
     }
-
-    ctx.fillText("Do you want to try to catch the little monster? - Press C",50,430); 
-    ctx.fillText("Do you want to feed the little monster? - Press F",50,445); 
-    ctx.fillText("Do you want to run away? - Press R",50,460); 
 }
 
 function runAway(){
@@ -410,7 +448,7 @@ function feedMonster(){
     ctx.strokeStyle="red";
     ctx.fillStyle = "white";
     ctx.fillRect(435,420,185,30);
-    ctx.strokeText("Is is eating...",445,435);
+    ctx.strokeText("It is eating...",445,435);
     chance_of_catching += 0.1;
     setTimeout(monsterAttacks,3000);
     actionIsRunning = false;
@@ -455,13 +493,22 @@ function attackMonster(){
 
 function monsterAttacks(){
     r = Math.random();
+    ctx.strokeStyle = "red";
     ctx.fillStyle = "white";
     ctx.fillRect(435,420,185,30);
     ctx.strokeText("It attacked you!",445,435);
-    if (r < 0.15){
-        console.log("Game over");
-        gameover = true;
-        //TODO: Gameover screen
+    setTimeout(function(){
+                            if (!isgameover){    
+                                ctx.fillStyle = "white";
+                                ctx.fillRect(435,420,185,30);
+                                ctx.fillStyle = "black";
+                                ctx.fillText("What do you want to do?",445,435);
+                            }
+                            
+                         },2000);
+    
+    if (r < 0.2 ){
+        setTimeout(gameOver,2000);
     }
 }
 
@@ -472,4 +519,11 @@ function endFight(msg){
     ctx.font = "18px Arial";
     ctx.strokeText("Y O U    W O N   !",50,435);
     setTimeout(function(){fight = false;},2000);
+}
+
+function gameOver(){
+    isgameover = true;
+    ctx.fillStyle="black";
+    ctx.fillRect(0,0,650,488);
+    ctx.strokeText("GAME OVER",300,300);
 }

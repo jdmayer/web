@@ -28,6 +28,8 @@ var fight1 = new Image();
 fight1.src = "./img/fight_back1.png";
 var fight2 = new Image();
 fight2.src = "./img/fight_back2.png";
+var next_level = new Image();
+next_level.src = "./img/next_level.png"
 
 //Monsters:
 var bird = new Image();
