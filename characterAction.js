@@ -72,6 +72,7 @@ function characterFight(){
 
 function characterGivesItem(){
     console.log("happy");
+    item_count++;
     //add parameter for different items?
     //add to menue - like timer no menue!
 }

@@ -22,17 +22,13 @@ var keysDown = {
     37: false,  //left
     38: false,  //up
     39: false,  //right
-    40: false,  //down
-    13: false,  //enter
-    65: false,  //a
-    67: false,  //c
-    70: false,  //f
-    82: false   //r nicht 
+    40: false  //down
 };
 
 var isGameOver = false;
 var level = 1;
 var actionIsRunning = false;
+var isLevelScreen= true;
 
 //index of the monster the player has:
 //0 ... they have no monster
@@ -45,10 +41,10 @@ var actionIsRunning = false;
 //!!
 //!!
 //!!
-//TODO: we need better names for the little monsters! 
 
 var monster;
-var monster_index = 0; //todo: zero in the beginning
+var monster_index = 0; 
+//needed for when you catch the monster, so that you can assing its idex to monster_index:
 var opponent_index = 0;
 
 var item_count = 0;
@@ -71,7 +67,7 @@ function drawGame(){ //later rename to lvl1
     //fill with random trees!
     ctx.fillStyle = "#000000";
 
-    if (!fight && !isGameOver){
+    if (!fight &&  !isLevelScreen &&!isGameOver){
         ctx.fillRect(0, 0, culling.screen[0], culling.screen[1]);
         fillMap();
     }
@@ -82,8 +78,7 @@ function drawGame(){ //later rename to lvl1
     if(characterMeet()){
         console.log("do sthg - talk ...");
         characterTalk(0); //if 0 talk, else wanna fight
-    }
-    checkForAction();    
+    }  
 
     requestAnimationFrame(drawGame);
 }

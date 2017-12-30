@@ -1,12 +1,10 @@
 function checkForAction(){
     if (gameMap[getIndex(player.tileTo[0], player.tileTo[1], player)] == 1){
         var r = Math.random();
-        if (r <= 0.01){
+        if (r <= 0.20){
             if(!fight){
                 monster = new Monster();
             }
-            fight = true;
-
             startFight();
         }
     }
@@ -20,18 +18,15 @@ function checkForAction(){
         player = new Character();
         switch(level){
             case 1:
-                gameMap = gameMap_level2;
                 level++;
                 startLevel();
                 break;
             case 2:
-                gameMap = gameMap_level2;
                 level++;
                 startLevel();
                 break;
             case 3:
-                //gameMap = gameMap_level3;
-                level++;
+                //level++;
                 startLevel();
                 break;
         }

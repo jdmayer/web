@@ -101,7 +101,9 @@ function fillMap(){
                   culling.offset[1] + player.position[1],
                   player.dimensions[0], player.dimensions[1]);
 
+    ctx.strokeStyle = "white";
+    ctx.strokeText("Item-Count: "+ item_count , 20, 20);
     ctx.fillStyle = "darkred";
-    ctx.fillText("Timer ", 20, 20);
+    ctx.fillText("Item-Count: "+ item_count , 20, 20);
 }
 

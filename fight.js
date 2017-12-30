@@ -1,9 +1,9 @@
+
 function startFight(){
+    fight = true;
     drawBackground();
     drawOptions();
     monster.drawOpponent();
-     
-    interactFight();
 }
 
 function drawBackground(){ 
@@ -65,8 +65,8 @@ function runAway(){
         ctx.strokeStyle="red";
         ctx.fillStyle = "white";
         ctx.fillRect(435,420,185,30);
-        ctx.strokeText("The monster stopped you!",445,435);
-        setTimeout(monsterAttacks,3000);
+        ctx.strokeText("It stopped you!",445,435);
+        setTimeout(monsterAttacks,2000);
     }
     actionIsRunning = false;
 }
@@ -78,7 +78,7 @@ function feedMonster(){
     ctx.fillRect(435,420,185,30);
     ctx.strokeText("It is eating...",445,435);
     chance_of_catching += 0.1;
-    setTimeout(monsterAttacks,3000);
+    setTimeout(monsterAttacks,2000);
     actionIsRunning = false;
 }
 
@@ -93,10 +93,10 @@ function catchMonster(){
 
     if (r <= chance_of_catching){
         monster_index = opponent_index;
-        setTimeout(endFight, 3000);
+        setTimeout(endFight, 2000);
     }
     else{
-        setTimeout(monsterAttacks,3000);
+        setTimeout(monsterAttacks,2000);
     }
     actionIsRunning = false;
 }
@@ -111,10 +111,10 @@ function attackMonster(){
     ctx.strokeText("They are fighting!",445,435);
 
     if (r <= 0.5){
-        setTimeout(endFight, 3000);
+        setTimeout(endFight, 2000);
     }
     else{
-        setTimeout(monsterAttacks,3000);
+        setTimeout(monsterAttacks,2000);
     }
     actionIsRunning = false;
 }
@@ -126,18 +126,18 @@ function monsterAttacks(){
     ctx.fillRect(435,420,185,30);
     ctx.strokeText("It attacked you!",445,435);
     setTimeout(function(){
-                            if (!isgameover){    
+                            if (r < 0.2 ){
+                                gameOver();
+                            }
+                            else{    
                                 ctx.fillStyle = "white";
                                 ctx.fillRect(435,420,185,30);
                                 ctx.fillStyle = "black";
-                                ctx.fillText("What do you want to do?",445,435);
-                            }
-                            
+                                ctx.fillText("Your Action?",445,435);
+                            }    
                          },2000);
     
-    if (r < 0.2 ){
-        setTimeout(gameOver,2000);
-    }
+
 }
 
 function endFight(msg){
@@ -147,26 +147,4 @@ function endFight(msg){
     ctx.font = "18px Arial";
     ctx.strokeText("Y O U    W O N   !",50,435);
     setTimeout(function(){fight = false;},2000);
-}
-
-function interactFight(){
-    if (fight && !isGameOver && !actionIsRunning){
-        if(keysDown[70]){
-            console.log("feed");
-            feedMonster();
-        }
-        if(keysDown[65]){
-            if (monster_index != 0){
-                attackMonster();
-            }
-        }
-        if(keysDown[67]){
-            console.log("catch");
-            catchMonster();
-        }    
-        if(keysDown[82]){
-            runAway();
-            console.log("run");
-        }    
-    }
 }

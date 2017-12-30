@@ -1,5 +1,6 @@
 function startLevel(){
     //IF TIME COOL FADE OUT WITH WAITING SCREEN
+    isLevelScreen=true;
     ctx.fillStyle = "darkred"; 
     ctx.fillRect(0, 0, culling.screen[0], culling.screen[1]);
 
@@ -8,17 +9,16 @@ function startLevel(){
     ctx.fillText("LEVEL " + level, 280, 244);
     ctx.font = "10pt Helvetica";
     ctx.fillText("Press Enter to Continue", 260, 280);
- 
-    startNewLevel();
+    console.log("start Level");
+    //startNewLevel();
 }
 
-function level2(){
-    console.log("Congratulation");
-    level++; //just exit
-    startLevel();
+// function level2(){
+//     console.log("Congratulation");
+//     startLevel();
 
-    requestAnimationFrame(level2); 
-}
+//     requestAnimationFrame(level2); 
+// }
 
 function gameOver(isGameOver){
     isGameoOver = true;
@@ -34,20 +34,24 @@ function gameOver(isGameOver){
 }
 
 function startNewLevel(){
-    if(keysDown[13]){
+
         if(level == 1){
-            level++;
             requestAnimationFrame(drawGame);
             return true;
         }
         else if(level == 2){
-            requestAnimationFrame(level2);
+            gameMap=gameMap_level2;
+            requestAnimationFrame(drawGame);
             return true;
 
         }
-        else if(level > 2){
+        else if(level == 3){
+            gameMap=gameMap_level3;
+            requestAnimationFrame(drawGame);
+            return true;
+
+        }
+        else if(level > 3){
             console.log("This level has not been developed yet");
         }
-    }
-    requestAnimationFrame(startLevel);
 }
