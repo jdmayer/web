@@ -1,9 +1,9 @@
 
 function startFight(){
-    fight = true;
     drawBackground();
     drawOptions();
     monster.drawOpponent();
+    fight = true;
 }
 
 function drawBackground(){ 
@@ -68,7 +68,6 @@ function runAway(){
         ctx.strokeText("It stopped you!",445,435);
         setTimeout(monsterAttacks,2000);
     }
-    actionIsRunning = false;
 }
 
 function feedMonster(){
@@ -79,7 +78,6 @@ function feedMonster(){
     ctx.strokeText("It is eating...",445,435);
     chance_of_catching += 0.1;
     setTimeout(monsterAttacks,2000);
-    actionIsRunning = false;
 }
 
 function catchMonster(){
@@ -98,7 +96,6 @@ function catchMonster(){
     else{
         setTimeout(monsterAttacks,2000);
     }
-    actionIsRunning = false;
 }
 
 function attackMonster(){
@@ -116,7 +113,6 @@ function attackMonster(){
     else{
         setTimeout(monsterAttacks,2000);
     }
-    actionIsRunning = false;
 }
 
 function monsterAttacks(){
@@ -134,10 +130,9 @@ function monsterAttacks(){
                                 ctx.fillRect(435,420,185,30);
                                 ctx.fillStyle = "black";
                                 ctx.fillText("Your Action?",445,435);
+                                actionIsRunning = false;
                             }    
                          },2000);
-    
-
 }
 
 function endFight(msg){
@@ -146,5 +141,7 @@ function endFight(msg){
     ctx.fillRect(50,390,530,80);
     ctx.font = "18px Arial";
     ctx.strokeText("Y O U    W O N   !",50,435);
-    setTimeout(function(){fight = false;},2000);
+    setTimeout(function(){fight = false;  
+                          actionIsRunning = false;
+                         },2000);
 }
