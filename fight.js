@@ -60,6 +60,7 @@ function runAway(){
     var r = Math.random();
     if (r <= 0.4){
         fight=false;
+        actionIsRunning = false;
     }
     else{
         ctx.strokeStyle="red";
@@ -122,7 +123,7 @@ function monsterAttacks(){
     ctx.fillRect(435,420,185,30);
     ctx.strokeText("It attacked you!",445,435);
     setTimeout(function(){
-                            if (r < 0.2 ){
+                            if (r < 0.1 ){
                                 gameOver();
                             }
                             else{    
