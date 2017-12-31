@@ -1,6 +1,7 @@
 function startLevel(){
     //IF TIME COOL FADE OUT WITH WAITING SCREEN
     isLevelScreen=true;
+    isGameOver=false;
     ctx.fillStyle = "darkred"; 
     ctx.fillRect(0, 0, culling.screen[0], culling.screen[1]);
 
@@ -20,9 +21,10 @@ function startLevel(){
 //     requestAnimationFrame(level2); 
 // }
 
-function gameOver(isGameOver){
-    isGameoOver = true;
-
+function gameOver(){
+    isGameOver = true;
+    fight=false;
+    
     ctx.fillStyle="black";
     ctx.fillRect(0,0,650,488);
     ctx.fillStyle = "white";
@@ -30,10 +32,11 @@ function gameOver(isGameOver){
     ctx.strokeText("GAME OVER", 250, 244);
     ctx.font = "10pt Helvetica";
     ctx.fillText("Press Enter to Continue", 260, 280);
-    startLevel();
 }
 
 function startNewLevel(){
+        player = new Character();
+        actionIsRunning = false;
 
         if(level == 1){
             requestAnimationFrame(drawGame);

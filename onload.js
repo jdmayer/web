@@ -42,8 +42,9 @@ window.onload = function() {
                     break;
             }
         }
-        if (isLevelScreen && e.keyCode == 13){
+        if ((isGameOver || isLevelScreen) && e.keyCode == 13){
             isLevelScreen = false;
+            isGameOver = false;
             startNewLevel();
         }
     });
