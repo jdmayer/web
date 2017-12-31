@@ -27,10 +27,10 @@ function gameOver(isGameOver){
     ctx.fillRect(0,0,650,488);
     ctx.fillStyle = "white";
     ctx.font = "20pt Helvetica";
-    ctx.strokeText("GAME OVER", 280, 244);
+    ctx.strokeText("GAME OVER", 250, 244);
     ctx.font = "10pt Helvetica";
     ctx.fillText("Press Enter to Continue", 260, 280);
-    startNewLevel();
+    startLevel();
 }
 
 function startNewLevel(){
