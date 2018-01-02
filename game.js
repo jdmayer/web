@@ -44,11 +44,14 @@ var isLevelScreen= true;
 
 var monster;
 var monster_index = 0; 
-//needed for when you catch the monster, so that you can assing its idex to monster_index:
+//needed for when you catch the monster, so that you can assign its index to monster_index:
 var opponent_index = 0;
 
+//for character interaction - prob not needed
+var charFight = false;
+
 var item_count = 0;
-var chance_of_catching=0.2;
+var chance_of_catching = 0.2;
 var fight = false;
 
 
@@ -67,7 +70,7 @@ function drawGame(){ //later rename to lvl1
     //fill with random trees!
     ctx.fillStyle = "#000000";
 
-    if (!fight &&  !isLevelScreen &&!isGameOver){
+    if (!fight &&  !isLevelScreen && !isGameOver){
         ctx.fillRect(0, 0, culling.screen[0], culling.screen[1]);
         fillMap();
     }
@@ -76,8 +79,11 @@ function drawGame(){ //later rename to lvl1
     lastFrameTime = currentFrameTime;
 
     if(characterMeet()){
-        console.log("do sthg - talk ...");
-        characterTalk(0); //if 0 talk, else wanna fight
+        window.addEventListener("keydown",function(e){
+            if (e.keyCode == 13){
+                characterTalk(); 
+            }
+        });
     }  
 
     requestAnimationFrame(drawGame);

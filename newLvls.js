@@ -1,7 +1,7 @@
 function startLevel(){
     //IF TIME COOL FADE OUT WITH WAITING SCREEN
-    isLevelScreen=true;
-    isGameOver=false;
+    isLevelScreen = true;
+    isGameOver = false;
     ctx.fillStyle = "darkred"; 
     ctx.fillRect(0, 0, culling.screen[0], culling.screen[1]);
 

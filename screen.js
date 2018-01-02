@@ -96,7 +96,7 @@ function fillMap(){
                   player.dimensions[0], player.dimensions[1]);
 
     ctx.fillStyle = "darkred";
-    ctx.fillText("Item-Count: "+ item_count , 20, 20);
-    ctx.fillText("Item-Count: "+ item_count , 20, 20);
+    ctx.fillStyle = "16pt Helvetica";
+    ctx.fillText("Item-Count: "+ item_count , 20, 30);
 }
 

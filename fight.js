@@ -1,7 +1,14 @@
-
 function startFight(){
     drawBackground();
     drawOptions();
+    if(charFight == true){
+        ctx.fillStyle = "white";
+        ctx.fillRect(180, 180, 300, 200);
+        ctx.fillStyle = "darkred";
+        ctx.fillText("The kid calls his monster!", 260, 260);
+        charFight = false;
+        setTimeout(startFight, 2000);
+    }
     monster.drawOpponent();
     fight = true;
 }
@@ -45,7 +52,7 @@ function drawBackground(){
                 break;
         }
     }
-    return true;
+    //return true;
 }
 
 function drawOptions(){
@@ -61,13 +68,14 @@ function runAway(){
     if (r <= 0.4){
         fight=false;
         actionIsRunning = false;
+        charFight = false;
     }
     else{
         ctx.strokeStyle="red";
         ctx.fillStyle = "white";
-        ctx.fillRect(435,420,185,30);
-        ctx.strokeText("It stopped you!",445,435);
-        setTimeout(monsterAttacks,2000);
+        ctx.fillRect(435, 420, 185, 30);
+        ctx.strokeText("You can't run away!", 445, 435);
+        setTimeout(monsterAttacks, 2000);
     }
 }
 
@@ -136,13 +144,16 @@ function monsterAttacks(){
         },2000);
 }
 
-function endFight(msg){
+function endFight(){
     ctx.strokeStyle="red";
     ctx.fillStyle = "white";
     ctx.fillRect(50,390,530,80);
     ctx.font = "18px Arial";
     ctx.strokeText("Y O U    W O N   !",50,435);
-    setTimeout(function(){fight = false;  
-                          actionIsRunning = false;
-                         },2000);
+    setTimeout(function(){
+        fight = false;  
+        actionIsRunning = false;
+        charFight = false;
+        },2000);
 }
+
