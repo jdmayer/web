@@ -14,13 +14,13 @@ window.onload = function() {
     ctx.font = "bold 10pt sans-serif";
 
     window.addEventListener("keydown", function(e){
-        if(e.keyCode >= 37 && e.keyCode <= 40 ){//|| e.keyCode == 13) {
+        if(e.keyCode >= 37 && e.keyCode <= 40 ){
             keysDown[e.keyCode] = true;
         } 
     });
 
     window.addEventListener("keyup", function(e){
-        if(e.keyCode >= 37 && e.keyCode <= 40 ){ //|| e.keyCode == 13) {
+        if(e.keyCode >= 37 && e.keyCode <= 40 ){
             keysDown[e.keyCode] = false;
         } 
     });

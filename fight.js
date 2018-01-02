@@ -123,17 +123,17 @@ function monsterAttacks(){
     ctx.fillRect(435,420,185,30);
     ctx.strokeText("It attacked you!",445,435);
     setTimeout(function(){
-                            if (r < 0.1 ){
-                                gameOver();
-                            }
-                            else{    
-                                ctx.fillStyle = "white";
-                                ctx.fillRect(435,420,185,30);
-                                ctx.fillStyle = "black";
-                                ctx.fillText("Your Action?",445,435);
-                                actionIsRunning = false;
-                            }    
-                         },2000);
+        if (r < 0.1 ){
+            gameOver();
+        }
+        else{    
+            ctx.fillStyle = "white";
+            ctx.fillRect(435,420,185,30);
+            ctx.fillStyle = "black";
+            ctx.fillText("Your Action?",445,435);
+            actionIsRunning = false;
+            }    
+        },2000);
 }
 
 function endFight(msg){

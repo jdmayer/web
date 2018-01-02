@@ -65,9 +65,11 @@ wolf.src = "./img/wolf.png";
 var wolf_back = new Image();
 wolf_back.src = "./img/wolf_back.png";
 
-//Characters:
+//Main Character:
 var player_character = new Image();
 player_character.src = "./img/Character_vorne_1.png";
+
+//Other Characters:
 var other1_character = new Image();
 other1_character.src = "./img/character_other_1.png";
 var other2_character = new Image();

@@ -10,33 +10,6 @@ var culling = {
         this.offset[1] = Math.floor((this.screen[1]/2) - py);
 
         var tiles = [Math.floor(px / tile.width), Math.floor(py / tile.height)];
-
-    /* //NOT NEEDED - it draws when it comes on screen 
-        //saves spaces - BUT our maps are NOT so large to pay this off
-        //delete if not needed on finishing the game
-
-        this.startTile[0] = tiles[0] - Math.ceil((this.screen[0] / 2) / tile.width);
-        this.startTile[1] = tiles[1] - Math.ceil((this.screen[1] / 2) / tile.height);
-
-        if(this.startTile[0] < 0) {
-            this.startTile[0] = 0; console.log("hi");
-        }
-        if(this.startTile[1] < 0) {
-            this.startTile[1] = 0;
-        }
-
-        this.endTile[0] = tiles[0] + 1 + Math.ceil((this.screen[0] / 2) / tile.width);
-        this.endTile[1] = tiles[1] + 1 + Math.ceil((this.screen[1] / 2) / tile.height);
-
-        if(this.endTile[0] >= map.width){
-            this.endTile[0] = map.width - 1;
-        }
-        if(this.endTile[1] >= map.height){
-            this.endTile[1] = map.height - 1;
-        }
-        */
-
-        //replaced with same outcome - endtile instead of 0 -> map.height/width -1
     }
 
 };
@@ -47,7 +20,7 @@ function fillMap(){
     //fill with random trees!
     ctx.fillStyle = "#000000";
     ctx.fillRect(0, 0, culling.screen[0], culling.screen[1]);
-
+    
     for(var y = culling.startTile[1]; y <= culling.endTile[1]; y++){
         for(var x = culling.startTile[0]; x <= culling.endTile[0]; x++){ 
             switch(gameMap[((y*map.width)+x)]){
@@ -64,22 +37,22 @@ function fillMap(){
                     img.src = item.src;
                     break;
                 case 4:
-                    img.src = trail1.src;
+                    img.src = trail1.src; //horizontal
                     break;
                 case 5:
-                    img.src = trail2.src;
+                    img.src = trail2.src; //vertical
                     break;
                 case 6:
-                    img.src = trail3.src;
+                    img.src = trail3.src; //left - down
                     break;
                 case 7:
-                    img.src = trail4.src;
+                    img.src = trail4.src; //left - up
                     break;
                 case 8:
-                    img.src = trail5.src;
+                    img.src = trail5.src; //up - right
                     break;
                 case 9:
-                    img.src = trail6.src;
+                    img.src = trail6.src; //down - right
                     break;
                 case 10:
                     img.src = tree1.src;
@@ -87,6 +60,27 @@ function fillMap(){
                 case 11:
                     img.src = tree2.src;
                     break;
+                //
+                //characters
+                //
+                case 12:
+                    img.src = other1_character.src; //front
+                    break;
+                case 13:
+                    img.src = other2_character.src; //left
+                    break;
+                case 14:
+                    img.src = other3_character.src; //right
+                    break;
+                case 15:
+                    img.src = other4_character.src; //left
+                    break; 
+                case 16:
+                    img.src = other5_character.src; //front
+                    break;
+                case 17:
+                    img.src = other6_character.src; //right
+                    break; 
                 case 20:
                     img.src = next_level.src;
             }
@@ -101,9 +95,8 @@ function fillMap(){
                   culling.offset[1] + player.position[1],
                   player.dimensions[0], player.dimensions[1]);
 
-    ctx.strokeStyle = "white";
-    ctx.strokeText("Item-Count: "+ item_count , 20, 20);
     ctx.fillStyle = "darkred";
+    ctx.fillText("Item-Count: "+ item_count , 20, 20);
     ctx.fillText("Item-Count: "+ item_count , 20, 20);
 }
 
