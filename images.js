@@ -1,3 +1,5 @@
+var lastMove = new Image();
+lastMove = player_front1;
 
 //Background:
 var tree1 = new Image();
@@ -66,8 +68,30 @@ var wolf_back = new Image();
 wolf_back.src = "./img/wolf_back.png";
 
 //Main Character:
-var player_character = new Image();
-player_character.src = "./img/Character_vorne_1.png";
+var player_front1 = new Image();
+player_front1.src = "./img/Character_vorne_1.png";
+var player_front2 = new Image();
+player_front2.src = "./img/Character_vorne_2.png";
+var player_front3 = new Image();
+player_front3.src = "./img/Character_vorne_3.png";
+
+var player_right1 = new Image();
+player_right1.src = "./img/Character_rechts_1.png";
+var player_right2 = new Image();
+player_right2.src = "./img/Character_rechts_2.png";
+
+var player_left1 = new Image();
+player_left1.src = "./img/Character_links_1.png";
+var player_left2 = new Image();
+player_left2.src = "./img/Character_links_2.png";
+
+var player_back1 = new Image();
+player_back1.src = "./img/Character_hinten_1.png";
+var player_back2 = new Image();
+player_back2.src = "./img/Character_hinten_2.png";
+var player_back3 = new Image();
+player_back3.src = "./img/Character_hinten_3.png";
+
 
 //Other Characters:
 var other1_character = new Image();

@@ -4,15 +4,15 @@ function checkForAction(){
         if (r <= 0.00){ //20
             if(!fight){
                 monster = new Monster();
-            }
-            startFight();
+                fight = true;
+                fightAlert();
+            }          
         }
     }
     else if (gameMap[getIndex(player.tileTo[0], player.tileTo[1], player)] == 3){
         gameMap[getIndex(player.tileTo[0],
         player.tileTo[1], player)] = 0;
         addItemToBag();
-        console.log("Got item");
     }
     else if (gameMap[getIndex(player.tileTo[0], player.tileTo[1], player)] == 20){
         player = new Character();
@@ -43,4 +43,12 @@ function addItemToBag(){
     // and show these like the timer on the edge of the screen
     // save A LOOOT of programming
     // only disad. - can't administrate them but don't really need to anyway
+}
+
+function fightAlert(){console.log(fightMsg);
+    fightMsg = true;
+    ctx.fillStyle = "white";
+    ctx.fillRect(180, 150, 300, 200);
+    ctx.fillStyle = "darkred";
+    ctx.fillText("A wild "+ monsterName[monster.index] + " appears!  ▼", 260, 260);
 }

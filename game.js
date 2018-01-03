@@ -1,7 +1,3 @@
-//
-//HERE ONLY MAIN FUNCTIONS FOR THE LEVELS CALLING OTHER FUNCS
-//
-
 var ctx; //context 
 var canvas;
 
@@ -30,29 +26,25 @@ var level = 1;
 var actionIsRunning = false;
 var isLevelScreen= true;
 
-//index of the monster the player has:
-//0 ... they have no monster
-//!!
-//!!
-//1-8: bird, cat, dragon, hedgehog, owl, prince, rose, wolf
-// dragon, miau, lavora, iglo, looki, prince (is good), wuff (?)
-//!!
-//!!
-//!!
-//!!
-//!!
+var monsterImg = [bird, cat, dragon, hedgehog, owl, prince, rose, wolf];
+var monsterImgBack = [bird_back, cat_back, dragon_back, hedgehog_back, 
+                      owl_back, prince_back, rose_back, wolf_back];
+var monsterName = ["Dax", "Flace", "Lavora", "Iglo", "Looki", "Prince", "Intestria", "Furry"];
 
 var monster;
 var monster_index = 0; 
-//needed for when you catch the monster, so that you can assign its index to monster_index:
-var opponent_index = 0;
+
 
 //for character interaction - prob not needed
 var charFight = false;
+var charInteraction = false;
+var charVisited = [0];
+var charTalking = false;
 
 var item_count = 0;
 var chance_of_catching = 0.2;
 var fight = false;
+var fightMsg = false;
 
 
 //get Index in the map array
@@ -78,13 +70,7 @@ function drawGame(){ //later rename to lvl1
     moveCharacter(currentFrameTime);
     lastFrameTime = currentFrameTime;
 
-    if(characterMeet()){
-        window.addEventListener("keydown",function(e){
-            if (e.keyCode == 13){
-                characterTalk(); 
-            }
-        });
-    }  
+    characterMeet();
 
     requestAnimationFrame(drawGame);
 }

@@ -47,5 +47,13 @@ window.onload = function() {
             isGameOver = false;
             startNewLevel();
         }
+        if(fightMsg && e.keyCode == 13){
+            startFight();
+        }
+        if(charInteraction && !fight && e.keyCode == 13){
+            charTalking = true;
+            var randChoice = Math.floor(Math.random() * 20);
+            characterTalk(randChoice);
+         }
     });
 };

@@ -10,7 +10,6 @@ function startLevel(){
     ctx.fillText("LEVEL " + level, 280, 244);
     ctx.font = "10pt Helvetica";
     ctx.fillText("Press Enter to Continue", 260, 280);
-    console.log("start Level");
 }
 
 function gameOver(){

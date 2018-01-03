@@ -82,20 +82,20 @@ function fillMap(){
                 case 17:
                     img.src = other6_character.src; //right
                     break; 
+                //
+                //next level
+                //
                 case 20:
                     img.src = next_level.src;
             }
-            ctx.drawImage(img,culling.offset[0] + x*tile.width,
+            ctx.drawImage(img, culling.offset[0] + x*tile.width,
                 culling.offset[1] + y*tile.height,tile.width,tile.height);
         }
     }
     ctx.fillStyle = "#b9f2cf";
 
-    //player
-    ctx.drawImage(player_character, culling.offset[0] + player.position[0], 
-                  culling.offset[1] + player.position[1],
-                  player.dimensions[0], player.dimensions[1]);
-
+    moveImage();
+    
     ctx.fillStyle = "darkred";
     ctx.fillStyle = "16pt Helvetica";
     ctx.fillText("Item-Count: "+ item_count , 20, 30);
