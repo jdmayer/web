@@ -20,6 +20,7 @@ function fillMap(){
     //fill with random trees!
     ctx.fillStyle = "#000000";
     ctx.fillRect(0, 0, culling.screen[0], culling.screen[1]);
+    ctx.fillStyle = "#b9f2cf";
     
     for(var y = culling.startTile[1]; y <= culling.endTile[1]; y++){
         for(var x = culling.startTile[0]; x <= culling.endTile[0]; x++){ 
