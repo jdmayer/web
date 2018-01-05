@@ -35,11 +35,15 @@ var monster;
 var monster_index = 0; 
 
 
-//for character interaction - prob not needed
+//for character interaction
 var charFight = false;
-var charInteraction = false;
-var charVisited = [0];
-var charTalking = false;
+var mapSize = map.width * map.height;
+var visited = new Array(mapSize);
+var msgNr = new Array(mapSize);
+for(var i = 0; i < mapSize; i++){
+    visited[i] = 1;
+    msgNr[i] = -1;
+}
 
 var item_count = 0;
 var chance_of_catching = 0.2;

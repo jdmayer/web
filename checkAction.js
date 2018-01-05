@@ -3,7 +3,7 @@ function checkForAction(){
         var r = Math.random();
         if (r <= 0.00){ //20
             if(!fight){
-                monster = new Monster();
+               // monster = new Monster();
                 fight = true;
                 fightAlert();
             }          
@@ -45,10 +45,10 @@ function addItemToBag(){
     // only disad. - can't administrate them but don't really need to anyway
 }
 
-function fightAlert(){console.log(fightMsg);
+function fightAlert(){
     fightMsg = true;
     ctx.fillStyle = "white";
     ctx.fillRect(180, 150, 300, 200);
     ctx.fillStyle = "darkred";
-    ctx.fillText("A wild "+ monsterName[monster.index] + " appears!  ▼", 260, 260);
+    ctx.fillText("A wild " + monsterName[monster.index] + " appears!  ▼", 260, 260);
 }

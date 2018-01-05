@@ -32,7 +32,7 @@ function moveCharacter(currentFrameTime){
                     player.tileTo[0] += 1;
                     checkForAction();
             }
-
+            
         if(player.tileFrom[0] != player.tileTo[0] || player.tileFrom[1] != player.tileTo[1]){
             player.timeMoved = currentFrameTime;
         }

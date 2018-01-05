@@ -1,13 +1,13 @@
 function startFight(){
     fightMsg = false;
-
+    monster = new Monster();
     drawBackground();
     drawOptions(); //change layout of Options
     monster.drawOpponent();
 }
 
 function drawBackground(){ 
-    ctx.font = "16px Helvetica";
+    //ctx.font = "16px Helvetica";
     ctx.fillStyle = "black";
 
     if (monster_index == 0){
@@ -33,7 +33,7 @@ function runAway(){
     actionIsRunning = true;
     var r = Math.random();
     if (r <= 0.4){
-        fight=false;
+        fight = false;
         actionIsRunning = false;
         charFight = false;
     }
