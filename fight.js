@@ -1,6 +1,5 @@
 function startFight(){
     fightMsg = false;
-    monster = new Monster();
     drawBackground();
     drawOptions(); //change layout of Options
     monster.drawOpponent();
@@ -65,13 +64,13 @@ function catchMonster(){
     ctx.fillRect(435, 420, 185, 30);
     ctx.strokeText("You threw a net...",445,435);
 
-    //if (r <= chance_of_catching){
+    if (r <= chance_of_catching){
         monster_index = monster.index;
         setTimeout(endFight, 2000);
-   // }
-   // else{
+    }
+    else{
         setTimeout(monsterAttacks,2000);
-   // }
+    }
 }
 
 function monsterReacts(){
