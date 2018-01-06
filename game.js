@@ -69,12 +69,12 @@ function drawGame(){ //later rename to lvl1
     if (!fight &&  !isLevelScreen && !isGameOver){
         ctx.fillRect(0, 0, culling.screen[0], culling.screen[1]);
         fillMap();
+        characterMeet();
     }
 
     moveCharacter(currentFrameTime);
     lastFrameTime = currentFrameTime;
 
-    characterMeet();
 
     requestAnimationFrame(drawGame);
 }

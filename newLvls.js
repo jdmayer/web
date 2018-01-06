@@ -20,6 +20,7 @@ function gameOver(){
     ctx.fillRect(0,0,650,488);
     ctx.fillStyle = "white";
     ctx.font = "20pt Helvetica";
+    ctx.strokeStyle="red";
     ctx.strokeText("GAME OVER", 250, 244);
     ctx.font = "10pt Helvetica";
     ctx.fillText("Press Enter to Continue", 260, 280);

@@ -37,16 +37,16 @@ function characterTalk(){
         switch(randChoice){ //adapt the measures
             case 0: 
                 message = "There are sting nettles and I wear shorts."
-                ctx.fillText(message, 240, 270);
+                ctx.fillText(message, 220, 270);
                 break;
             case 1:
                 message = "Some people will give you items, if you talk to them."
-                ctx.fillText(message, 240, 270);
+                ctx.fillText(message, 180, 270);
                 characterGivesItem();
                 break;
             case 2: 
                 message = "I am a nobody, nobody is perfect, therefore I am perfect."
-                ctx.fillText(message, 240, 270);
+                ctx.fillText(message, 180, 270);
                 break;
             case 3:
                 message = "If live gives you lemons. You got lemons."
@@ -54,21 +54,21 @@ function characterTalk(){
                 break;
             case 4: 
                 message = "I once farted in an elevator. It was wrong on so many levels."
-                ctx.fillText(message, 240, 270);
+                ctx.fillText(message, 180, 270);
                 break;
             case 5:
                 message = "They are hiding in the high gras. Waiting to attack. Take this."
-                ctx.fillText(message, 240, 270);
+                ctx.fillText(message, 180, 270);
                 characterGivesItem();
                 break;
             case 6: 
                 message = "If you pick up a lot of items, it will strenghten you monster."
-                ctx.fillText(message, 240, 270);
+                ctx.fillText(message, 180, 270);
                 characterGivesItem();
                 break;
             case 7:
                 message = "It is easier to catch them, if you bribe them with goodies."
-                ctx.fillText(message, 240, 270);
+                ctx.fillText(message, 200, 270);
                 characterGivesItem();
                 break;
             case 8: 
@@ -106,7 +106,7 @@ function characterFight(){
     ctx.fillStyle = "darkred";
     ctx.fillText("The kid wants to fight.", 260, 245);
     ctx.fillText("It calls his monster!", 270, 265);
-
+    monster = new Monster();
     setTimeout(startFight, 2000);
 }
 
@@ -115,7 +115,7 @@ function characterGivesItem(){
    // ctx.fillRect(180, 180, 300, 200);
     ctx.fillStyle = "darkred";
     ctx.fillText("The kid gave you a present!", 230, 280);
-    ctx.drawImage(item, 260, 300, 150, 150);
+    ctx.drawImage(item2, 260, 300, 150, 150);
     item_count++;
     setTimeout(makeWait, 3000);
 }
@@ -138,3 +138,5 @@ function visited(){
 function makeWait(){
     console.log("pls wait");
 }
+
+

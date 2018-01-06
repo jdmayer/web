@@ -1,4 +1,5 @@
 function startFight(){
+    fight=true;
     fightMsg = false;
     drawBackground();
     drawOptions(); //change layout of Options
@@ -37,20 +38,20 @@ function runAway(){
         charFight = false;
     }
     else{
-        ctx.strokeStyle="red";
         ctx.fillStyle = "white";
         ctx.fillRect(435, 420, 185, 30);
-        ctx.strokeText("You can't run away!", 445, 435);
+        ctx.fillStyle="red";
+        ctx.fillText("You can't run away!", 445, 435);
         setTimeout(monsterAttacks, 2000);
     }
 }
 
 function feedMonster(){
     actionIsRunning = true;
-    ctx.strokeStyle="red";
     ctx.fillStyle = "white";
     ctx.fillRect(435,420,185,30);
-    ctx.strokeText(monsterName[monster.index] + " is eating...", 445, 435);
+    ctx.fillStyle="red";
+    ctx.fillText(monsterName[monster.index] + " is eating...", 445, 435);
     chance_of_catching += 0.1;
     setTimeout(monsterReacts, 2000);
 }
@@ -59,10 +60,10 @@ function catchMonster(){
     actionIsRunning = true;
     var r = Math.random();
     
-    ctx.strokeStyle="red";
     ctx.fillStyle = "white";
     ctx.fillRect(435, 420, 185, 30);
-    ctx.strokeText("You threw a net...",445,435);
+    ctx.fillStyle="red";
+    ctx.fillText("You threw a net...",445,435);
 
     if (r <= chance_of_catching){
         monster_index = monster.index;
@@ -92,10 +93,10 @@ function attackMonster(){
     actionIsRunning = true;
     var r = Math.random();
     
-    ctx.strokeStyle="red";
     ctx.fillStyle = "white";
     ctx.fillRect(435,420,185,30);
-    ctx.strokeText("Your " + monsterName[monster.index] + " started an attack!", 445, 335);
+    ctx.fillStyle="red";
+    ctx.fillText("Your " + monsterName[monster.index] + " started an attack!", 445, 335);
 
     if (r <= 0.5){
         setTimeout(endFight, 2000);
@@ -107,10 +108,10 @@ function attackMonster(){
 
 function monsterAttacks(){
     r = Math.random();
-    ctx.strokeStyle = "red";
     ctx.fillStyle = "white";
     ctx.fillRect(435,420,185,30);
-    ctx.strokeText(monsterName[monster.index] + " attacks you!",445,435);
+    ctx.fillStyle = "red";
+    ctx.fillText(monsterName[monster.index] + " attacks you!",445,435);
     setTimeout(function(){
         if (r < 0.1 ){
             gameOver();
@@ -130,14 +131,16 @@ function nextAction(){
 }
 
 function endFight(){
-    ctx.strokeStyle="red";
     ctx.fillStyle = "white";
     ctx.fillRect(50,390,530,80);
     ctx.font = "18px Arial";
-    ctx.strokeText("Y O U    W O N   !",50,435);
+    ctx.fillStyle="red";
+    ctx.fillText("Y O U    W O N   !",50,435);
     setTimeout(function(){
         fight = false;  
         actionIsRunning = false;
+        if (charFight){
+        }
         charFight = false;
         },2000);
 }
