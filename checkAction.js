@@ -1,7 +1,7 @@
 function checkForAction(){
     if (gameMap[getIndex(player.tileTo[0], player.tileTo[1])] == 1){
         var r = Math.random();
-        if (r <= 10){ //0.20
+        if (r <= 0){ //0.20
             if(!fight){
                 fight = true;
                 fightAlert();
@@ -11,9 +11,9 @@ function checkForAction(){
     else if (gameMap[getIndex(player.tileTo[0], player.tileTo[1])] == 3 ||
             gameMap[getIndex(player.tileTo[0], player.tileTo[1])] == 31 ||
             gameMap[getIndex(player.tileTo[0], player.tileTo[1])] == 32){
-        gameMap[getIndex(player.tileTo[0],
-        player.tileTo[1])] = 0;
-        addItemToBag();
+        
+        addItemToBag(gameMap[getIndex(player.tileTo[0], player.tileTo[1])]);
+        gameMap[getIndex(player.tileTo[0],player.tileTo[1])] = 0;
     }
     else if (gameMap[getIndex(player.tileTo[0], player.tileTo[1])] == 20){
         player = new Character();
@@ -34,13 +34,17 @@ function checkForAction(){
     }
 };
 
-function addItemToBag(){
-    if (gameMap[getIndex(player.tileTo[0], player.tileTo[1], player)] == 3)
+function addItemToBag(pos){
+    console.log("add_item");
+    if (pos == 3){
         item_count++;
-    else if (gameMap[getIndex(player.tileTo[0], player.tileTo[1], player)] == 31)
-        item_key = true;
-    else if (gameMap[getIndex(player.tileTo[0], player.tileTo[1], player)] == 32)
-        item_stone = true;
+    }
+    else if (pos == 31){
+        item_key_count++;
+    }
+    else if (pos == 32){
+        item_stone_count = true;
+    }
 }
 
 function fightAlert(){
