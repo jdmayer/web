@@ -29,11 +29,12 @@ var isLevelScreen= true;
 var monsterImg = [bird, cat, dragon, hedgehog, owl, prince, rose, wolf];
 var monsterImgBack = [bird_back, cat_back, dragon_back, hedgehog_back, 
                       owl_back, prince_back, rose_back, wolf_back];
-var monsterName = ["Dax", "Flace", "Lavora", "Iglo", "Looki", "Prince", "Intestria", "Furry"];
+//var monsterName = ["Dax", "Flace", "Lavora", "Iglo", "Looki", "Prince", "Intestria", "Furry"];
 
 var monster;
-var monster_index = 0; 
-
+var monster_index = -1; 
+//ÜBERGANG - SOLLTE AUCH OHNE GEHEN
+var monser_lvl = 0;
 
 //for character interaction
 var charFight = false;
