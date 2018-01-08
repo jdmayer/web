@@ -87,6 +87,47 @@ function fillMap(){
                 //
                 case 20:
                     img.src = next_level.src;
+                    break;
+                
+                //
+                //water
+                //
+                case 21:
+                    img.src = water1.src;
+                    break;
+                case 22:
+                    img.src = water2.src;
+                    break;
+                case 23:
+                    img.src = water3.src;
+                    break;
+                case 24:
+                    img.src = water4.src;
+                    break;
+                case 25:
+                    img.src = water5.src;
+                    break;
+                case 26:
+                    img.src = water6.src;
+                    break;
+                case 27:
+                    img.src = water7.src;
+                    break;
+                case 28:
+                    img.src = water8.src;
+                    break;
+                case 29:
+                    img.src = water9.src;
+                    break;
+                case 30:
+                    img.src = stone.src;
+                    break;
+                case 31:
+                    img.src = item_key.src;
+                    break;
+                case 32:
+                    img.src = item_stone.src;
+                    break;
             }
             ctx.drawImage(img, culling.offset[0] + x*tile.width,
                 culling.offset[1] + y*tile.height,tile.width,tile.height);

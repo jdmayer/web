@@ -1,34 +1,26 @@
 function moveCharacter(currentFrameTime){   
     if(!player.moves(currentFrameTime) && !fight) {
             //up
-            if(keysDown[38] && player.tileFrom[1] > 0 && (
-                gameMap[getIndex(player.tileFrom[0], player.tileFrom[1] - 1)] <= 9) ||
-                keysDown[38] && player.tileFrom[1] > 0 && (
-                gameMap[getIndex(player.tileFrom[0], player.tileFrom[1] - 1)] == 20)) { 
+            if(keysDown[38] && player.tileFrom[1] > 0 && 
+                posAllowed(gameMap[getIndex(player.tileFrom[0], player.tileFrom[1] - 1)])){ 
                     player.tileTo[1] -= 1;
                     checkForAction();
             }
             //down
-            else if(keysDown[40] && player.tileFrom[1] < (map.height - 1) && (
-                gameMap[getIndex(player.tileFrom[0],player.tileFrom[1]+1)] <= 9) ||
-                keysDown[40] && player.tileFrom[1] < (map.height - 1) && (
-                gameMap[getIndex(player.tileFrom[0],player.tileFrom[1]+1)] == 20)) {
+            else if(keysDown[40] && player.tileFrom[1] < (map.height - 1) && 
+                posAllowed(gameMap[getIndex(player.tileFrom[0],player.tileFrom[1]+1)])) {
                     player.tileTo[1] += 1;
                     checkForAction();
             }
             //left
-            else if(keysDown[37] && player.tileFrom[0] > 0 && (
-                gameMap[getIndex(player.tileFrom[0] - 1, player.tileFrom[1])] <= 9) ||
-                keysDown[37] && player.tileFrom[0] > 0 && (
-                gameMap[getIndex(player.tileFrom[0] - 1, player.tileFrom[1])] == 20)) {
+            else if(keysDown[37] && player.tileFrom[0] > 0 && 
+                posAllowed(gameMap[getIndex(player.tileFrom[0] - 1, player.tileFrom[1])])) {
                     player.tileTo[0] -= 1;
                     checkForAction();
             }
             //right
-            else if(keysDown[39] && player.tileFrom[0] < (map.width - 1) && (
-                gameMap[getIndex(player.tileFrom[0] + 1, player.tileFrom[1])] <= 9) || 
-                keysDown[39] && player.tileFrom[0] < (map.width - 1) && (
-                gameMap[getIndex(player.tileFrom[0] + 1, player.tileFrom[1])] == 20)) {
+            else if(keysDown[39] && player.tileFrom[0] < (map.width - 1) && 
+                posAllowed(gameMap[getIndex(player.tileFrom[0] + 1, player.tileFrom[1])])){
                     player.tileTo[0] += 1;
                     checkForAction();
             }
@@ -97,4 +89,22 @@ function moveImage(){
             player.dimensions[0], player.dimensions[1]);
         lastMove = player_front1;
     }
+}
+
+function posAllowed(pos){
+    console.log(item_stone_count);
+return pos <= 9 
+    || pos == 20
+    || pos == 31
+    || pos == 32
+    || (item_stone_count > 0 
+        && ( pos == 21 
+            || pos == 22
+            || pos == 23
+            || pos == 24
+            || pos == 35
+            || pos == 26
+            || pos == 27
+            || pos == 28
+            || pos == 29));
 }

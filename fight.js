@@ -109,7 +109,11 @@ function attackMonster(){
     //
     //is weird
     //
+<<<<<<< HEAD
     ctx.fillText("Your " + monsterName[monster.index] + " started an attack!", 445, 335);
+=======
+    ctx.fillText("Your " + monsterName[monster.index] + " started an attack!", 445, 435);
+>>>>>>> master
     monster.strenght = monster.strenght - Math.floor(Math.random() * 10 + 2);
 
     if (r <= 0.5){

@@ -1,19 +1,25 @@
 function checkForAction(){
-    if (gameMap[getIndex(player.tileTo[0], player.tileTo[1], player)] == 1){
+    if (gameMap[getIndex(player.tileTo[0], player.tileTo[1])] == 1){
         var r = Math.random();
+<<<<<<< HEAD
         if (r <= 10){ //0.20
+=======
+        if (r <= 0){ //0.20
+>>>>>>> master
             if(!fight){
                 fight = true;
                 fightAlert();
             }          
         }
     }
-    else if (gameMap[getIndex(player.tileTo[0], player.tileTo[1], player)] == 3){
-        gameMap[getIndex(player.tileTo[0],
-        player.tileTo[1], player)] = 0;
-        addItemToBag();
+    else if (gameMap[getIndex(player.tileTo[0], player.tileTo[1])] == 3 ||
+            gameMap[getIndex(player.tileTo[0], player.tileTo[1])] == 31 ||
+            gameMap[getIndex(player.tileTo[0], player.tileTo[1])] == 32){
+        
+        addItemToBag(gameMap[getIndex(player.tileTo[0], player.tileTo[1])]);
+        gameMap[getIndex(player.tileTo[0],player.tileTo[1])] = 0;
     }
-    else if (gameMap[getIndex(player.tileTo[0], player.tileTo[1], player)] == 20){
+    else if (gameMap[getIndex(player.tileTo[0], player.tileTo[1])] == 20){
         player = new Character();
         switch(level){
             case 1:
@@ -32,16 +38,17 @@ function checkForAction(){
     }
 };
 
-function addItemToBag(){
-    item_count++;
-    //TODO: little message that item has been added to bag?
-    //I would leave away the bag and only be able to collect
-    //-- goodies
-    //-- stones
-    //-- special item (rename it later)
-    // and show these like the timer on the edge of the screen
-    // save A LOOOT of programming
-    // only disad. - can't administrate them but don't really need to anyway
+function addItemToBag(pos){
+    console.log("add_item");
+    if (pos == 3){
+        item_count++;
+    }
+    else if (pos == 31){
+        item_key_count++;
+    }
+    else if (pos == 32){
+        item_stone_count = true;
+    }
 }
 
 function fightAlert(){

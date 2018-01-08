@@ -34,6 +34,30 @@ var fight2 = new Image();
 fight2.src = "./img/fight_back2.png";
 var next_level = new Image();
 next_level.src = "./img/next_level.png"
+var item_stone = new Image();
+item_stone.src = "./img/item_blue_stone.png";
+var item_key = new Image();
+item_key.src = "./img/item_key.png";
+var water1 = new Image();
+water1.src = "./img/water_1.png";
+var water2 = new Image();
+water2.src = "./img/water_2.png";
+var water3 = new Image();
+water3.src = "./img/water_3.png";
+var water4 = new Image();
+water4.src = "./img/water_4.png";
+var water5 = new Image();
+water5.src = "./img/water_5.png";
+var water6 = new Image();
+water6.src = "./img/water_6.png";
+var water7 = new Image();
+water7.src = "./img/water_7.png";
+var water8 = new Image();
+water8.src = "./img/water_8.png";
+var water9 = new Image();
+water9.src = "./img/water_9.png";
+var stone = new Image();
+stone.src = "./img/stone.png";
 
 //Monsters:
 var bird = new Image();
@@ -68,6 +92,10 @@ var wolf = new Image();
 wolf.src = "./img/wolf.png";
 var wolf_back = new Image();
 wolf_back.src = "./img/wolf_back.png";
+var tree_moni = new Image();
+tree_moni.src = "./img/tree_moni.png";
+var tree_moni_back = new Image();
+tree_moni_back.src = "./img/tree_moni_back.png";
 
 //Main Character:
 var player_front1 = new Image();
@@ -93,6 +121,16 @@ var player_back2 = new Image();
 player_back2.src = "./img/Character_hinten_2.png";
 var player_back3 = new Image();
 player_back3.src = "./img/Character_hinten_3.png";
+
+//Attacks:
+var attack_fire = new Image();
+attack_fire.src = "./img/attack_fire.png";
+var attack_ice = new Image();
+attack_ice.src = "./img/attack_ice.png";
+var attack_plant = new Image();
+attack_plant.src = "./img/attack_plant.png";
+var attack_water = new Image();
+attack_water.src = "./img/attack_water.png";
 
 
 //Other Characters:
