@@ -1,5 +1,5 @@
 function checkForAction(){
-    if (gameMap[getIndex(player.tileTo[0], player.tileTo[1], player)] == 1){
+    if (gameMap[getIndex(player.tileTo[0], player.tileTo[1])] == 1){
         var r = Math.random();
         if (r <= 10){ //0.20
             if(!fight){
@@ -8,12 +8,14 @@ function checkForAction(){
             }          
         }
     }
-    else if (gameMap[getIndex(player.tileTo[0], player.tileTo[1], player)] == 3){
+    else if (gameMap[getIndex(player.tileTo[0], player.tileTo[1])] == 3 ||
+            gameMap[getIndex(player.tileTo[0], player.tileTo[1])] == 31 ||
+            gameMap[getIndex(player.tileTo[0], player.tileTo[1])] == 32){
         gameMap[getIndex(player.tileTo[0],
-        player.tileTo[1], player)] = 0;
+        player.tileTo[1])] = 0;
         addItemToBag();
     }
-    else if (gameMap[getIndex(player.tileTo[0], player.tileTo[1], player)] == 20){
+    else if (gameMap[getIndex(player.tileTo[0], player.tileTo[1])] == 20){
         player = new Character();
         switch(level){
             case 1:
@@ -33,15 +35,12 @@ function checkForAction(){
 };
 
 function addItemToBag(){
-    item_count++;
-    //TODO: little message that item has been added to bag?
-    //I would leave away the bag and only be able to collect
-    //-- goodies
-    //-- stones
-    //-- special item (rename it later)
-    // and show these like the timer on the edge of the screen
-    // save A LOOOT of programming
-    // only disad. - can't administrate them but don't really need to anyway
+    if (gameMap[getIndex(player.tileTo[0], player.tileTo[1], player)] == 3)
+        item_count++;
+    else if (gameMap[getIndex(player.tileTo[0], player.tileTo[1], player)] == 31)
+        item_key = true;
+    else if (gameMap[getIndex(player.tileTo[0], player.tileTo[1], player)] == 32)
+        item_stone = true;
 }
 
 function fightAlert(){

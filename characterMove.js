@@ -4,7 +4,9 @@ function moveCharacter(currentFrameTime){
             if(keysDown[38] && player.tileFrom[1] > 0 && (
                 gameMap[getIndex(player.tileFrom[0], player.tileFrom[1] - 1)] <= 9) ||
                 keysDown[38] && player.tileFrom[1] > 0 && (
-                gameMap[getIndex(player.tileFrom[0], player.tileFrom[1] - 1)] == 20)) { 
+                gameMap[getIndex(player.tileFrom[0], player.tileFrom[1] - 1)] == 20
+                || gameMap[getIndex(player.tileFrom[0], player.tileFrom[1] - 1)] == 31
+                || gameMap[getIndex(player.tileFrom[0], player.tileFrom[1] - 1)] == 32)) { 
                     player.tileTo[1] -= 1;
                     checkForAction();
             }
@@ -12,7 +14,9 @@ function moveCharacter(currentFrameTime){
             else if(keysDown[40] && player.tileFrom[1] < (map.height - 1) && (
                 gameMap[getIndex(player.tileFrom[0],player.tileFrom[1]+1)] <= 9) ||
                 keysDown[40] && player.tileFrom[1] < (map.height - 1) && (
-                gameMap[getIndex(player.tileFrom[0],player.tileFrom[1]+1)] == 20)) {
+                gameMap[getIndex(player.tileFrom[0],player.tileFrom[1]+1)] == 20
+                || gameMap[getIndex(player.tileFrom[0],player.tileFrom[1]+1)] == 31
+                || gameMap[getIndex(player.tileFrom[0],player.tileFrom[1]+1)] == 32)) {
                     player.tileTo[1] += 1;
                     checkForAction();
             }
@@ -20,7 +24,9 @@ function moveCharacter(currentFrameTime){
             else if(keysDown[37] && player.tileFrom[0] > 0 && (
                 gameMap[getIndex(player.tileFrom[0] - 1, player.tileFrom[1])] <= 9) ||
                 keysDown[37] && player.tileFrom[0] > 0 && (
-                gameMap[getIndex(player.tileFrom[0] - 1, player.tileFrom[1])] == 20)) {
+                gameMap[getIndex(player.tileFrom[0] - 1, player.tileFrom[1])] == 20
+                || gameMap[getIndex(player.tileFrom[0] - 1, player.tileFrom[1])] == 31
+                || gameMap[getIndex(player.tileFrom[0] - 1, player.tileFrom[1])] == 32)) {
                     player.tileTo[0] -= 1;
                     checkForAction();
             }
@@ -28,7 +34,9 @@ function moveCharacter(currentFrameTime){
             else if(keysDown[39] && player.tileFrom[0] < (map.width - 1) && (
                 gameMap[getIndex(player.tileFrom[0] + 1, player.tileFrom[1])] <= 9) || 
                 keysDown[39] && player.tileFrom[0] < (map.width - 1) && (
-                gameMap[getIndex(player.tileFrom[0] + 1, player.tileFrom[1])] == 20)) {
+                gameMap[getIndex(player.tileFrom[0] + 1, player.tileFrom[1])] == 20
+                || gameMap[getIndex(player.tileFrom[0] + 1, player.tileFrom[1])] == 31
+                || gameMap[getIndex(player.tileFrom[0] + 1, player.tileFrom[1])] == 32)) {
                     player.tileTo[0] += 1;
                     checkForAction();
             }
