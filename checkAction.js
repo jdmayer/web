@@ -1,11 +1,8 @@
 function checkForAction(){
     if (gameMap[getIndex(player.tileTo[0], player.tileTo[1])] == 1){
         var r = Math.random();
-<<<<<<< HEAD
-        if (r <= 10){ //0.20
-=======
-        if (r <= 0){ //0.20
->>>>>>> master
+
+        if (r <= 0.2){ //0.20
             if(!fight){
                 fight = true;
                 fightAlert();
@@ -36,7 +33,7 @@ function checkForAction(){
                 break;
         }
     }
-};
+}
 
 function addItemToBag(pos){
     console.log("add_item");
@@ -50,12 +47,12 @@ function addItemToBag(pos){
         item_stone_count = true;
     }
 }
-
+ 
 function fightAlert(){
     monster = new Monster();
     //ownMonster = new Monster();
     monster.getLevel();
-
+ 
     fightMsg = true;
     ctx.fillStyle = "white";
     ctx.fillRect(180, 150, 300, 200);

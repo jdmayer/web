@@ -1,3 +1,6 @@
+var audioItem, audioFight, audioGameOver, audioWon; 
+var audioBackground; 
+
 window.onload = function() {
     canvas = document.getElementById('game');
     ctx = canvas.getContext('2d');
@@ -13,6 +16,14 @@ window.onload = function() {
     startLevel();
     ctx.font = "bold 10pt sans-serif";
 
+    //Audio 
+    audioItem = new Audio("audio/ItemAdded.mp3"); 
+    audioFight = new Audio("audio/Fight.wav"); 
+    audioGameOver = new Audio("audio/gameOver_funky.mp3"); 
+    audioWon = new Audio("audio/YouWon.mp3"); 
+    audioBackground = new Audio("audio/mary.mp3"); 
+ 
+    //Eventlisteners 
     window.addEventListener("keydown", function(e){
         if(e.keyCode >= 37 && e.keyCode <= 40 ){
             keysDown[e.keyCode] = true;
@@ -29,7 +40,12 @@ window.onload = function() {
         if(fight && !actionIsRunning){
             switch(e.keyCode){
                 case 65:
-                    attackMonster();
+                    if(monster_index >= 0) { 
+                        attackMonster(); 
+                    } 
+                    else { 
+                        noMonster(); 
+                    } 
                     break;
                 case 67:
                     catchMonster();
@@ -50,5 +66,14 @@ window.onload = function() {
         if(fightMsg && e.keyCode == 13){
             startFight();
         }
+        // 
+        //doesnt work... 
+        // 
+        if(noMonsterNoFight && e.keyCode == 13){ 
+            console.log(noMonsterNoFight); 
+            noMonsterNoFight = false; 
+ 
+            startNewLevel(); 
+        } 
     });
 };
