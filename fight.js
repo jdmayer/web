@@ -10,7 +10,7 @@ function drawBackground(){
     //ctx.font = "16px Helvetica";
     ctx.fillStyle = "black";
 
-    if (monster_index == 0){
+    if (monster_index == -1){
         //player has no monster
         ctx.drawImage(fight2, 0, 0, 650, 488);    
     }
@@ -18,9 +18,12 @@ function drawBackground(){
         //player has monster
         ctx.drawImage(fight1, 0, 0, 650, 488);
         ctx.fillText("Attack - Press A", 50, 415);
-        ctx.drawImage(monsterImgBack[monster_index],400,220,150,150);
+        ownMonster = new Monster();
+        ownMonster.index = monster_index;
+        ownMonster.monLevel = monster_lvl;
+        console.log(ownMonster.lvl + " - " + ownMonster.index);
+        ownMonster.drawOwnMonster();
     }
-    //return true;
 }
 
 function drawOptions(){
@@ -52,6 +55,10 @@ function feedMonster(){
     ctx.fillRect(435,420,185,30);
     ctx.fillStyle="red";
     ctx.fillText(monsterName[monster.index] + " is eating...", 445, 435);
+    if(monster.strength < monster.level * 8){
+        monster.strength = monster.strength + 2;
+        console.log("it got stronger" + monster.strength);
+    }
     chance_of_catching += 0.1;
     setTimeout(monsterReacts, 2000);
 }
@@ -65,8 +72,11 @@ function catchMonster(){
     ctx.fillStyle="red";
     ctx.fillText("You threw a net...",445,435);
 
-    if (r <= chance_of_catching){
+    if (0 <= chance_of_catching){ //here r
+        console.log("here");
         monster_index = monster.index;
+        monster_lvl = monster.monLevel;
+        console.log("A: "+ monster_index + " lvl: " + monster_lvl);
         setTimeout(endFight, 2000);
     }
     else{
@@ -83,7 +93,7 @@ function monsterReacts(){
         ctx.fillStyle = "white";
         ctx.fillRect(435,420,185,30);
         ctx.fillStyle = "black";
-        ctx.fillText(monsterName[monster.index] + " is watching you.",445,435);
+        ctx.fillText(monsterName[monster.index] + " is watching you.", 445, 435);
         actionIsRunning = false;
         setTimeout(nextAction, 2000);
     }
@@ -96,7 +106,11 @@ function attackMonster(){
     ctx.fillStyle = "white";
     ctx.fillRect(435,420,185,30);
     ctx.fillStyle="red";
+    //
+    //is weird
+    //
     ctx.fillText("Your " + monsterName[monster.index] + " started an attack!", 445, 335);
+    monster.strenght = monster.strenght - Math.floor(Math.random() * 10 + 2);
 
     if (r <= 0.5){
         setTimeout(endFight, 2000);
@@ -113,7 +127,10 @@ function monsterAttacks(){
     ctx.fillStyle = "red";
     ctx.fillText(monsterName[monster.index] + " attacks you!",445,435);
     setTimeout(function(){
-        if (r < 0.1 ){
+        /*if (r < 0.1 ){
+            gameOver();
+        }*/
+        if(monster.strength == 0){
             gameOver();
         }
         else{    
@@ -136,6 +153,9 @@ function endFight(){
     ctx.font = "18px Arial";
     ctx.fillStyle="red";
     ctx.fillText("Y O U    W O N   !",50,435);
+    //enter here if level up!
+    //only level up if won
+
     setTimeout(function(){
         fight = false;  
         actionIsRunning = false;
