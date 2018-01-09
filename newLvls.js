@@ -9,6 +9,8 @@ function startLevel(){
     ctx.fillText("LEVEL " + level, 280, 244);
     ctx.font = "10pt Helvetica";
     ctx.fillText("Press Enter to Continue", 260, 280);
+    
+    explanation = true;
 }
  
 function gameOver(){
@@ -31,7 +33,7 @@ function startNewLevel(){
         player = new Character();
         actionIsRunning = false;
         monster_strength = monster_lvl * 8;
- 
+        explanation = true;
         if(level == 1){
             requestAnimationFrame(drawGame);
             return true;
@@ -52,5 +54,21 @@ function startNewLevel(){
         }
         else if(level > 3){
             console.log("This level has not been developed yet");
+            lvlExplanation();
         }
+}
+
+function lvlExplanation(){
+    isLevelScreen = true;
+    ctx.fillStyle = "darkred"; 
+    ctx.fillRect(0, 0, culling.screen[0], culling.screen[1]);
+ 
+    ctx.fillStyle = "white";
+    ctx.font = "16pt Helvetica";
+    ctx.fillText("The goal of this level is to find all keys hidden.", 120, 220);
+    ctx.fillText("They either lay some where in the gras or are owned by people.", 20, 250);
+    ctx.fillText("Try and discover every monster there is.", 150, 280);
+    ctx.font = "10pt Helvetica";
+    ctx.fillText("Press Enter to Continue", 260, 310);
+
 }

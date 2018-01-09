@@ -61,7 +61,14 @@ window.onload = function() {
         if ((isGameOver || isLevelScreen) && e.keyCode == 13){
             isLevelScreen = false;
             isGameOver = false;
-            startNewLevel();
+            
+            if(explanation){
+                explanation = false;
+                lvlExplanation();
+            }
+            else{
+                startNewLevel();                
+            }
         }
         if(fightMsg && e.keyCode == 13){
             startFight();

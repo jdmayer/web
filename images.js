@@ -34,10 +34,17 @@ var fight2 = new Image();
 fight2.src = "./img/fight_back2.png";
 var next_level = new Image();
 next_level.src = "./img/next_level.png"
+
 var item_stone = new Image();
 item_stone.src = "./img/item_blue_stone.png";
 var item_key = new Image();
 item_key.src = "./img/item_key.png";
+var item_stone2 = new Image();
+item_stone2.src = "./img/item_blue_stone_2.png";
+var item_key2 = new Image();
+item_key2.src = "./img/item_key_2.png";
+
+
 var water1 = new Image();
 water1.src = "./img/water_1.png";
 var water2 = new Image();

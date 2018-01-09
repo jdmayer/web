@@ -31,7 +31,7 @@ function moveCharacter(currentFrameTime){
     }
 }
 
-function moveImage(){
+function moveImage(){ //make the player walk
 //no move
     if(keysDown[37] == false && keysDown[38] == false && 
        keysDown[39] == false && keysDown[40] == false){
@@ -92,7 +92,6 @@ function moveImage(){
 }
 
 function posAllowed(pos){
-    console.log(item_stone_count);
 return pos <= 9 
     || pos == 20
     || pos == 31

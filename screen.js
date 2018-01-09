@@ -137,8 +137,25 @@ ctx.fillStyle = "#b9f2cf";
 
 moveImage();
 
-ctx.fillStyle = "darkred";
+//Item admin
+//or black frame
+ctx.strokeStyle = "black"; //darkred
+ctx.fillStyle = "white";
 ctx.fillStyle = "16pt Helvetica";
 ctx.drawImage(item2, 0, 0, 50, 50);
-ctx.fillText("-Count: "+ item_count , 40, 30);
+ctx.strokeText(item_count, 50, 30);
+ctx.fillText(item_count, 50, 30);
+
+ctx.strokeStyle = "black"; //darkred
+ctx.drawImage(item_key2, 70, 0, 50, 50);
+ctx.strokeText(item_key_count , 120, 30);
+ctx.fillText(item_key_count , 120, 30);
+
+ctx.strokeStyle = "black"; //darkreds
+ctx.drawImage(item_stone2, 140, 0, 50, 50);
+ctx.strokeText(item_stone_count , 190, 30);
+ctx.fillText(item_stone_count , 190, 30);
+
+//seen monsters - tryout
+//ctx.drawImage(dragon, 140, 450, 30, 30);
 }
