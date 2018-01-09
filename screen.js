@@ -131,6 +131,10 @@ function fillMap(){
         }
         ctx.drawImage(img, culling.offset[0] + x*tile.width,
             culling.offset[1] + y*tile.height,tile.width,tile.height);
+        
+        //top border
+        ctx.fillStyle = "darkred";
+        ctx.fillRect(0,0, culling.screen[0], 40);
     }
 }
 ctx.fillStyle = "#b9f2cf";
@@ -139,22 +143,16 @@ moveImage();
 
 //Item admin
 //or black frame
-ctx.strokeStyle = "black"; //darkred
 ctx.fillStyle = "white";
 ctx.fillStyle = "16pt Helvetica";
-ctx.drawImage(item2, 0, 0, 50, 50);
-ctx.strokeText(item_count, 50, 30);
-ctx.fillText(item_count, 50, 30);
+ctx.drawImage(item2, 0, -5, 50, 50);
+ctx.fillText(item_count, 50, 25);
 
-ctx.strokeStyle = "black"; //darkred
-ctx.drawImage(item_key2, 70, 0, 50, 50);
-ctx.strokeText(item_key_count , 120, 30);
-ctx.fillText(item_key_count , 120, 30);
+ctx.drawImage(item_key2, 70, -5, 50, 50);
+ctx.fillText(item_key_count , 120, 25);
 
-ctx.strokeStyle = "black"; //darkreds
-ctx.drawImage(item_stone2, 140, 0, 50, 50);
-ctx.strokeText(item_stone_count , 190, 30);
-ctx.fillText(item_stone_count , 190, 30);
+ctx.drawImage(item_stone2, 140, -5, 50, 50);
+ctx.fillText(item_stone_count , 190, 25);
 
 //seen monsters - tryout
 //ctx.drawImage(dragon, 140, 450, 30, 30);

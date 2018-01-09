@@ -17,18 +17,26 @@ function checkForAction(){
         gameMap[getIndex(player.tileTo[0],player.tileTo[1])] = 0;
     }
     else if (gameMap[getIndex(player.tileTo[0], player.tileTo[1])] == 20){
-        player = new Character();
+        //player = new Character();
         switch(level){
             case 1:
-                level++;
-                startLevel();
+                if(item_key_count == 1){
+                    player = new Character();
+                    level++;
+                    startLevel();
+                }
+                else{
+                    AlertKey();
+                }
                 break;
             case 2:
+                player = new Character();
                 level++;
                 startLevel();
                 break;
             case 3:
                 //level++;
+                player = new Character();
                 startLevel();
                 break;
         }
@@ -50,7 +58,6 @@ function addItemToBag(pos){
  
 function fightAlert(){
     monster = new Monster();
-    //ownMonster = new Monster();
     monster.getLevel();
  
     fightMsg = true;
@@ -58,4 +65,21 @@ function fightAlert(){
     ctx.fillRect(180, 150, 300, 200);
     ctx.fillStyle = "darkred";
     ctx.fillText("A wild " + monsterName[monster.index] + " appears!  ▼", 260, 260);
+}
+
+function AlertKey(){
+
+
+//use on everything!!
+
+shownhide('foo');
+ 
+}
+
+function shownhide(getId){
+    document.getElementById(getId).style.display='block';
+    setTimeout(function () {
+        document.getElementById(getId).style.display='none';
+        }, 2000);
+    return false;   
 }

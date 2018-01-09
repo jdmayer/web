@@ -73,14 +73,11 @@ window.onload = function() {
         if(fightMsg && e.keyCode == 13){
             startFight();
         }
-        // 
-        //doesnt work... 
-        // 
+
         if(noMonsterNoFight && e.keyCode == 13){ 
             console.log(noMonsterNoFight); 
             noMonsterNoFight = false; 
- 
-            startNewLevel(); 
+            gameOver(); 
         } 
     });
 };
