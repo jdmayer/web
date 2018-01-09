@@ -26,9 +26,10 @@ var level = 1;
 var actionIsRunning = false;
 var isLevelScreen= true;
 
-var monsterImg = [bird, cat, dragon, hedgehog, owl, prince, rose, wolf];
+var monsterImg = [bird, cat, dragon, hedgehog, owl, prince, rose, wolf, tree_moni];
 var monsterImgBack = [bird_back, cat_back, dragon_back, hedgehog_back, 
-                      owl_back, prince_back, rose_back, wolf_back];
+                      owl_back, prince_back, rose_back, wolf_back, tree_moni_back];
+var monsterName = ["Dax", "Flace", "Lavora", "Iglo", "Looki", "Prince", "Intestria", "Furry", "Tree"];
 
 var monster;
 var monster_index = -1; 
@@ -62,14 +63,13 @@ function getIndex(x, y){
     return ((y * map.width) +  x);
 };
 
-function drawGame(){ //later rename to lvl1
+function drawGame(){ 
     if(ctx==null){return;}
     var currentFrameTime = Date.now();
     var timeElapsed = currentFrameTime - lastFrameTime;
 
     culling.update(player.position[0], player.position[1]);
 
-    //fill with random trees!
     ctx.fillStyle = "#000000";
 
     if (!fight &&  !isLevelScreen && !isGameOver){

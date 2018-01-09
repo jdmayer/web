@@ -77,7 +77,7 @@ function runAway(){
     }
     else{
         ctx.fillStyle = "white";
-        ctx.fillRect(435, 420, 235, 30);
+        ctx.fillRect(435, 420, 185, 30);
         ctx.fillStyle = "darkred";
         ctx.fillText("You can't run away!", 445, 435);
         setTimeout(monsterAttacks, 2000);

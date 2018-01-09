@@ -1,8 +1,7 @@
-var monsterImg = [bird, cat, dragon, hedgehog, owl, prince, rose, wolf];
-var monsterName = ["Dax", "Flace", "Lavora", "Iglo", "Looki", "Prince", "Intestria", "Furry"];
+//var monsterImg = [bird, cat, dragon, hedgehog, owl, prince, rose, wolf, tree_moni];
  
 function Monster() {
-    this.index = Math.floor(Math.random() * 8);
+    this.index =Math.floor(Math.random() * 9);
     this.name = monsterName[this.index];
     this.monLevel = 0;
     this.strength = 1;
