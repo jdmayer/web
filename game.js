@@ -30,6 +30,8 @@ var explanation = false;
 var monsterImg = [bird, cat, dragon, hedgehog, owl, prince, rose, wolf, tree_moni];
 var monsterImgBack = [bird_back, cat_back, dragon_back, hedgehog_back, 
                       owl_back, prince_back, rose_back, wolf_back, tree_moni_back];
+var monsterIcon = [bird_grey, cat_grey, dragon_grey, hedgehog_grey, owl_grey, prince_grey, rose_grey, wolf_grey, tree_moni_grey];
+var monsterGrey = [bird_grey, cat_grey, dragon_grey, hedgehog_grey, owl_grey, prince_grey, rose_grey, wolf_grey, tree_moni_grey];
 var monsterName = ["Dax", "Flace", "Lavora", "Iglo", "Looki", "Prince", "Intestria", "Furry", "Tree"];
 
 var monster;
@@ -44,6 +46,7 @@ var charInteraction = false;
 
 var mapSize = map.width * map.height;
 var visited = new Array(mapSize);
+var wonMap = new Array(mapSize);
 var msgNr = new Array(mapSize);
 for(var i = 0; i < mapSize; i++){
     visited[i] = -1;

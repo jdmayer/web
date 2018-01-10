@@ -37,7 +37,7 @@ function characterTalk(){
    //so it shows the same reaction when coming back
    //TODO - EVERY CHARA SAME! 
    if(msgNr[gameMap[pos]] == -1){
-       randChoice = Math.floor(Math.random() * 16);
+       randChoice = 12;//Math.floor(Math.random() * 16);
        msgNr[gameMap[pos]] = randChoice;
       // console.log("new");
    }
@@ -63,7 +63,7 @@ function characterTalk(){
             ctx.fillText(message, 180, 270);
             break;
         case 3:
-            message = "If live gives you lemons. You got lemons."
+            message = "If life gives you lemons. You got lemons."
             ctx.fillText(message, 190, 270);
             break;
         case 4: 
@@ -71,7 +71,7 @@ function characterTalk(){
             ctx.fillText(message, 140, 270);
             break;
         case 5:
-            message = "They are hiding in the high gras. Waiting to attack. Take this."
+            message = "They are hiding in the high grass. Waiting to attack. Take this."
             ctx.fillText(message, 135, 270);
             characterGivesItem();
             break;
@@ -94,11 +94,11 @@ function characterTalk(){
             ctx.fillText(message, 230, 270);
             break;
         case 10: 
-            message = "Some kids have a good advice for you"
+            message = "Some kids have good advice for you."
             ctx.fillText(message, 210, 270);
             break;
         case 11:
-            message = "Here I don't need it anymore"
+            message = "Here, I don't need it anymore."
             ctx.fillText(message, 240, 270);
             characterGivesItem();
             break;
@@ -107,8 +107,8 @@ function characterTalk(){
     if(keysDown[37] || keysDown[38] || keysDown[39] ||keysDown[40])
         visited[gameMap[pos]] = 1; 
     }
-    else { //talk before a fight
-        console.log("fight");
+    else if (!wonMap[getIndex(player.tileFrom[0], player.tileFrom[1])])
+    { //talk before a fight
         fight = true;
         setTimeout(characterFight(), 2000);
         return true;

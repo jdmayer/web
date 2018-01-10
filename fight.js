@@ -9,7 +9,8 @@ function startFight(){
 }
  
 function redrawFight(){
-    drawBackground();
+    if(fight){
+      drawBackground();
     
         if(charFight){
             drawOptionsCharFight();
@@ -20,7 +21,8 @@ function redrawFight(){
         else{
             drawOptions();
         }
-        monster.drawOpponent();
+        monster.drawOpponent();    
+    }  
 }
 
 function drawBackground(){ 
@@ -61,7 +63,7 @@ function drawOptions(){
 function runAway(){
     actionIsRunning = true;
     var r = Math.random();
-    if (r <= 0.4){
+    if (r <= 0.5){
         //ALL OF THAT INTO AN OWN CSS FILE!
         ctx.fillStyle = "white";
         ctx.fillRect(435, 420, 185, 30);
@@ -98,6 +100,7 @@ function feedMonster(){
  
 function catchMonster(){
     actionIsRunning = true;
+    chance_of_catching=1;//remove later
     var r = Math.random();
     
     ctx.fillStyle = "white";
@@ -135,7 +138,6 @@ function monsterReacts(){
         ctx.fillRect(435,420,185,30);
         ctx.fillStyle = "black";
         ctx.fillText(monsterName[monster.index] + " is watching you.", 445, 435);
-        actionIsRunning = false;
         setTimeout(nextAction, 2000);
     }
 }

@@ -161,13 +161,18 @@ ctx.fillText(item_stone_count , 190, 25);
 //probably changed background for owned monster
 ctx.fillStyle = "white";
 ctx.fillText("Seen Monsters", 10, 475);
-ctx.drawImage(bird, 140, 453, 30, 30);
-ctx.drawImage(cat, 190, 453, 30, 30);
-ctx.drawImage(dragon, 240, 453, 30, 30);
-ctx.drawImage(hedgehog, 290, 453, 30, 30);
-ctx.drawImage(owl, 340, 453, 30, 30);
-ctx.drawImage(prince, 390, 453, 30, 30);
-ctx.drawImage(rose, 440, 453, 30, 30);
-ctx.drawImage(wolf, 490, 453, 30, 30);
-ctx.drawImage(tree_moni, 540, 453, 30, 30);
+ctx.drawImage(monsterIcon[0], 140, 453, 30, 30);
+ctx.drawImage(monsterIcon[1], 190, 453, 30, 30);
+ctx.drawImage(monsterIcon[2], 240, 453, 30, 30);
+ctx.drawImage(monsterIcon[3], 290, 453, 30, 30);
+ctx.drawImage(monsterIcon[4], 340, 453, 30, 30);
+ctx.drawImage(monsterIcon[5], 390, 453, 30, 30);
+ctx.drawImage(monsterIcon[6], 440, 453, 30, 30);
+ctx.drawImage(monsterIcon[7], 490, 453, 30, 30);
+ctx.drawImage(monsterIcon[8], 540, 453, 30, 30);
 }
+
+function colorMonsterImg(index){
+    monsterIcon[index] = monsterImg[index];
+}
+
