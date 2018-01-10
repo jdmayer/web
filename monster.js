@@ -1,10 +1,11 @@
 //var monsterImg = [bird, cat, dragon, hedgehog, owl, prince, rose, wolf, tree_moni];
- 
+
 function Monster() {
     this.index = getMonIndex();
     this.name = monsterName[this.index];
     this.monLevel = getLevel();
     this.strength = this.monLevel * 8;
+    colorMonsterImg(this.index);
 };
  
 Monster.prototype.drawOpponent = function(){

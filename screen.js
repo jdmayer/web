@@ -182,3 +182,8 @@ function fillCaughtMonsters(){
         }
     }
 }
+
+function colorMonsterImg(index){
+    monsterIcon[index] = monsterImg[index];
+}
+

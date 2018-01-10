@@ -19,6 +19,8 @@ function gameOver(){
  
     isGameOver = true;
     fight = false;
+    charFight = false;
+    monsterIcon = monsterGrey;
     ctx.fillStyle="black";
     ctx.fillRect(0,0,650,488);
     ctx.fillStyle = "white";
@@ -65,8 +67,8 @@ function lvlExplanation(){
  
     ctx.fillStyle = "white";
     ctx.font = "16pt Helvetica";
-    ctx.fillText("The goal of this level is to find all keys hidden.", 120, 220);
-    ctx.fillText("They either lay some where in the gras or are owned by people.", 20, 250);
+    ctx.fillText("The goal of this level is to find all of the hidden keys.", 100, 220);
+    ctx.fillText("They are either somewhere in the grass or are owned by people.", 20, 250);
     ctx.fillText("Try and discover every monster there is.", 150, 280);
     ctx.font = "10pt Helvetica";
     ctx.fillText("Press Enter to Continue", 260, 310);
