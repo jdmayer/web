@@ -31,10 +31,15 @@ var monsterImg = [bird, cat, dragon, hedgehog, owl, prince, rose, wolf, tree_mon
 var monsterImgBack = [bird_back, cat_back, dragon_back, hedgehog_back, 
                       owl_back, prince_back, rose_back, wolf_back, tree_moni_back];
 var monsterName = ["Dax", "Flace", "Lavora", "Iglo", "Looki", "Prince", "Intestria", "Furry", "Tree"];
+var caughtMonster = ["false", "false", "false", "false", "false", "false", "false", "false", "false"];
+
+//to save various monsters
+var monsterLvl = ["0", "0", "0", "0", "0", "0", "0", "0", "0"];
+var monsterStrength = ["0", "0", "0", "0", "0", "0", "0", "0", "0"];
 
 var monster;
 var monster_index = -1; 
-//ÜBERGANG - SOLLTE AUCH OHNE GEHEN
+
 var monster_lvl = 0; 
 var monster_strength = 0; 
 

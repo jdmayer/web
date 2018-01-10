@@ -16,7 +16,7 @@ function checkForAction(){
         gameMap[getIndex(player.tileTo[0],player.tileTo[1])] = 0;
     }
     else if (gameMap[getIndex(player.tileTo[0], player.tileTo[1])] == 20){
-        //player = new Character();
+        player = new Character();
         switch(level){
             case 1:
                 if(item_key_count == 1){
@@ -43,7 +43,6 @@ function checkForAction(){
 }
 
 function addItemToBag(pos){
-    console.log("add_item");
     if (pos == 3){
         item_count++;
     }
@@ -57,7 +56,6 @@ function addItemToBag(pos){
  
 function fightAlert(){
     monster = new Monster();
-    //monster.getLevel();
  
     fightMsg = true;
     ctx.fillStyle = "white";
@@ -71,7 +69,7 @@ function AlertKey(){
 
 //use on everything!!
 
-shownhide('foo');
+//shownhide('foo');
  
 }
 

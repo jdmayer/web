@@ -34,8 +34,8 @@ function drawBackground(){
         ctx.fillText("Attack  - Press A", 50, 415);
         ownMonster = new Monster();
         ownMonster.index = monster_index;
-        ownMonster.monLevel = monster_lvl;
-        ownMonster.strength = monster_strength;
+        ownMonster.monLevel = monsterLvl[monster_index];
+        ownMonster.strength = monsterStrength[monster_index];
         ownMonster.drawOwnMonster();
     }
 }
@@ -104,10 +104,14 @@ function catchMonster(){
     ctx.fillRect(435, 420, 185, 30);
     ctx.fillStyle = "darkred";
     ctx.fillText("You threw a net...",445,435);
-    if (r <= chance_of_catching){ //r
+    if (0 <= chance_of_catching){ //r
+        //current Monster
         monster_index = monster.index;
-        monster_lvl = monster.monLevel;
-        monster_strength = monster.strength;
+        monsterLvl[monster_index] = monster.monLevel;
+        //monster_lvl = monster.monLevel;
+        monsterStrength[monster_index] = monster.strength;
+        //monster_strength = monster.strength;
+        caughtMonster[monster.index] = "true";
         caught = true;
  
         setTimeout(endFight, 2000);
@@ -149,8 +153,9 @@ function attackMonster(){
     ctx.fillStyle = "darkred";
     ctx.fillText("Your " + monsterName[monster_index] + " attacks!", 445, 435);
 
-    if(monster.monLevel < monster_lvl){ //your monster is stronger
-        monster.strength = monster.strength - Math.floor(Math.random() * (monster_lvl * 2) + 2);
+    if(monster.monLevel < monsterLvl[monster_index]){//monster_lvl){ //your monster is stronger
+       // monster.strength = monster.strength - Math.floor(Math.random() * (monster_lvl * 2) + 2);
+       monster.strength = monster.strength - Math.floor(Math.random() * (monsterLvl[monster_index] * 2) + 2);
     }
     else{
         monster.strength = monster.strength - Math.floor(Math.random() * monster_lvl + 2);
@@ -176,17 +181,21 @@ function monsterAttacks(){
     ctx.fillStyle = "darkred";
     ctx.fillText(monsterName[monster.index] + " attacks you!",445,435);
  
-    if(monster.monLevel > monster_lvl){ //opponent is stronger
-        monster_strength = monster_strength - Math.floor(Math.random() * (monster.monLevel * 2) + 2);
+    if(monster.monLevel > monsterLvl[monster_index]){//monster_lvl){ //opponent is stronger
+      //  monster_strength = monster_strength - Math.floor(Math.random() * (monster.monLevel * 2) + 2);
+      monsterStrength[monster_index] = monsterStrength[monster_index] 
+                                        - Math.floor(Math.random() * (monster.monLevel * 2) + 2);
     }
     else{
-        monster_strength = monster_strength - Math.floor(Math.random() * monster.monLevel + 2);
+       // monster_strength = monster_strength - Math.floor(Math.random() * monster.monLevel + 2);
+       monsterStrength[monster_index] = monsterStrength[monster_index] 
+                                        - Math.floor(Math.random() * monster.monLevel + 2)
     }
  
     setTimeout(function(){
-        if((monster_index >= 0 && monster_strength <= 0) || 
+        if((monster_index >= 0 && monsterStrength[monster_index] <= 0) || 
             (monster_index < 0 && Math.random() <= 0.4)){
-            monster_strength = 0;
+            monsterStrength[monster_index] = 0;
             redrawFight();
             gameOver();
         }
@@ -221,8 +230,9 @@ function endFight(){
         ctx.fillText("Y O U    W O N   !", 50, 435);
     }
         if(!caught){
-        monster_strength = monster_lvl * 8 + monster.monLevel * 2;
-        if(Math.floor(monster_strength / 8) > monster_lvl){
+        //monster_strength = monster_lvl * 8 + monster.monLevel * 2;
+        monsterStrength[monster_index] = monsterLvl[monster_index] * 8 + monster.monLevel * 2;
+        if(Math.floor(monsterStrength[monster_index] / 8) > monsterLvl[monster_index]){
             lvlUp();
         }
     }
@@ -243,6 +253,6 @@ function lvlUp(){
     ctx.fillStyle = "white";
     ctx.fillRect(50,390,530,80);
     ctx.fillStyle = "darkred";
-    ctx.fillText(monsterName[monster_index] + " levels up! (" + monster_lvl + ")", 50, 435);
-    monster_lvl++;
+    ctx.fillText(monsterName[monster_index] + " levels up! (" + monsterLvl[monster_index] + ")", 50, 435);
+    monsterLvl[monster_index] = monsterLvl[monster_index] + 1;
 }

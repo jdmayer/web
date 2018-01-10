@@ -13,11 +13,21 @@ var culling = {
     }
  
 };
- 
+
 function fillMap(){
-    var img = new Image();
     audioBackground.play();
-    //fill with random trees!
+
+    fillBackground();
+    moveImage(); //"Walking"
+
+    fillItemCount();
+    fillCaughtMonsters();
+
+}
+
+function fillBackground(){
+    var img = new Image();
+    
     ctx.fillStyle = "#000000";
     ctx.fillRect(0, 0, culling.screen[0], culling.screen[1]);
     ctx.fillStyle = "#b9f2cf";
@@ -65,109 +75,110 @@ function fillMap(){
                 //characters
                 //
                 case 12:
-                img.src = other1_character.src; //front
-                break;
-            case 13:
-                img.src = other2_character.src; //left
-                break;
-            case 14:
-                img.src = other3_character.src; //right
-                break;
-            case 15:
-                img.src = other4_character.src; //left
-                break;
-            case 16:
-                img.src = other5_character.src; //front
-                break;
-            case 17:
-                img.src = other6_character.src; //right
-                break;
-            //
-            //next level
-            //
-            case 20:
-            img.src = next_level.src;
-            break; 
+                    img.src = other1_character.src; //front
+                    break;
+                case 13:
+                    img.src = other2_character.src; //left
+                    break;
+                case 14:
+                    img.src = other3_character.src; //right
+                    break;
+                case 15:
+                    img.src = other4_character.src; //left
+                    break;
+                case 16:
+                    img.src = other5_character.src; //front
+                    break;
+                case 17:
+                    img.src = other6_character.src; //right
+                    break;
+                //
+                //next level
+                //
+                case 20:
+                    img.src = next_level.src;
+                    break; 
+                // 
+                //water 
+                // 
+                case 21: 
+                    img.src = water1.src; 
+                    break; 
+                case 22: 
+                    img.src = water2.src; 
+                    break; 
+                case 23: 
+                    img.src = water3.src; 
+                    break; 
+                case 24: 
+                    img.src = water4.src; 
+                    break; 
+                case 25: 
+                    img.src = water5.src; 
+                    break; 
+                    case 26: 
+                    img.src = water6.src; 
+                    break; 
+                case 27: 
+                    img.src = water7.src; 
+                    break; 
+                case 28: 
+                    img.src = water8.src; 
+                    break; 
+                case 29: 
+                    img.src = water9.src; 
+                    break; 
+                case 30: 
+                    img.src = stone.src; 
+                    break; 
+                case 31: 
+                    img.src = item_key.src; 
+                    break; 
+                case 32: 
+                    img.src = item_stone.src; 
+                    break; 
+            }
+            ctx.drawImage(img, culling.offset[0] + x*tile.width,
+                culling.offset[1] + y*tile.height,tile.width,tile.height);
             
-           // 
-           //water 
-           // 
-           case 21: 
-               img.src = water1.src; 
-               break; 
-           case 22: 
-               img.src = water2.src; 
-               break; 
-           case 23: 
-               img.src = water3.src; 
-               break; 
-           case 24: 
-               img.src = water4.src; 
-               break; 
-           case 25: 
-               img.src = water5.src; 
-               break; 
-            case 26: 
-               img.src = water6.src; 
-               break; 
-           case 27: 
-               img.src = water7.src; 
-               break; 
-           case 28: 
-               img.src = water8.src; 
-               break; 
-           case 29: 
-               img.src = water9.src; 
-               break; 
-           case 30: 
-               img.src = stone.src; 
-               break; 
-           case 31: 
-               img.src = item_key.src; 
-               break; 
-           case 32: 
-               img.src = item_stone.src; 
-               break; 
+            //top border
+            ctx.fillStyle = "darkred";
+            ctx.fillRect(0,0, culling.screen[0], 40);
+            //bottom border
+            ctx.fillStyle = "darkred";
+            ctx.fillRect(0,culling.screen[1]-39, culling.screen[0], 40);
         }
-        ctx.drawImage(img, culling.offset[0] + x*tile.width,
-            culling.offset[1] + y*tile.height,tile.width,tile.height);
-        
-        //top border
-        ctx.fillStyle = "darkred";
-        ctx.fillRect(0,0, culling.screen[0], 40);
-        //bottom border
-        ctx.fillStyle = "darkred";
-        ctx.fillRect(0,culling.screen[1]-39, culling.screen[0], 40);
     }
+    ctx.fillStyle = "#b9f2cf";
 }
-ctx.fillStyle = "#b9f2cf";
 
-moveImage();
+function fillItemCount(){
+    ctx.fillStyle = "white";
+    ctx.drawImage(item2, 0, -5, 50, 50);
+    ctx.fillText(item_count, 50, 25);
 
-//Item admin
-//or black frame
-ctx.fillStyle = "white";
-//ctx.fillStyle = "16pt Helvetica";
-ctx.drawImage(item2, 0, -5, 50, 50);
-ctx.fillText(item_count, 50, 25);
+    ctx.drawImage(item_key2, 70, -5, 50, 50);
+    ctx.fillText(item_key_count , 120, 25);
 
-ctx.drawImage(item_key2, 70, -5, 50, 50);
-ctx.fillText(item_key_count , 120, 25);
+    ctx.drawImage(item_stone2, 140, -5, 50, 50);
+    ctx.fillText(item_stone_count , 190, 25);
+}
 
-ctx.drawImage(item_stone2, 140, -5, 50, 50);
-ctx.fillText(item_stone_count , 190, 25);
-
-//seen monsters - tryout
-//probably changed background for owned monster
-ctx.fillStyle = "white";
-ctx.fillText("Seen Monsters", 10, 475);
-ctx.drawImage(bird, 140, 453, 30, 30);
-ctx.drawImage(cat, 190, 453, 30, 30);
-ctx.drawImage(dragon, 240, 453, 30, 30);
-ctx.drawImage(hedgehog, 290, 453, 30, 30);
-ctx.drawImage(owl, 340, 453, 30, 30);
-ctx.drawImage(prince, 390, 453, 30, 30);
-ctx.drawImage(rose, 440, 453, 30, 30);
-ctx.drawImage(wolf, 490, 453, 30, 30);
-ctx.drawImage(tree_moni, 540, 453, 30, 30);
+function fillCaughtMonsters(){
+    ctx.fillStyle = "white";
+    ctx.fillText("Caught Monsters", 10, 475);
+    var tmpImgMon = [140, 190, 240, 290, 340, 390, 440, 490, 540];
+    /*
+        CAN ACTUALLY WORK WITH CHANGING MONSTERS!
+        NOT IN A FIGHT CHANGING BUT BEFORE -> Prob open some kind of menue
+        and each number chooses another one
+    */
+    for(var i = 0; i < 9; i++){
+        if(caughtMonster[i] == "true"){
+            ctx.drawImage(monsterImg[i], tmpImgMon[i], 453, 30, 30);
+            if(monsterLvl[i] > 0){
+                ctx.fillText(monsterLvl[i], tmpImgMon[i] + 30, 480);
+            }
+        }
+    }
 }

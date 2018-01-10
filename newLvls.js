@@ -39,14 +39,14 @@ function startNewLevel(){
             return true;
         }
         else if(level == 2){
-            audioBackground = new Audio("audio/Bring Me The Horizon - Avalanche.mp3");
+           // audioBackground = new Audio("ENTER OTHER THEME");
             gameMap = gameMap_level2;
             requestAnimationFrame(drawGame);
             return true;
  
         }
         else if(level == 3){
-            audioBackground = new Audio("audio/Bring Me The Horizon - Avalanche.mp3");
+          //  audioBackground = new Audio("ENTER OTHER THEME");
             gameMap=gameMap_level3;
             requestAnimationFrame(drawGame);
             return true;

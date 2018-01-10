@@ -51,13 +51,13 @@ function getMonIndex(){
     var tmpIndex = 0;
     switch(level){
         case 1:
-            tmpIndex = Math.floor(Math.random()* 3  + 1); //1-3
+            tmpIndex = Math.floor(Math.random()* 4); //0-3
             break;
         case 2:
             tmpIndex = Math.floor(Math.random()* 4 + 3); //3-6
             break;
         case 3:
-            tmpIndex = Math.floor(Math.random() * 4 + 6); //6-9
+            tmpIndex = Math.floor(Math.random() * 3 + 6); //6-8
             break;
     }
     return tmpIndex;
