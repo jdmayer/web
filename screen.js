@@ -135,6 +135,9 @@ function fillMap(){
         //top border
         ctx.fillStyle = "darkred";
         ctx.fillRect(0,0, culling.screen[0], 40);
+        //bottom border
+        ctx.fillStyle = "darkred";
+        ctx.fillRect(0,culling.screen[1]-39, culling.screen[0], 40);
     }
 }
 ctx.fillStyle = "#b9f2cf";
@@ -144,7 +147,7 @@ moveImage();
 //Item admin
 //or black frame
 ctx.fillStyle = "white";
-ctx.fillStyle = "16pt Helvetica";
+//ctx.fillStyle = "16pt Helvetica";
 ctx.drawImage(item2, 0, -5, 50, 50);
 ctx.fillText(item_count, 50, 25);
 
@@ -155,5 +158,8 @@ ctx.drawImage(item_stone2, 140, -5, 50, 50);
 ctx.fillText(item_stone_count , 190, 25);
 
 //seen monsters - tryout
-//ctx.drawImage(dragon, 140, 450, 30, 30);
+//probably changed background for owned monster
+ctx.fillStyle = "white";
+ctx.fillText("Seen Monsters", 10, 475);
+ctx.drawImage(dragon, 140, 450, 30, 30);
 }
