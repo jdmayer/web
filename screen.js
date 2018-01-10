@@ -161,5 +161,13 @@ ctx.fillText(item_stone_count , 190, 25);
 //probably changed background for owned monster
 ctx.fillStyle = "white";
 ctx.fillText("Seen Monsters", 10, 475);
-ctx.drawImage(dragon, 140, 450, 30, 30);
+ctx.drawImage(bird, 140, 453, 30, 30);
+ctx.drawImage(cat, 190, 453, 30, 30);
+ctx.drawImage(dragon, 240, 453, 30, 30);
+ctx.drawImage(hedgehog, 290, 453, 30, 30);
+ctx.drawImage(owl, 340, 453, 30, 30);
+ctx.drawImage(prince, 390, 453, 30, 30);
+ctx.drawImage(rose, 440, 453, 30, 30);
+ctx.drawImage(wolf, 490, 453, 30, 30);
+ctx.drawImage(tree_moni, 540, 453, 30, 30);
 }

@@ -20,7 +20,6 @@ function redrawFight(){
         else{
             drawOptions();
         }
-    //drawBackground();
         monster.drawOpponent();
 }
 
@@ -151,10 +150,10 @@ function attackMonster(){
     ctx.fillText("Your " + monsterName[monster_index] + " attacks!", 445, 435);
 
     if(monster.monLevel < monster_lvl){ //your monster is stronger
-        monster.strength = monster.strength - Math.floor(Math.random() * (monster.monLevel * 2) + 2);
+        monster.strength = monster.strength - Math.floor(Math.random() * (monster_lvl * 2) + 2);
     }
     else{
-        monster.strength = monster.strength - Math.floor(Math.random() * monster.monLevel + 2);
+        monster.strength = monster.strength - Math.floor(Math.random() * monster_lvl + 2);
     }
  
     if (monster.strength <= 0){

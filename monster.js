@@ -1,10 +1,10 @@
 //var monsterImg = [bird, cat, dragon, hedgehog, owl, prince, rose, wolf, tree_moni];
  
 function Monster() {
-    this.index =Math.floor(Math.random() * 9);
+    this.index = getMonIndex();
     this.name = monsterName[this.index];
-    this.monLevel = 0;
-    this.strength = 1;
+    this.monLevel = getLevel();
+    this.strength = this.monLevel * 8;
 };
  
 Monster.prototype.drawOpponent = function(){
@@ -30,17 +30,35 @@ Monster.prototype.drawOwnMonster = function(){
     }
 }
  
-Monster.prototype.getLevel = function(){
+function getLevel(){
+    var tmpLvl = 0;
     switch(level){
         case 1:
-            this.monLevel = Math.floor(Math.random()* 4  + 1); //1-5
+            tmpLvl = Math.floor(Math.random()* 4  + 1); //1-5
             break;
         case 2:
-            this.monLevel = Math.floor(Math.random()* 7 + 4); //4-11
+            tmpLvl = Math.floor(Math.random()* 7 + 4); //4-11
             break;
         case 3:
-            this.monLevel = Math.floor(Math.random() * 10 + 9); //9-19
+            tmpLvl = Math.floor(Math.random() * 10 + 9); //9-19
             break;
     }
-    this.strength = this.monLevel * 8;
+    return tmpLvl;
+}
+
+//not every monster in every level!
+function getMonIndex(){
+    var tmpIndex = 0;
+    switch(level){
+        case 1:
+            tmpIndex = Math.floor(Math.random()* 3  + 1); //1-3
+            break;
+        case 2:
+            tmpIndex = Math.floor(Math.random()* 4 + 3); //3-6
+            break;
+        case 3:
+            tmpIndex = Math.floor(Math.random() * 4 + 6); //6-9
+            break;
+    }
+    return tmpIndex;
 }

@@ -1,8 +1,7 @@
 function checkForAction(){
     if (gameMap[getIndex(player.tileTo[0], player.tileTo[1])] == 1){
         var r = Math.random();
-
-        if (r <= 0.20){ //0.20
+        if (r <= 0.2){ //0.20
             if(!fight){
                 fight = true;
                 fightAlert();
@@ -58,7 +57,7 @@ function addItemToBag(pos){
  
 function fightAlert(){
     monster = new Monster();
-    monster.getLevel();
+    //monster.getLevel();
  
     fightMsg = true;
     ctx.fillStyle = "white";
