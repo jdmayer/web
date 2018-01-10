@@ -76,7 +76,7 @@ function drawGame(){
     var currentFrameTime = Date.now();
     var timeElapsed = currentFrameTime - lastFrameTime;
 
-    //culling.update(player.position[0], player.position[1]);
+    culling.update(player.position[0], player.position[1]);
 
     ctx.fillStyle = "#000000";
 
