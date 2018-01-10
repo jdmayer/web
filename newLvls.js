@@ -19,6 +19,7 @@ function gameOver(){
  
     isGameOver = true;
     fight = false;
+    charFight = false;
     monsterIcon = monsterGrey;
     ctx.fillStyle="black";
     ctx.fillRect(0,0,650,488);
