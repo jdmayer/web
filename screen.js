@@ -176,9 +176,12 @@ function fillCaughtMonsters(){
     for(var i = 0; i < 9; i++){
         if(caughtMonster[i] == "true"){
             ctx.drawImage(monsterImg[i], tmpImgMon[i], 453, 30, 30);
-            if(monsterLvl[i] > 0){
+            //if(monsterLvl[i] > 0){
                 ctx.fillText(monsterLvl[i], tmpImgMon[i] + 30, 480);
-            }
+            //}
+        }
+        else{ //prob ALL black so you dont know what they look like/ or "?" :)
+            ctx.drawImage(monsterIcon[i], tmpImgMon[i], 453, 30, 30);
         }
     }
 }
