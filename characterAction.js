@@ -37,7 +37,7 @@ function characterTalk(){
    //so it shows the same reaction when coming back
    //TODO - EVERY CHARA SAME! 
    if(msgNr[gameMap[pos]] == -1){
-       randChoice = 12;//Math.floor(Math.random() * 16);
+       randChoice = Math.floor(Math.random() * 16);
        msgNr[gameMap[pos]] = randChoice;
       // console.log("new");
    }
@@ -107,7 +107,7 @@ function characterTalk(){
     if(keysDown[37] || keysDown[38] || keysDown[39] ||keysDown[40])
         visited[gameMap[pos]] = 1; 
     }
-    else if (!wonMap[getIndex(player.tileFrom[0], player.tileFrom[1])])
+    else
     { //talk before a fight
         fight = true;
         setTimeout(characterFight(), 2000);

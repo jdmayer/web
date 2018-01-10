@@ -46,7 +46,6 @@ var charInteraction = false;
 
 var mapSize = map.width * map.height;
 var visited = new Array(mapSize);
-var wonMap = new Array(mapSize);
 var msgNr = new Array(mapSize);
 for(var i = 0; i < mapSize; i++){
     visited[i] = -1;
