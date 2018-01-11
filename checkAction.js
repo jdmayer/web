@@ -1,7 +1,7 @@
 function checkForAction(){
     if (gameMap[getIndex(player.tileTo[0], player.tileTo[1])] == 1){
         var r = Math.random();
-        if (r <= 0.2){ //0.20
+        if (r <= 0){ //0.20
             if(!fight){
                 fight = true;
                 fightAlert();
@@ -40,6 +40,9 @@ function checkForAction(){
                 break;
         }
     }
+    if (gameMap[getIndex(player.tileTo[0], player.tileTo[1])] == 1){
+        testCSS();
+    }
 }
 
 function addItemToBag(pos){
@@ -68,15 +71,22 @@ function AlertKey(){
 
 
 //use on everything!!
+}
 
+function testCSS(){
 //shownhide('foo');
- 
+shownhide('textBackgroundConversation');
 }
 
 function shownhide(getId){
     document.getElementById(getId).style.display='block';
-    setTimeout(function () {
-        document.getElementById(getId).style.display='none';
-        }, 2000);
+
+    window.addEventListener("keydown",function(e){
+        if(e.keyCode == 13){
+            console.log("enter");
+            document.getElementById(getId).style.display='none';
+        }
+    });
+
     return false;   
 }

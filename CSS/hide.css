@@ -2,13 +2,26 @@
     display: none;
 }
 
-#general_text_background {
-
-
+#textBackgroundFight {
+    position: absolute; 
+    background-color: white;
+    color: darkred;
+    top: 490px; 
+    left: 145px; 
+    width: 600px; 
+    height: 100px;
+    display: none;
 }
-/*
-ctx.fillStyle = "white";
-ctx.fillRect(435,420,185,30);
-ctx.fillStyle = "darkred";
-ctx.fillText(monsterName[monster.index] + " attacks you!",445,435);
-*/
+
+#textBackgroundConversation {
+    position: absolute; 
+    background-color: white;
+    border-color: black;
+    color: darkred;
+    border-width: 2px;
+    top: 450px; 
+    left: 145px; 
+    width: 600px; 
+    height: 100px;
+    display: none;
+}
