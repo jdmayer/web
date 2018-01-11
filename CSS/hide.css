@@ -24,63 +24,65 @@
 #Conversation > div {
     position: absolute; 
     display: none;
+    
+    top: 490px;
+    left: 160px;
 }
-
+/*
     #chat0 {
-        top: 490px;
-        left: 360px;
+        display: none;
     }
     #chat1 {
-        top: 490px;
-        left: 160px;
+        display: none;
     }
     #chat2 {
-        top: 490px;
-        left: 160px;
+        display: none;
     }
     #chat3 {
-        top: 490px;
-        left: 160px;
+        display: none;
     }
     #chat4 {
-        top: 490px;
-        left: 360px;
+        display: none;
     }
     #chat5 {
-        top: 490px;
-        left: 360px;
+        display: none;
     }
     #chat6 {
-        top: 490px;
-        left: 360px;
+        display: none;
     }
     #chat7 {
-        top: 490px;
-        left: 360px;
+        display: none;
     }
 
     #NoMonster {
-        top: 490px;
-        left: 360px;
+        display: none;
     }
     #KidFight {
-        top: 490px;
-        left: 360px;
+        display: none;
     }
     #KidWon {
-        top: 490px;
-        left: 360px;
+        display: none;
     }
     #YouBeatKid {
-        top: 490px;
-        left: 360px;
+        display: none;
     }
-    
+
+    #FirstGreet {
+        display: none;
+    }
+    #AfterGreet {
+        display: none;
+    }
+*/
+
 #Actions > div {
     position: absolute; 
     display: none;
+
+    top: 490px;
+    left: 160px;
 }
-    #ItemReceived {
+ /*   #ItemReceived {
         top: 490px;
         left: 360px;
     }
@@ -88,11 +90,11 @@
         top: 490px;
         left: 360px;
     }
-    #WildMonster {/*CHECK*/
+    #WildMonster {
         top: 490px;
         left: 340px;
     }
-    #NoKey {                /*CHECK*/
+    #NoKey {             
         top: 490px;
         left: 300px;
     }
@@ -100,6 +102,7 @@
         top: 490px;
         left: 330px;
     }
+*/
 
 #MonsterAppear > div { /*all about the same length*/
     position: absolute;

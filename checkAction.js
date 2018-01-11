@@ -1,7 +1,7 @@
 function checkForAction(){
     if (gameMap[getIndex(player.tileTo[0], player.tileTo[1])] == 1){
         var r = Math.random();
-        if (r <= 0){ //0.20
+        if (r <= 0.1){ //0.20
             if(!fight){
                 fightAlert();
             }          
@@ -68,7 +68,6 @@ function fightAlert(){
 //
 function textBackground(getId){
     text = true;
-    console.log(text);
     if(fight){
         writeText('textBackgroundFight');
         writeText(getId);
@@ -79,7 +78,7 @@ function textBackground(getId){
     }
 }
 
-function writeText(getId){
+function writeText(getId){ 
     document.getElementById(getId).style.display='block';
 
     window.addEventListener("keydown",function(e){
@@ -89,5 +88,5 @@ function writeText(getId){
             text = false;
         }
     });
-    return false;   
+   // return false;      
 }

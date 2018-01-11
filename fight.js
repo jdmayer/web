@@ -1,3 +1,6 @@
+//
+//HERE FUCKIN BUG
+// :////
 function startFight(){
     audioBackground.pause();
     audioFight.play();

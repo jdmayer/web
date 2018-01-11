@@ -23,40 +23,28 @@ function characterTalk(){
    var pos = player.tileTo[1] * map.width + player.tileTo[0];
    var randChoice;
    var message;
-<<<<<<< Updated upstream
- 
-   ctx.fillStyle = "white";
-   ctx.fillRect(100, 100, 450, 300);
-   ctx.fillStyle = "darkred";
+
    if (isWon()){
-        ctx.fillText("Good fight, but next time I will win!", 220, 230);
+        textBackground('YouBeatKid');
    }
+  /*
    else if(visited[gameMap[pos]] != 1){
-       ctx.fillText("Hey you!", 290, 230);
+       textBackground('FirstGreet');
    }
    else {
-       ctx.fillText("As I said: ", 290, 230);
+       textBackground('AfterGreet');
    }
-=======
->>>>>>> Stashed changes
+   */
 
-   //so it shows the same reaction when coming back
    if(msgNr[gameMap[pos]] == -1){
-       randChoice = 12; //Math.floor(Math.random() * 16);
+       randChoice = Math.floor(Math.random()*13); //12;
        msgNr[gameMap[pos]] = randChoice;
-      // console.log("new");
    }
    else{
        randChoice = msgNr[gameMap[pos]];
-     //  console.log("old");
    }
-   //console.log(randChoice);
 
-   //
-   //RANDOM CHOICE BETWEEN ID NAMES -> FOR CANVAS!!
-   //
-
-   if(randChoice < 12){ //random talk
+   if(randChoice < 8){ //random talk
     switch(randChoice){
         case 0: 
             textBackground('chat0');
@@ -128,7 +116,7 @@ function characterGivesItem(){
     }
     else{
         audioItem.play();
-        textBackground('ReceiveItem');
+        textBackground('ItemReceived');
         item_count++;
  
         visited[player.tileTo[1] * map.width + player.tileTo[0]] = 2;
