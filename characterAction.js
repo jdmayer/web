@@ -27,7 +27,10 @@ function characterTalk(){
    ctx.fillStyle = "white";
    ctx.fillRect(100, 100, 450, 300);
    ctx.fillStyle = "darkred";
-   if(visited[gameMap[pos]] != 1){
+   if (isWon()){
+        ctx.fillText("Good fight, but next time I will win!", 220, 230);
+   }
+   else if(visited[gameMap[pos]] != 1){
        ctx.fillText("Hey you!", 290, 230);
    }
    else {
@@ -37,7 +40,7 @@ function characterTalk(){
    //so it shows the same reaction when coming back
    //TODO - EVERY CHARA SAME! 
    if(msgNr[gameMap[pos]] == -1){
-       randChoice = Math.floor(Math.random() * 16);
+       randChoice = 12; //Math.floor(Math.random() * 16);
        msgNr[gameMap[pos]] = randChoice;
       // console.log("new");
    }
@@ -107,7 +110,7 @@ function characterTalk(){
     if(keysDown[37] || keysDown[38] || keysDown[39] ||keysDown[40])
         visited[gameMap[pos]] = 1; 
     }
-    else
+    else if (!isWon())
     { //talk before a fight
         fight = true;
         setTimeout(characterFight(), 2000);
@@ -159,4 +162,19 @@ function characterGivesItem(){
         audioItem.pause();
         
     }
+}
+
+function initWonMap(){
+    for (var i = 0; i < mapSize; i++){
+        wonMap[i] = false;
+    }
+}
+
+function markAsWon(){
+    console.log("won");
+    wonMap[getIndex(player.tileTo[0], player.tileTo[1])] = true;
+}
+
+function isWon(){
+    return wonMap[getIndex(player.tileTo[0], player.tileTo[1])];
 }

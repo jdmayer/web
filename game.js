@@ -50,6 +50,8 @@ var charFight = false;
 var charInteraction = false; 
 
 var mapSize = map.width * map.height;
+var wonMap = new Array(mapSize);
+
 var visited = new Array(mapSize);
 var msgNr = new Array(mapSize);
 for(var i = 0; i < mapSize; i++){

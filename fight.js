@@ -62,7 +62,7 @@ function drawOptions(){
  
 function runAway(){
     actionIsRunning = true;
-    var r = Math.random();
+    var r = 0;//Math.random();
     if (r <= 0.5){
         //ALL OF THAT INTO AN OWN CSS FILE!
         ctx.fillStyle = "white";
@@ -100,14 +100,14 @@ function feedMonster(){
  
 function catchMonster(){
     actionIsRunning = true;
-    chance_of_catching=1;//remove later
+    chance_of_catching = 1; //remove later - 0.2
     var r = Math.random();
     
     ctx.fillStyle = "white";
     ctx.fillRect(435, 420, 185, 30);
     ctx.fillStyle = "darkred";
     ctx.fillText("You threw a net...",445,435);
-    if (0 <= chance_of_catching){ //r
+    if (r <= chance_of_catching){ //r
         //current Monster
         monster_index = monster.index;
         monsterLvl[monster_index] = monster.monLevel;
@@ -224,6 +224,7 @@ function endFight(){
     if (charFight){
         ctx.fillText("Kid: You earned my respect.", 50, 435);
         charFight = false;
+        markAsWon();
     }
     else if (caught){
         ctx.fillText("You caught the wild " + monster.name +"!", 50, 435);

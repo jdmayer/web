@@ -33,6 +33,7 @@ function gameOver(){
  
 function startNewLevel(){
         player = new Character();
+        initWonMap();
         actionIsRunning = false;
         monster_strength = monster_lvl * 8;
         explanation = true;
