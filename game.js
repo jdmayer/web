@@ -26,6 +26,7 @@ var level = 1;
 var actionIsRunning = false;
 var isLevelScreen= true;
 var explanation = false;
+var text = false;
 
 var monsterImg = [bird, cat, dragon, hedgehog, owl, prince, rose, wolf, tree_moni];
 var monsterImgBack = [bird_back, cat_back, dragon_back, hedgehog_back, 

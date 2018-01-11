@@ -168,11 +168,6 @@ function fillCaughtMonsters(){
     ctx.fillStyle = "white";
 
     var tmpImgMon = [40, 110, 180, 250, 320, 390, 460, 530, 600];
-    /*
-        CAN ACTUALLY WORK WITH CHANGING MONSTERS!
-        NOT IN A FIGHT CHANGING BUT BEFORE -> Prob open some kind of menue
-        and each number chooses another one
-    */
 
     for(var i = 0; i < 9; i++){
         if(caughtMonster[i] == "true"){
@@ -186,9 +181,4 @@ function fillCaughtMonsters(){
     }
 }
 
-
-function colorMonsterImg(index){
-    console.log("ja");
-    monsterIcon[index] = monsterImg[index];
-}
 

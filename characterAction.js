@@ -23,6 +23,7 @@ function characterTalk(){
    var pos = player.tileTo[1] * map.width + player.tileTo[0];
    var randChoice;
    var message;
+<<<<<<< Updated upstream
  
    ctx.fillStyle = "white";
    ctx.fillRect(100, 100, 450, 300);
@@ -36,9 +37,10 @@ function characterTalk(){
    else {
        ctx.fillText("As I said: ", 290, 230);
    }
+=======
+>>>>>>> Stashed changes
 
    //so it shows the same reaction when coming back
-   //TODO - EVERY CHARA SAME! 
    if(msgNr[gameMap[pos]] == -1){
        randChoice = 12; //Math.floor(Math.random() * 16);
        msgNr[gameMap[pos]] = randChoice;
@@ -50,59 +52,39 @@ function characterTalk(){
    }
    //console.log(randChoice);
 
+   //
+   //RANDOM CHOICE BETWEEN ID NAMES -> FOR CANVAS!!
+   //
+
    if(randChoice < 12){ //random talk
     switch(randChoice){
         case 0: 
-            message = "There are sting nettles and I wear shorts."
-            ctx.fillText(message, 200, 270);
-            break;
-        case 1:
-            message = "Some people will give you items, if you talk to them."
-            ctx.fillText(message, 180, 270);
+            textBackground('chat0');
             characterGivesItem();
             break;
-        case 2: 
-            message = "I am a nobody, nobody is perfect, therefore I am perfect."
-            ctx.fillText(message, 180, 270);
+        case 1: 
+            textBackground('chat1');
             break;
-        case 3:
-            message = "If life gives you lemons. You got lemons."
-            ctx.fillText(message, 190, 270);
-            break;
-        case 4: 
-            message = "I once farted in an elevator. It was wrong on so many levels."
-            ctx.fillText(message, 140, 270);
-            break;
-        case 5:
-            message = "They are hiding in the high grass. Waiting to attack. Take this."
-            ctx.fillText(message, 135, 270);
+        case 2:
+            textBackground('chat2');
             characterGivesItem();
             break;
-        case 6: 
-            message = "If you pick up a lot of items, it will strenghten you monster."
-            ctx.fillText(message, 140, 270);
+        case 3: 
+            textBackground('chat3');
             characterGivesItem();
+            break;
+        case 4:
+            textBackground('chat4');
+            characterGivesItem();
+            break;
+        case 5: 
+            textBackground('chat5');
+            break;
+        case 6:
+            textBackground('chat6');
             break;
         case 7:
-            message = "It is easier to catch them, if you bribe them with goodies."
-            ctx.fillText(message, 150, 270);
-            characterGivesItem();
-            break;
-        case 8: 
-            message = "I never managed to catch 'em all."
-            ctx.fillText(message, 215, 270);
-            break;
-        case 9:
-            message = "Isn't this an awesome game?"
-            ctx.fillText(message, 230, 270);
-            break;
-        case 10: 
-            message = "Some kids have good advice for you."
-            ctx.fillText(message, 210, 270);
-            break;
-        case 11:
-            message = "Here, I don't need it anymore."
-            ctx.fillText(message, 240, 270);
+            textBackground('chat7');
             characterGivesItem();
             break;
     }
@@ -112,8 +94,7 @@ function characterTalk(){
     }
     else if (!isWon())
     { //talk before a fight
-        fight = true;
-        setTimeout(characterFight(), 2000);
+        characterFight();
         return true;
     }
 }
@@ -122,20 +103,17 @@ function characterFight(){
     charFight = true;
     if(monster_index >= 0){
         console.log("here");
-        ctx.fillStyle = "white";
-        ctx.fillRect(180, 150, 300, 200);
-        ctx.fillStyle = "darkred";
-        ctx.fillText("The kid wants to fight.", 260, 245);
-        ctx.fillText("It calls his monster!", 270, 265);
-        monster = new Monster();
-        setTimeout(startFight, 2000);
+        textBackground('KidFight');
+
+        window.addEventListener("keydown",function(e){
+            if(fight  && e.keyCode == 13){
+                monster = new Monster();
+                startFight();
+            }
+        });
     }
     else{
-        ctx.fillStyle = "white";
-        ctx.fillRect(180, 150, 300, 200);
-        ctx.fillStyle = "darkred";
-        ctx.fillText("The kid wants to fight.", 260, 245);
-        ctx.fillText("But you need a monster to fight! ▼", 230, 270);
+        textBackground('NoMonster');
         item_count = item_count - 3;
         if(item_count < 0)
             item_count = 0;
@@ -146,21 +124,16 @@ function characterFight(){
 
 function characterGivesItem(){
     if(visited[player.tileTo[1] * map.width + player.tileTo[0]] == 2){
-        ctx.fillStyle = "darkred";
-        ctx.fillText("I hope you find use for my present", 220, 290);
+        console.log("already got item");
     }
     else{
         audioItem.play();
-        console.log("getitem");
-        ctx.fillStyle = "darkred";
-        ctx.fillText("The kid gave you a present!", 240, 290);
-        ctx.drawImage(item2, 260, 280, 100, 100);
+        textBackground('ReceiveItem');
         item_count++;
  
         visited[player.tileTo[1] * map.width + player.tileTo[0]] = 2;
  
         audioItem.pause();
-        
     }
 }
 

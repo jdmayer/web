@@ -61,41 +61,44 @@ function drawOptions(){
 }
  
 function runAway(){
+    console.log('runway');
     actionIsRunning = true;
     var r = 0;//Math.random();
     if (r <= 0.5){
-        //ALL OF THAT INTO AN OWN CSS FILE!
-        ctx.fillStyle = "white";
-        ctx.fillRect(435, 420, 185, 30);
-        ctx.fillStyle = "darkred";
-        ctx.fillText("You ran away!", 445, 435);
- 
-        fight = false;
-        actionIsRunning = false;
-        charFight = false;
-        audioFight.pause();
-        audioBackground.play();
+        textBackground('Ran');
+        window.addEventListener("keydown",function(e){
+            if(fight && e.keyCode == 13){console.log("a");
+                fight = false;
+                actionIsRunning = false;
+                charFight = false;
+                audioFight.pause();
+                audioBackground.play();  
+            }
+        });     
     }
     else{
-        ctx.fillStyle = "white";
-        ctx.fillRect(435, 420, 185, 30);
-        ctx.fillStyle = "darkred";
-        ctx.fillText("You can't run away!", 445, 435);
-        setTimeout(monsterAttacks, 2000);
+        textBackground('CantRun');
+        window.addEventListener("keydown",function(e){console.log("b");
+            if(fight  && e.keyCode == 13){
+                monsterAttacks();
+            }
+        });
     }
 }
 
 function feedMonster(){
     actionIsRunning = true;
-    ctx.fillStyle = "white";
-    ctx.fillRect(435,420,185,30);
-    ctx.fillStyle = "darkred";
-    ctx.fillText(monsterName[monster.index] + " is eating...", 445, 435);
+    textBackground('Eats');
+
     if(monster.strength < (monster.monLevel * 8)){
         monster.strength = monster.strength + 2;
     }
     chance_of_catching += 0.1; //earned trust
-    setTimeout(monsterReacts, 2000);
+    window.addEventListener("keydown",function(e){
+        if(fight && e.keyCode == 13){
+            monsterReacts();
+        }
+    });
 }
  
 function catchMonster(){
@@ -103,46 +106,53 @@ function catchMonster(){
     chance_of_catching = 1; //remove later - 0.2
     var r = Math.random();
     
-    ctx.fillStyle = "white";
-    ctx.fillRect(435, 420, 185, 30);
-    ctx.fillStyle = "darkred";
-    ctx.fillText("You threw a net...",445,435);
-    if (r <= chance_of_catching){ //r
+    textBackground('TryCatch');
+    if (0 <= chance_of_catching){ //r
         //current Monster
         monster_index = monster.index;
         monsterLvl[monster_index] = monster.monLevel;
-        //monster_lvl = monster.monLevel;
         monsterStrength[monster_index] = monster.strength;
-        //monster_strength = monster.strength;
         caughtMonster[monster.index] = "true";
         caught = true;
  
-        setTimeout(endFight, 2000);
+        window.addEventListener("keydown",function(e){
+            if(fight && e.keyCode == 13){
+                endFight();
+            }
+        });
     }
     else{
-        setTimeout(monsterAttacks,2000);
+        window.addEventListener("keydown",function(e){
+            if(fight && e.keyCode == 13){
+                monsterAttacks();
+            }
+        });
     }
 }
  
 function noMonster(){
-    ctx.fillStyle = "white";
-    ctx.fillRect(435, 420, 185, 30);
-    ctx.fillStyle="darkred";
-    ctx.fillText("You can't attack " + monster.name + "!", 445, 435);
-    setTimeout(nextAction, 2000);
+    textBackground('NoMonsterFight');
+    window.addEventListener("keydown",function(e){
+        if(fight && e.keyCode == 13){
+            nextAction();
+        }
+    });
 }
 
 function monsterReacts(){
     var r = Math.random();
     if(r <= 0.4){
-        setTimeout(monsterAttacks,2000);
+        monsterAttacks();
     }
     else{
-        ctx.fillStyle = "white";
-        ctx.fillRect(435,420,185,30);
-        ctx.fillStyle = "black";
-        ctx.fillText(monsterName[monster.index] + " is watching you.", 445, 435);
-        setTimeout(nextAction, 2000);
+        textBackground('MonsterWatches');
+        window.addEventListener("keydown",function(e){
+            if(fight  && e.keyCode == 13){
+                nextAction();
+                console.log("watch");
+
+            }
+        });
     }
 }
  
@@ -150,13 +160,9 @@ function attackMonster(){
     actionIsRunning = true;
     var r = Math.random();
     
-    ctx.fillStyle = "white";
-    ctx.fillRect(435,420,185,30);
-    ctx.fillStyle = "darkred";
-    ctx.fillText("Your " + monsterName[monster_index] + " attacks!", 445, 435);
+    textBackground('AttackMonster');
 
-    if(monster.monLevel < monsterLvl[monster_index]){//monster_lvl){ //your monster is stronger
-       // monster.strength = monster.strength - Math.floor(Math.random() * (monster_lvl * 2) + 2);
+    if(monster.monLevel < monsterLvl[monster_index]){//your monster is stronger
        monster.strength = monster.strength - Math.floor(Math.random() * (monsterLvl[monster_index] * 2) + 2);
     }
     else{
@@ -167,35 +173,34 @@ function attackMonster(){
         monster.strength = 0;
         redrawFight();
         setTimeout(endFight, 2000);
+        //need Timeout -> to show that HP == 0!
     }
     else{
-        setTimeout(function(){
-            redrawFight();
-            monsterAttacks();
-        }, 2000);
+        window.addEventListener("keydown",function(e){
+            if(fight  && e.keyCode == 13){
+                redrawFight();
+                monsterAttacks();
+            }
+        });
     }
 }
 
 function monsterAttacks(){
     r = Math.random();
-    ctx.fillStyle = "white";
-    ctx.fillRect(435,420,185,30);
-    ctx.fillStyle = "darkred";
-    ctx.fillText(monsterName[monster.index] + " attacks you!",445,435);
+    textBackground('MonsterAttacks');
  
-    if(monster.monLevel > monsterLvl[monster_index]){//monster_lvl){ //opponent is stronger
-      //  monster_strength = monster_strength - Math.floor(Math.random() * (monster.monLevel * 2) + 2);
-      monsterStrength[monster_index] = monsterStrength[monster_index] 
+    if(monster.monLevel > monsterLvl[monster_index]){//opponent is stronger
+        monsterStrength[monster_index] = monsterStrength[monster_index] 
                                         - Math.floor(Math.random() * (monster.monLevel * 2) + 2);
     }
     else{
-       // monster_strength = monster_strength - Math.floor(Math.random() * monster.monLevel + 2);
        monsterStrength[monster_index] = monsterStrength[monster_index] 
                                         - Math.floor(Math.random() * monster.monLevel + 2)
     }
- 
-    setTimeout(function(){
-        if((monster_index >= 0 && monsterStrength[monster_index] <= 0) || 
+
+    window.addEventListener("keydown",function(e){
+        if(fight  && e.keyCode == 13){
+            if((monster_index >= 0 && monsterStrength[monster_index] <= 0) || 
             (monster_index < 0 && Math.random() <= 0.4)){
             monsterStrength[monster_index] = 0;
             redrawFight();
@@ -204,58 +209,50 @@ function monsterAttacks(){
         else{    
             redrawFight();
             nextAction();
-            }    
-        }, 2000);
+            }   
+        }
+    });
 }
  
 function nextAction(){
-    ctx.fillStyle = "white";
-    ctx.fillRect(435, 420, 185, 30);
-    ctx.fillStyle = "black";
-    ctx.fillText("Your Action?", 445, 435);
+    textBackground('YourAction');
     actionIsRunning = false;
 }
  
-function endFight(){
-    ctx.fillStyle = "white";
-    ctx.fillRect(50,390,530,80);
-    ctx.fillStyle = "darkred";
- 
+function endFight(){console.log('aa'+caught);
     if (charFight){
-        ctx.fillText("Kid: You earned my respect.", 50, 435);
+        textBackground('WinKid');
+        //YouBeatKid - then back on map
         charFight = false;
         markAsWon();
     }
-    else if (caught){
-        ctx.fillText("You caught the wild " + monster.name +"!", 50, 435);
+    else if (caught){ console.log('j'+caught);
+        textBackground('Caught');
     }
-    else{
-        ctx.fillText("Y O U    W O N   !", 50, 435);
+    else if (!caught && !charFight){ console.log('k'+caught);
+        textBackground('WonMonster');
     }
-        if(!caught){
-        //monster_strength = monster_lvl * 8 + monster.monLevel * 2;
+    
+    if(!caught){ console.log("in");
         monsterStrength[monster_index] = monsterLvl[monster_index] * 8 + monster.monLevel * 2;
         if(Math.floor(monsterStrength[monster_index] / 8) > monsterLvl[monster_index]){
-            lvlUp();
+            textBackground('LevelUp');
+            monsterLvl[monster_index] = monsterLvl[monster_index] + 1;
         }
     }
-    caught = false;
  
     audioFight.pause();
     audioWon.play();
- 
-    setTimeout(function(){
-        fight = false;  
-        actionIsRunning = false;
-        audioWon.pause();
-        audioBackground.play();
-    }, 2000);
+   // window.addEventListener("keydown",function(e){
+     //   if(e.keyCode == 13){
+            fight = false;  
+            actionIsRunning = false;
+            caught = false;
+            audioWon.pause();
+            audioBackground.play();
+    //    }
+        console.log("td");
+        //gameOver();
+   // });
 }
  
-function lvlUp(){
-    ctx.fillStyle = "white";
-    ctx.fillRect(50,390,530,80);
-    ctx.fillStyle = "darkred";
-    ctx.fillText(monsterName[monster_index] + " levels up! (" + monsterLvl[monster_index] + ")", 50, 435);
-    monsterLvl[monster_index] = monsterLvl[monster_index] + 1;
-}

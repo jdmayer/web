@@ -1,27 +1,116 @@
-#foo {
-    display: none;
-}
-
 #textBackgroundFight {
     position: absolute; 
+    display: none;
     background-color: white;
-    color: darkred;
-    top: 490px; 
-    left: 145px; 
-    width: 600px; 
-    height: 100px;
+    top: 500px; 
+    left: 290px; 
+    width: 420px; 
+    height: 70px;
     display: none;
 }
 
 #textBackgroundConversation {
     position: absolute; 
+    display: none;
     background-color: white;
-    border-color: black;
-    color: darkred;
-    border-width: 2px;
     top: 450px; 
-    left: 145px; 
+    left: 140px; 
     width: 600px; 
     height: 100px;
     display: none;
+}
+
+/*for better overview*/
+#Conversation > div {
+    position: absolute; 
+    display: none;
+}
+
+    #chat0 {
+        top: 490px;
+        left: 360px;
+    }
+    #chat1 {
+        top: 490px;
+        left: 160px;
+    }
+    #chat2 {
+        top: 490px;
+        left: 160px;
+    }
+    #chat3 {
+        top: 490px;
+        left: 160px;
+    }
+    #chat4 {
+        top: 490px;
+        left: 360px;
+    }
+    #chat5 {
+        top: 490px;
+        left: 360px;
+    }
+    #chat6 {
+        top: 490px;
+        left: 360px;
+    }
+    #chat7 {
+        top: 490px;
+        left: 360px;
+    }
+
+    #NoMonster {
+        top: 490px;
+        left: 360px;
+    }
+    #KidFight {
+        top: 490px;
+        left: 360px;
+    }
+    #KidWon {
+        top: 490px;
+        left: 360px;
+    }
+    #YouBeatKid {
+        top: 490px;
+        left: 360px;
+    }
+    
+#Actions > div {
+    position: absolute; 
+    display: none;
+}
+    #ItemReceived {
+        top: 490px;
+        left: 360px;
+    }
+    #ItemFound {
+        top: 490px;
+        left: 360px;
+    }
+    #WildMonster {/*CHECK*/
+        top: 490px;
+        left: 340px;
+    }
+    #NoKey {                /*CHECK*/
+        top: 490px;
+        left: 300px;
+    }
+    #LevelUp {                
+        top: 490px;
+        left: 330px;
+    }
+
+#MonsterAppear > div { /*all about the same length*/
+    position: absolute;
+    display: none;
+    top: 490px;
+    left: 360px;
+}
+
+#fight > div {
+    position: absolute; 
+    display: none;
+    top: 520px;
+    left: 400px;
 }

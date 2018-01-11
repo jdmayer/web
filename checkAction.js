@@ -1,22 +1,21 @@
 function checkForAction(){
     if (gameMap[getIndex(player.tileTo[0], player.tileTo[1])] == 1){
         var r = Math.random();
-        if (r <= 0.20){ //0.20
+        if (r <= 0){ //0.20
             if(!fight){
-                fight = true;
                 fightAlert();
             }          
         }
     }
+    //find special items
     else if (gameMap[getIndex(player.tileTo[0], player.tileTo[1])] == 3 ||
             gameMap[getIndex(player.tileTo[0], player.tileTo[1])] == 31 ||
             gameMap[getIndex(player.tileTo[0], player.tileTo[1])] == 32){
-        
         addItemToBag(gameMap[getIndex(player.tileTo[0], player.tileTo[1])]);
         gameMap[getIndex(player.tileTo[0],player.tileTo[1])] = 0;
     }
+    //exit
     else if (gameMap[getIndex(player.tileTo[0], player.tileTo[1])] == 20){
-        player = new Character();
         switch(level){
             case 1:
                 if(item_key_count == 1){
@@ -25,7 +24,7 @@ function checkForAction(){
                     startLevel();
                 }
                 else{
-                    AlertKey();
+                    textBackground('NoKey'); //got no key to get to next level
                 }
                 break;
             case 2:
@@ -40,20 +39,20 @@ function checkForAction(){
                 break;
         }
     }
-    if (gameMap[getIndex(player.tileTo[0], player.tileTo[1])] == 1){
-        testCSS();
-    }
 }
 
 function addItemToBag(pos){
     if (pos == 3){
         item_count++;
+        textBackground('ItemFound');
     }
     else if (pos == 31){
         item_key_count++;
+        textBackground('ItemFound');
     }
     else if (pos == 32){
         item_stone_count++;
+        textBackground('ItemFound');
     }
 }
  
@@ -61,32 +60,34 @@ function fightAlert(){
     monster = new Monster();
  
     fightMsg = true;
-    ctx.fillStyle = "white";
-    ctx.fillRect(180, 150, 300, 200);
-    ctx.fillStyle = "darkred";
-    ctx.fillText("A wild " + monsterName[monster.index] + " appears!  ▼", 260, 260);
+    textBackground('WildMonster');
 }
 
-function AlertKey(){
-
-
-//use on everything!!
+//
+//for texts
+//
+function textBackground(getId){
+    text = true;
+    console.log(text);
+    if(fight){
+        writeText('textBackgroundFight');
+        writeText(getId);
+    }
+    else{
+        writeText('textBackgroundConversation');
+        writeText(getId);
+    }
 }
 
-function testCSS(){
-//shownhide('foo');
-shownhide('textBackgroundConversation');
-}
-
-function shownhide(getId){
+function writeText(getId){
     document.getElementById(getId).style.display='block';
 
     window.addEventListener("keydown",function(e){
         if(e.keyCode == 13){
-            console.log("enter");
             document.getElementById(getId).style.display='none';
+            console.log("enter");
+            text = false;
         }
     });
-
     return false;   
 }
