@@ -166,27 +166,29 @@ function fillItemCount(){
 
 function fillCaughtMonsters(){
     ctx.fillStyle = "white";
-    ctx.fillText("Caught Monsters", 10, 475);
-    var tmpImgMon = [140, 190, 240, 290, 340, 390, 440, 490, 540];
+
+    var tmpImgMon = [40, 110, 180, 250, 320, 390, 460, 530, 600];
     /*
         CAN ACTUALLY WORK WITH CHANGING MONSTERS!
         NOT IN A FIGHT CHANGING BUT BEFORE -> Prob open some kind of menue
         and each number chooses another one
     */
+
     for(var i = 0; i < 9; i++){
         if(caughtMonster[i] == "true"){
+            ctx.fillText(i, tmpImgMon[i] - 10, 475);
             ctx.drawImage(monsterImg[i], tmpImgMon[i], 453, 30, 30);
-            //if(monsterLvl[i] > 0){
-                ctx.fillText(monsterLvl[i], tmpImgMon[i] + 30, 480);
-            //}
+            ctx.fillText(monsterLvl[i], tmpImgMon[i] + 30, 485);
         }
         else{ //prob ALL black so you dont know what they look like/ or "?" :)
-            ctx.drawImage(monsterIcon[i], tmpImgMon[i], 453, 30, 30);
+            ctx.drawImage(monsterGrey[i], tmpImgMon[i], 453, 30, 30);
         }
     }
 }
 
+
 function colorMonsterImg(index){
+    console.log("ja");
     monsterIcon[index] = monsterImg[index];
 }
 

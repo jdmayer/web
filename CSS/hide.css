@@ -1,3 +1,14 @@
 #foo {
     display: none;
 }
+
+#general_text_background {
+
+
+}
+/*
+ctx.fillStyle = "white";
+ctx.fillRect(435,420,185,30);
+ctx.fillStyle = "darkred";
+ctx.fillText(monsterName[monster.index] + " attacks you!",445,435);
+*/

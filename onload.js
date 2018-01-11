@@ -75,7 +75,7 @@ window.onload = function() {
         }
 
         if(noMonsterNoFight && e.keyCode == 13){ 
-            console.log(noMonsterNoFight); 
+            //console.log(noMonsterNoFight); 
             noMonsterNoFight = false; 
             gameOver(); 
         } 

@@ -5,7 +5,7 @@ function Monster() {
     this.name = monsterName[this.index];
     this.monLevel = getLevel();
     this.strength = this.monLevel * 8;
-    colorMonsterImg(this.index);
+   // colorMonsterImg(this.index); //WITH IT THE BLACKENING LOWER BORDER DOESNT WORK!
 };
  
 Monster.prototype.drawOpponent = function(){
