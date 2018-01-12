@@ -26,12 +26,15 @@ var level = 1;
 var actionIsRunning = false;
 var isLevelScreen= true;
 var explanation = false;
+
 var text = false;
+var currText;
+var currBG;
 
 var monsterImg = [bird, cat, dragon, hedgehog, owl, prince, rose, wolf, tree_moni];
 var monsterImgBack = [bird_back, cat_back, dragon_back, hedgehog_back, 
                       owl_back, prince_back, rose_back, wolf_back, tree_moni_back];
-var monsterIcon = [bird_grey, cat_grey, dragon_grey, hedgehog_grey, owl_grey, prince_grey, rose_grey, wolf_grey, tree_moni_grey];
+//var monsterIcon = [bird_grey, cat_grey, dragon_grey, hedgehog_grey, owl_grey, prince_grey, rose_grey, wolf_grey, tree_moni_grey];
 var monsterGrey = [bird_grey, cat_grey, dragon_grey, hedgehog_grey, owl_grey, prince_grey, rose_grey, wolf_grey, tree_moni_grey];
 var monsterName = ["Dax", "Flace", "Lavora", "Iglo", "Looki", "Prince", "Intestria", "Furry", "Tree"];
 var caughtMonster = ["false", "false", "false", "false", "false", "false", "false", "false", "false"];
@@ -43,12 +46,9 @@ var monsterStrength = ["0", "0", "0", "0", "0", "0", "0", "0", "0"];
 var monster;
 var monster_index = -1; 
 
-var monster_lvl = 0; 
-var monster_strength = 0; 
-
 //for character interaction
 var charFight = false;
-var charInteraction = false; 
+var charMeet = false;
 
 var mapSize = map.width * map.height;
 var wonMap = new Array(mapSize);

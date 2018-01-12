@@ -9,6 +9,12 @@ function startFight(){
     fightMsg = false;
  
     redrawFight();
+
+    text = true;
+    currText = 'YourAction';
+    showText();
+    console.log(currBG);
+    nextAction();
 }
  
 function redrawFight(){
@@ -68,7 +74,10 @@ function runAway(){
     actionIsRunning = true;
     var r = 0;//Math.random();
     if (r <= 0.5){
-        textBackground('Ran');
+        text = true;
+        currText = 'Ran';
+        showText();
+
         window.addEventListener("keydown",function(e){
             if(fight && e.keyCode == 13){console.log("a");
                 fight = false;
@@ -80,7 +89,10 @@ function runAway(){
         });     
     }
     else{
-        textBackground('CantRun');
+        text = true;
+        currText = 'CantRun';
+        showText();
+
         window.addEventListener("keydown",function(e){console.log("b");
             if(fight  && e.keyCode == 13){
                 monsterAttacks();
@@ -91,7 +103,9 @@ function runAway(){
 
 function feedMonster(){
     actionIsRunning = true;
-    textBackground('Eats');
+    text = true;
+    currText = 'Eats';
+    showText();
 
     if(monster.strength < (monster.monLevel * 8)){
         monster.strength = monster.strength + 2;
@@ -109,7 +123,9 @@ function catchMonster(){
     chance_of_catching = 1; //remove later - 0.2
     var r = Math.random();
     
-    textBackground('TryCatch');
+    text = true;
+    currText = 'TryCatch';
+    showText();
     if (0 <= chance_of_catching){ //r
         //current Monster
         monster_index = monster.index;
@@ -134,7 +150,9 @@ function catchMonster(){
 }
  
 function noMonster(){
-    textBackground('NoMonsterFight');
+    text = true;
+    currText = 'NoMonsterFight';
+    showText();
     window.addEventListener("keydown",function(e){
         if(fight && e.keyCode == 13){
             nextAction();
@@ -148,7 +166,9 @@ function monsterReacts(){
         monsterAttacks();
     }
     else{
-        textBackground('MonsterWatches');
+        text = true;
+        currText = 'MonsterWatches';
+        showText();
         window.addEventListener("keydown",function(e){
             if(fight  && e.keyCode == 13){
                 nextAction();
@@ -163,7 +183,9 @@ function attackMonster(){
     actionIsRunning = true;
     var r = Math.random();
     
-    textBackground('AttackMonster');
+    text = true;
+    currText = 'AttackMonster';
+    showText();
 
     if(monster.monLevel < monsterLvl[monster_index]){//your monster is stronger
        monster.strength = monster.strength - Math.floor(Math.random() * (monsterLvl[monster_index] * 2) + 2);
@@ -190,7 +212,9 @@ function attackMonster(){
 
 function monsterAttacks(){
     r = Math.random();
-    textBackground('MonsterAttacks');
+    text = true;
+    currText = 'MonsterAttacks';
+    showText();
  
     if(monster.monLevel > monsterLvl[monster_index]){//opponent is stronger
         monsterStrength[monster_index] = monsterStrength[monster_index] 
@@ -218,28 +242,38 @@ function monsterAttacks(){
 }
  
 function nextAction(){
-    textBackground('YourAction');
+    text = true;
+    currText = 'YourAction';
+    showText();
     actionIsRunning = false;
 }
  
 function endFight(){console.log('aa'+caught);
     if (charFight){
-        textBackground('WinKid');
-        //YouBeatKid - then back on map
+        text = true;
+        currText = 'WinKid';
+        showText();
+
         charFight = false;
         markAsWon();
     }
     else if (caught){ console.log('j'+caught);
-        textBackground('Caught');
+        text = true;
+        currText = 'Caught';
+        showText();
     }
     else if (!caught && !charFight){ console.log('k'+caught);
-        textBackground('WonMonster');
+        text = true;
+        currText = 'WonMonster';
+        showText();
     }
     
     if(!caught){ console.log("in");
         monsterStrength[monster_index] = monsterLvl[monster_index] * 8 + monster.monLevel * 2;
         if(Math.floor(monsterStrength[monster_index] / 8) > monsterLvl[monster_index]){
-            textBackground('LevelUp');
+            text = true;
+            currText = 'LevelUp';
+            showText();
             monsterLvl[monster_index] = monsterLvl[monster_index] + 1;
         }
     }
@@ -255,6 +289,7 @@ function endFight(){console.log('aa'+caught);
             audioBackground.play();
     //    }
         console.log("td");
+        return false;
         //gameOver();
    // });
 }

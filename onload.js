@@ -79,5 +79,16 @@ window.onload = function() {
             noMonsterNoFight = false; 
             gameOver(); 
         } 
+        if(e.keyCode == 13 && text){
+            //showText();
+            document.getElementById(currText).style.display='none';
+            document.getElementById(currBG).style.display='none';
+
+            text = false;
+            console.log('get out' + charMeet);
+            if(charMeet)
+                visited[gameMap[player.tileTo[1] * map.width + player.tileTo[0]]] = 10;
+                charMeet = false;
+        }
     });
 };

@@ -1,7 +1,7 @@
 function checkForAction(){
-    if (gameMap[getIndex(player.tileTo[0], player.tileTo[1])] == 1){
+    if (gameMap[getIndex(player.tileTo[0], player.tileTo[1])] == 1 && !text){
         var r = Math.random();
-        if (r <= 0.1){ //0.20
+        if (r <= 0.2 && !text){ //0.20
             if(!fight){
                 fightAlert();
             }          
@@ -44,15 +44,21 @@ function checkForAction(){
 function addItemToBag(pos){
     if (pos == 3){
         item_count++;
-        textBackground('ItemFound');
+        text = true;
+        currText = 'chat5';
+        showText();
     }
     else if (pos == 31){
         item_key_count++;
-        textBackground('ItemFound');
+        text = true;
+        currText = 'ItemFound';
+        showText();
     }
     else if (pos == 32){
         item_stone_count++;
-        textBackground('ItemFound');
+        text = true;
+        currText = 'ItemFound';
+        showText();
     }
 }
  
@@ -60,33 +66,56 @@ function fightAlert(){
     monster = new Monster();
  
     fightMsg = true;
-    textBackground('WildMonster');
+    text = true;
+    currText = 'WildMonster';
+    showText();
 }
 
 //
 //for texts
-//
-function textBackground(getId){
-    text = true;
+/*
+function textBackground(){
     if(fight){
-        writeText('textBackgroundFight');
-        writeText(getId);
+        document.getElementById('textBackgroundFight').style.display = 'block';
+
+        writeText('textBackgroundFight', callback);
+
     }
     else{
-        writeText('textBackgroundConversation');
-        writeText(getId);
+        writeText('textBackgroundConversation', callback);
+        writeText(getId, callback);
     }
 }
 
-function writeText(getId){ 
+function writeText(getId, callback){ 
     document.getElementById(getId).style.display='block';
 
-    window.addEventListener("keydown",function(e){
+   /* window.addEventListener("keydown",(e)=>{
         if(e.keyCode == 13){
             document.getElementById(getId).style.display='none';
             console.log("enter");
             text = false;
+            window.removeEventListener("keydown", this, true);
+            cb();
         }
-    });
-   // return false;      
+        console.log("fuck");
+    });/
+    document.getElementById(getId).style.display='none';
+    text = false;
+    return false;      
+}
+*/
+
+function showText(){
+    if(fight){
+        console.log("here");
+        currBG = 'textBackgroundFight';
+        document.getElementById(currBG).style.display='block';
+    }
+    else{console.log("there");
+        currBG = 'textBackgroundConversation';
+        document.getElementById(currBG).style.display='block'; 
+    }
+    console.log('show'+text);
+    document.getElementById(currText).style.display='block'; 
 }

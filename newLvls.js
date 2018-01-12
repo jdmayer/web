@@ -35,7 +35,7 @@ function startNewLevel(){
         player = new Character();
         initWonMap();
         actionIsRunning = false;
-        monster_strength = monster_lvl * 8;
+        monsterStrength[monster_index] = monsterLvl[monster_index] * 8;
         explanation = true;
         if(level == 1){
             requestAnimationFrame(drawGame);
