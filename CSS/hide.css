@@ -1,32 +1,31 @@
-#textBackgroundFight {
+#textBackgroundFight > div{
     position: absolute; 
     display: none;
     background-color: white;
-    top: 500px; 
-    left: 290px; 
-    width: 420px; 
-    height: 70px;
-    display: none;
+    top: 525px; 
+    left: 340px; 
+    width: 340px; 
+    height: 20px;
 }
 
-#textBackgroundConversation {
+#textBackgroundConversation > div{
     position: absolute; 
     display: none;
     background-color: white;
     top: 450px; 
-    left: 140px; 
-    width: 600px; 
-    height: 100px;
-    display: none;
+    left: 150px; 
+    width: 500px; 
+    height: 20px;
+    padding: 40px 40px;
 }
 
-/*for better overview*/
+/*for better overview*
 #Conversation > div {
     position: absolute; 
     display: none;
     
     top: 490px;
-    left: 160px;
+    left: 180px;
 }
 /*
     #chat0 {
@@ -73,14 +72,14 @@
     #AfterGreet {
         display: none;
     }
-*/
+*
 
 #Actions > div {
     position: absolute; 
     display: none;
 
     top: 490px;
-    left: 160px;
+    left: 180px;
 }
  /*   #ItemReceived {
         top: 490px;
@@ -102,9 +101,9 @@
         top: 490px;
         left: 330px;
     }
-*/
+*
 
-#MonsterAppear > div { /*all about the same length*/
+#MonsterAppear > div { /*all about the same length*
     position: absolute;
     display: none;
     top: 490px;
@@ -117,3 +116,4 @@
     top: 520px;
     left: 400px;
 }
+*/

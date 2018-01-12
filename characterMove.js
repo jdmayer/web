@@ -1,5 +1,5 @@
 function moveCharacter(currentFrameTime){   
-    if(!player.moves(currentFrameTime) && !fight && !text) { console.log('pls move');
+    if(!player.moves(currentFrameTime) && !fight && !text) { 
             //up
             if(keysDown[38] && player.tileFrom[1] > 0 && 
                 posAllowed(gameMap[getIndex(player.tileFrom[0], player.tileFrom[1] - 1)])){ 

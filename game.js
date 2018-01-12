@@ -64,7 +64,8 @@ var item_count = 0;
 var item_key_count = 0;
 var item_stone_count = 0;
 var chance_of_catching = 0.2;
-var caught = false; 
+var caught = false;
+var fled = false; 
 var fight = false;
 var fightMsg = false;
 

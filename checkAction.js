@@ -1,7 +1,7 @@
 function checkForAction(){
     if (gameMap[getIndex(player.tileTo[0], player.tileTo[1])] == 1 && !text){
         var r = Math.random();
-        if (r <= 0.2 && !text){ //0.20
+        if (r <= 0.8 && !text){ //0.20
             if(!fight){
                 fightAlert();
             }          
@@ -45,7 +45,7 @@ function addItemToBag(pos){
     if (pos == 3){
         item_count++;
         text = true;
-        currText = 'chat5';
+        currText = 'ItemFound';
         showText();
     }
     else if (pos == 31){
@@ -64,58 +64,21 @@ function addItemToBag(pos){
  
 function fightAlert(){
     monster = new Monster();
- 
     fightMsg = true;
+
     text = true;
     currText = 'WildMonster';
     showText();
 }
 
-//
-//for texts
-/*
-function textBackground(){
-    if(fight){
-        document.getElementById('textBackgroundFight').style.display = 'block';
-
-        writeText('textBackgroundFight', callback);
-
-    }
-    else{
-        writeText('textBackgroundConversation', callback);
-        writeText(getId, callback);
-    }
-}
-
-function writeText(getId, callback){ 
-    document.getElementById(getId).style.display='block';
-
-   /* window.addEventListener("keydown",(e)=>{
-        if(e.keyCode == 13){
-            document.getElementById(getId).style.display='none';
-            console.log("enter");
-            text = false;
-            window.removeEventListener("keydown", this, true);
-            cb();
-        }
-        console.log("fuck");
-    });/
-    document.getElementById(getId).style.display='none';
-    text = false;
-    return false;      
-}
-*/
-
 function showText(){
     if(fight){
-        console.log("here");
         currBG = 'textBackgroundFight';
         document.getElementById(currBG).style.display='block';
     }
-    else{console.log("there");
+    else{
         currBG = 'textBackgroundConversation';
         document.getElementById(currBG).style.display='block'; 
     }
-    console.log('show'+text);
     document.getElementById(currText).style.display='block'; 
 }

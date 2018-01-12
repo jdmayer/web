@@ -46,15 +46,19 @@ window.onload = function() {
                     else { 
                         noMonster(); 
                     } 
+                    document.getElementById('YourAction').style.display='none';
                     break;
                 case 67:
                     catchMonster();
+                    document.getElementById('YourAction').style.display='none';
                     break;
                 case 70:
                     feedMonster();
+                    document.getElementById('YourAction').style.display='none';
                     break;
                 case 82:
                     runAway();
+                    document.getElementById('YourAction').style.display='none';
                     break;
             }
         }
@@ -70,25 +74,24 @@ window.onload = function() {
                 startNewLevel();                
             }
         }
-        if(fightMsg && e.keyCode == 13){
-            startFight();
-        }
-
         if(noMonsterNoFight && e.keyCode == 13){ 
-            //console.log(noMonsterNoFight); 
             noMonsterNoFight = false; 
             gameOver(); 
         } 
-        if(e.keyCode == 13 && text){
-            //showText();
+        if(e.keyCode == 13 && text && currText != 'YourAction'){
+            //As YourAction only disappears when you move into action
+            console.log('dissapear!' + currText);
             document.getElementById(currText).style.display='none';
             document.getElementById(currBG).style.display='none';
 
             text = false;
-            console.log('get out' + charMeet);
-            if(charMeet)
+            if(charMeet){
                 visited[gameMap[player.tileTo[1] * map.width + player.tileTo[0]]] = 10;
                 charMeet = false;
+            }
+            if(fightMsg)
+                startFight();
+            console.log('walk');
         }
     });
 };
