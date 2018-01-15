@@ -39,7 +39,7 @@ window.onload = function() {
     window.addEventListener("keydown",function(e){
         if(fight && !actionIsRunning){
             switch(e.keyCode){
-                case 65:
+                case 65: console.log("1");
                     if(monster_index >= 0) { 
                         attackMonster(); 
                     } 
@@ -48,15 +48,15 @@ window.onload = function() {
                     } 
                     document.getElementById('YourAction').style.display='none';
                     break;
-                case 67:
+                case 67: console.log("2");
                     catchMonster();
                     document.getElementById('YourAction').style.display='none';
                     break;
-                case 70:
+                case 70: console.log("3");
                     feedMonster();
                     document.getElementById('YourAction').style.display='none';
                     break;
-                case 82:
+                case 82: console.log("4");
                     runAway();
                     document.getElementById('YourAction').style.display='none';
                     break;
@@ -89,9 +89,9 @@ window.onload = function() {
                 visited[gameMap[player.tileTo[1] * map.width + player.tileTo[0]]] = 10;
                 charMeet = false;
             }
-            if(fightMsg)
+            if(fightMsg){console.log("startfight");
                 startFight();
-            console.log('walk');
+            }
         }
     });
 };

@@ -1,20 +1,17 @@
-//
-//HERE FUCKIN BUG
-// :////
 function startFight() {
+    console.log("begfight");
     audioBackground.pause();
     audioFight.play();
 
     fight = true;
     fightMsg = false;
-
     redrawFight();
-
     announceMonster();
 }
 
 function redrawFight() {
-    if (fight) {
+//DOESNT DRAW::: WHY
+    if (fight) {console.log("fight...");
         drawBackground();
 
         if (charFight) {
@@ -32,11 +29,13 @@ function redrawFight() {
 
 function drawBackground() {
     ctx.fillStyle = "black";
-
+    console.log("here");
     if (monster_index == -1) { //no monster
+        console.log("got no monster");
         ctx.drawImage(fight2, 0, 0, 650, 488);
+        console.log("draw.....");
     }
-    else {
+    else {console.log("draw shit");
         ctx.drawImage(fight1, 0, 0, 650, 488);
         ctx.fillText("Attack  - Press A", 50, 415);
         ownMonster = new Monster();
@@ -48,7 +47,7 @@ function drawBackground() {
 }
 
 function announceMonster(){
-    switch(monster.monLevel){
+    switch(monster.index){
         case 0:
             currText = 'Dax';
             break;
@@ -80,11 +79,12 @@ function announceMonster(){
     text = true;
     showText();
 
+    var firstA = true; //otherwise uses nextAction() again!
     window.addEventListener("keydown", function (e) {
-        text = true;
-        currText = 'YourAction';
-        showText();
-        nextAction();
+        if(firstA && e.keyCode == 13){
+            firstA = false;
+            nextAction();
+        }
     });
 }
 
@@ -106,19 +106,26 @@ function drawOptions() {
     ctx.fillText("Run     - Press R", 50, 460);
 }
 
+function nextAction() {
+    console.log("nextActionFUCK");
+    text = true;
+    currText = 'YourAction';
+    showText();
+    actionIsRunning = false;
+}
+
 function runAway() {
-    console.log('runway');
     actionIsRunning = true;
     var r = 0;//Math.random();
     if (r <= 0.5) {
         fled = true;
-       /* text = true;
+        text = true;
         currText = 'Ran';
-        showText();*/
+        showText();
 
         window.addEventListener("keydown", function (e) {
             if (fight && e.keyCode == 13) {
-                endFight();
+                afterFight();
             }
         });
     }
@@ -126,7 +133,6 @@ function runAway() {
         text = true;
         currText = 'CantRun';
         showText();
-
         window.addEventListener("keydown", function (e) {
             if (fight && e.keyCode == 13) {
                 monsterAttacks();
@@ -167,9 +173,13 @@ function catchMonster() {
         caughtMonster[monster.index] = "true";
         caught = true;
 
+        text = true
+        currText = 'Caught';
+        showText();
+
         window.addEventListener("keydown", function (e) {
             if (fight && e.keyCode == 13) {
-                endFight();
+                afterFight();
             }
         });
     }
@@ -205,8 +215,6 @@ function monsterReacts() {
         window.addEventListener("keydown", function (e) {
             if (fight && e.keyCode == 13) {
                 nextAction();
-                console.log("watch");
-
             }
         });
     }
@@ -267,6 +275,7 @@ function monsterAttacks() {
                 gameOver();
             }
             else {
+                console.log("next action...");
                 redrawFight();
                 nextAction();
             }
@@ -274,33 +283,22 @@ function monsterAttacks() {
     });
 }
 
-function nextAction() {
-    text = true;
-    currText = 'YourAction';
-    showText();
-    actionIsRunning = false;
-}
-
 function endFight() {
-    text = true
     if (charFight) {
+        text = true
         currText = 'WinKid';
+        showText();
 
         charFight = false;
         markAsWon();
     }
-    else if (caught) {
-        currText = 'Caught';
-    }
     else if (!caught && !charFight && !fled) {
+        text = true
         currText = 'WonMonster';
+        showText();
     }
-    else if (fled){
-        currText = 'Ran';
-    }
-    showText();
 
-    if (!caught) {
+    if (!caught && monster_index >= 0) {
         monsterStrength[monster_index] = monsterLvl[monster_index] * 8 + monster.monLevel * 2;
         if (Math.floor(monsterStrength[monster_index] / 8) > monsterLvl[monster_index]) {
             text = true;
@@ -314,12 +312,18 @@ function endFight() {
 
     window.addEventListener("keydown", function (e) {
         if (e.keyCode == 13) { 
-            fight = false;
-            actionIsRunning = false;
-            caught = false;
-            audioWon.pause();
-            audioBackground.play();
+            afterFight();
         }
     });
 
 }          
+
+function afterFight(){
+    fight = false;
+    actionIsRunning = false;
+    caught = false;
+    text = false;
+
+    audioWon.pause();
+    audioBackground.play();
+}

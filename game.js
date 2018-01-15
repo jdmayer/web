@@ -37,6 +37,8 @@ var monsterImgBack = [bird_back, cat_back, dragon_back, hedgehog_back,
 //var monsterIcon = [bird_grey, cat_grey, dragon_grey, hedgehog_grey, owl_grey, prince_grey, rose_grey, wolf_grey, tree_moni_grey];
 var monsterGrey = [bird_grey, cat_grey, dragon_grey, hedgehog_grey, owl_grey, prince_grey, rose_grey, wolf_grey, tree_moni_grey];
 var monsterName = ["Dax", "Flace", "Lavora", "Iglo", "Looki", "Prince", "Intestria", "Furry", "Tree"];
+
+//for?
 var caughtMonster = ["false", "false", "false", "false", "false", "false", "false", "false", "false"];
 
 //to save various monsters

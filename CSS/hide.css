@@ -1,19 +1,22 @@
+/*
+NOT RESPONSIBLE!!!
+*/
 #textBackgroundFight > div{
     position: absolute; 
     display: none;
     background-color: white;
     top: 525px; 
-    left: 340px; 
-    width: 340px; 
+    left: 50%;
+    width: 300px; 
     height: 20px;
 }
 
 #textBackgroundConversation > div{
-    position: absolute; 
+    position: absolute;
     display: none;
-    background-color: white;
-    top: 450px; 
-    left: 150px; 
+    background-color: white;   
+    top: 450px;   
+    left: 25%;
     width: 500px; 
     height: 20px;
     padding: 40px 40px;
