@@ -1,5 +1,5 @@
 function startFight() {
-    console.log("begfight");
+ ///   console.log("begfight");
     audioBackground.pause();
     audioFight.play();
 
@@ -11,7 +11,7 @@ function startFight() {
 
 function redrawFight() {
 //DOESNT DRAW::: WHY
-    if (fight) {console.log("fight...");
+    if (fight) { //console.log("fight...");
         drawBackground();
 
         if (charFight) {
@@ -29,13 +29,13 @@ function redrawFight() {
 
 function drawBackground() {
     ctx.fillStyle = "black";
-    console.log("here");
+  //  console.log("here");
     if (monster_index == -1) { //no monster
-        console.log("got no monster");
+    //    console.log("got no monster");
         ctx.drawImage(fight2, 0, 0, 650, 488);
-        console.log("draw.....");
+     //   console.log("draw.....");
     }
-    else {console.log("draw shit");
+    else { //console.log("draw shit");
         ctx.drawImage(fight1, 0, 0, 650, 488);
         ctx.fillText("Attack  - Press A", 50, 415);
         ownMonster = new Monster();
@@ -79,10 +79,11 @@ function announceMonster(){
     text = true;
     showText();
 
-    var firstA = true; //otherwise uses nextAction() again!
+    var tmp = true; // so it doesn't get stuck!
     window.addEventListener("keydown", function (e) {
-        if(firstA && e.keyCode == 13){
-            firstA = false;
+        if(tmp && e.keyCode == 13){
+            tmp = false;
+            firstAction = true;
             nextAction();
         }
     });
@@ -107,24 +108,35 @@ function drawOptions() {
 }
 
 function nextAction() {
-    console.log("nextActionFUCK");
+    console.log("?NEXT " + currText + firstAction);
     text = true;
     currText = 'YourAction';
     showText();
-    actionIsRunning = false;
+    actionIsRunning = false; //why need action is running?
 }
 
 function runAway() {
+    console.log("?RUNAWAY");
     actionIsRunning = true;
+    var fled = false;
     var r = 0;//Math.random();
     if (r <= 0.5) {
-        fled = true;
+        fled = true; //not needed?
         text = true;
         currText = 'Ran';
         showText();
 
         window.addEventListener("keydown", function (e) {
-            if (fight && e.keyCode == 13) {
+            //
+            //WATCH OUT!! NEED THE EXTRA BOOLEAN
+            //
+            //OTHERWISE WHEN NEXT FIGHT
+            //->IS STILLCAUGHT IN THIS IF
+            //NEED BOOL FOR EACH EVENTLISTENER!
+            //
+            if (fled && e.keyCode == 13) {
+                console.log("after f" + currText);
+                fled = false;
                 afterFight();
             }
         });
@@ -134,7 +146,7 @@ function runAway() {
         currText = 'CantRun';
         showText();
         window.addEventListener("keydown", function (e) {
-            if (fight && e.keyCode == 13) {
+            if (!fled && e.keyCode == 13) {
                 monsterAttacks();
             }
         });
@@ -142,6 +154,7 @@ function runAway() {
 }
 
 function feedMonster() {
+    console.log("?FEED");
     actionIsRunning = true;
     text = true;
     currText = 'Eats';
@@ -159,33 +172,40 @@ function feedMonster() {
 }
 
 function catchMonster() {
+    console.log("?CATCH");
     actionIsRunning = true;
     chance_of_catching = 1; //remove later - 0.2
     var r = Math.random();
-
     text = true;
     currText = 'TryCatch';
     showText();
+
     if (0 <= chance_of_catching) { //r
         monster_index = monster.index;
         monsterLvl[monster_index] = monster.monLevel;
         monsterStrength[monster_index] = monster.strength;
         caughtMonster[monster.index] = "true";
         caught = true;
-
-        text = true
+        text = true;
         currText = 'Caught';
         showText();
 
         window.addEventListener("keydown", function (e) {
-            if (fight && e.keyCode == 13) {
+            console.log("pro");
+            if (caught && e.keyCode == 13) {
                 afterFight();
             }
         });
     }
     else {
+        caught = false;
+        text = true;
+        currText = 'NotCaught';
+        showText();
+
         window.addEventListener("keydown", function (e) {
-            if (fight && e.keyCode == 13) {
+            console.log("lem");
+            if (!caught && e.keyCode == 13) {
                 monsterAttacks();
             }
         });
@@ -203,17 +223,25 @@ function noMonster() {
     });
 }
 
-function monsterReacts() {
+function monsterReacts() { console.log("?REACT "+ currText);
     var r = Math.random();
+    var isAttacking = false;
     if (r <= 0.4) {
+        isAttacking = true;
+        console.log("in at attack" + currText);
         monsterAttacks();
     }
-    else {
+    else { 
         text = true;
         currText = 'MonsterWatches';
         showText();
+        console.log("watch" + currText + text);
         window.addEventListener("keydown", function (e) {
-            if (fight && e.keyCode == 13) {
+            if (!isAttacking && fight && e.keyCode == 13) {
+                console.log("was just looking" + currText + text);
+                //shouldnt need...
+                document.getElementById(currText).style.display='none';
+
                 nextAction();
             }
         });
@@ -221,6 +249,7 @@ function monsterReacts() {
 }
 
 function attackMonster() {
+    console.log("?ATTACK " + currText);
     actionIsRunning = true;
     var r = Math.random();
 
@@ -252,6 +281,7 @@ function attackMonster() {
 }
 
 function monsterAttacks() {
+    console.log("?ATTACKS" + currText);
     r = Math.random();
     text = true;
     currText = 'MonsterAttacks';
@@ -284,6 +314,7 @@ function monsterAttacks() {
 }
 
 function endFight() {
+    console.log("!END");
     if (charFight) {
         text = true
         currText = 'WinKid';
@@ -292,7 +323,7 @@ function endFight() {
         charFight = false;
         markAsWon();
     }
-    else if (!caught && !charFight && !fled) {
+    else if (!caught && !charFight) {
         text = true
         currText = 'WonMonster';
         showText();
@@ -319,11 +350,14 @@ function endFight() {
 }          
 
 function afterFight(){
+    console.log("!FINAL" + currText);
     fight = false;
     actionIsRunning = false;
+    firstAction = false;
     caught = false;
     text = false;
 
     audioWon.pause();
     audioBackground.play();
+    console.log("OUT");
 }

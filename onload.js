@@ -37,7 +37,8 @@ window.onload = function() {
     });
 
     window.addEventListener("keydown",function(e){
-        if(fight && !actionIsRunning){
+        if(fight && !actionIsRunning && firstAction){
+           // document.getElementById(currText).style.display='none';
             switch(e.keyCode){
                 case 65: console.log("1");
                     if(monster_index >= 0) { 
@@ -59,6 +60,7 @@ window.onload = function() {
                 case 82: console.log("4");
                     runAway();
                     document.getElementById('YourAction').style.display='none';
+                    console.log("by action");
                     break;
             }
         }

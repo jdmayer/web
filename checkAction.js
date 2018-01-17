@@ -2,9 +2,8 @@ function checkForAction(){
     if (gameMap[getIndex(player.tileTo[0], player.tileTo[1])] == 1 && !text){
         var r = Math.random();
         if (r <= 0.8 && !text){ //0.20
-            console.log("found monster");
+           // console.log("found monster");
             if(!fight){
-                console.log("fightal");
                 fightAlert();
             }          
         }
@@ -67,7 +66,6 @@ function addItemToBag(pos){
 function fightAlert(){
     monster = new Monster();
     fightMsg = true;
-    console.log("FA" + text);
     text = true;
     currText = 'WildMonster';
     showText();
