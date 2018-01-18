@@ -62,3 +62,43 @@ function getMonIndex(){
     }
     return tmpIndex;
 }
+
+function changeMonster(){
+//FEHLERBEHANDLUNG
+//MONSTER NICHT DA
+//PRINT MSG IN ALLEN FÄLLEN
+    window.addEventListener("keydown",function(e){
+        console.log("switching monsters");
+        if(!fight){
+            switch(e.keyCode){ //plus show msg if switches
+                case 48:
+                    monster_index = 0;
+                    break;
+                case 49: 
+                    cmonster_index = 1;
+                    break;
+                case 50:
+                    monster_index = 2;
+                    break;
+                case 51:
+                    monster_index = 3;
+                    break;
+                case 52:
+                    monster_index = 4;
+                    break;
+                case 53: 
+                    monster_index = 5;
+                    break;
+                case 54:
+                    monster_index = 6;
+                    break;
+                case 55:
+                    monster_index = 7;
+                    break;
+                case 56:
+                    monster_index = 8;
+                    break;
+            }
+        }
+    });
+}

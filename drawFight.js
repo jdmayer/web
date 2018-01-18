@@ -2,6 +2,7 @@ function startFight() {
     ///   console.log("begfight");
     audioBackground.pause();
     audioFight.play();
+    chance_of_catching = 0.2;
 
     fight = true;
     fightMsg = false;

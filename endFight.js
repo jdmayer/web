@@ -1,6 +1,6 @@
 function endFight() {
-    var end = false;
     audioFight.pause();
+    endingFight = true;
     if(!lost){
         audioWon.play();
         if (charFight && !lost) {
@@ -16,6 +16,13 @@ function endFight() {
             currText = 'WonMonster';
             showText();
         }
+        
+        else if(caught){ console.log(fight + " caught ");
+            text = true;
+            currText = 'Caught';
+            showText();
+        }
+        
     
         if (!lost && !caught && monster_index >= 0) {
             monsterStrength[monster_index] = monsterLvl[monster_index] * 8 + monster.monLevel * 2;
@@ -34,14 +41,13 @@ function endFight() {
         showText();
     }
 
-    end = true;
-    window.addEventListener("keydown", function (e) {
-        if (end && e.keyCode == 13) {
+    window.addEventListener("keydown", function (e) { 
+        if (endingFight && e.keyCode == 13) {
+            console.log("loop fuck off");
+            endingFight = false;
             afterFight();
-            end = false;
         }
     });
-
 }
 
 function afterFight() {
@@ -53,7 +59,6 @@ function afterFight() {
     caught = false;
     text = false;
 
-    console.log("here");
     if(!lost){
         audioWon.pause();
         audioBackground.play();

@@ -64,27 +64,25 @@ function feedMonster() {
 function catchMonster() {
     console.log("?CATCH");
     actionIsRunning = true;
-    chance_of_catching = 1; //remove later - 0.2
     var r = Math.random();
+    chance_of_catching = 1; //remove later - 0.2
     text = true;
     currText = 'TryCatch';
     showText();
 
-    if (0 <= chance_of_catching) { //r
+    if (r <= chance_of_catching) { 
         monster_index = monster.index;
         monsterLvl[monster_index] = monster.monLevel;
         monsterStrength[monster_index] = monster.strength;
         caughtMonster[monster.index] = "true";
         caught = true;
-        text = true;
-        currText = 'Caught';
-        showText();
 
         window.addEventListener("keydown", function (e) {
-            if (caught && e.keyCode == 13) {
+            if (r <= chance_of_catching && e.keyCode == 13) {
+                chance_of_catching = 0;
                 console.log("caughloop");
                 audioFight.pause();
-                afterFight();
+                endFight();
             }
         });
     }
@@ -156,16 +154,16 @@ function attackMonster() {
         monster.strength = monster.strength - Math.floor(Math.random() * (monsterLvl[monster_index] * 2) + 2);
     }
     else {
-        monster.strength = monster.strength - Math.floor(Math.random() * monster_lvl + 2);
+        monster.strength = monster.strength - Math.floor(Math.random() * monsterLvl[monster_index] + 2);
     }
 
-    if (monster.strength <= 0) {
+    if (monster.strength <= 0) { console.log("won against monster");
         monster.strength = 0;
         redrawFight();
         setTimeout(endFight, 2000);
         //need Timeout -> to show that HP == 0!
     }
-    else {
+    else {console.log("monster fights on");
         window.addEventListener("keydown", function (e) {
             if (fight && e.keyCode == 13) {
                 redrawFight();
@@ -180,7 +178,6 @@ function monsterAttacks() {
     text = true;
     currText = 'MonsterAttacks';
     showText();
-    console.log("shoed atta" + currText + text + fight);
 
     //Decrement Healthpoints
     if (monster.monLevel > monsterLvl[monster_index]) {//opponent is stronger
@@ -200,7 +197,8 @@ function monsterAttacks() {
     else {
         deadlyAttack = 'justAScratch';
     }
-console.log("before dec.");
+
+    console.log("--"+currText + text);
     window.addEventListener("keydown", function (e) {
         if (deadlyAttack == 'justAScratch' && e.keyCode == 13) {
             deadlyAttack = '';
