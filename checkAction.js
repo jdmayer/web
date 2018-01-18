@@ -81,5 +81,5 @@ function showText(){
         document.getElementById(currBG).style.display='block'; 
     }
     document.getElementById(currText).style.display='block'; 
-    console.log("f: / t: " + fight + text + currText);
+   // console.log("f: / t: " + fight + text + currText);
 }

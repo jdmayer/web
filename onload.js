@@ -38,9 +38,8 @@ window.onload = function() {
 
     window.addEventListener("keydown",function(e){
         if(fight && !actionIsRunning && firstAction){
-           // document.getElementById(currText).style.display='none';
             switch(e.keyCode){
-                case 65: console.log("1");
+                case 65:
                     if(monster_index >= 0) { 
                         attackMonster(); 
                     } 
@@ -49,24 +48,25 @@ window.onload = function() {
                     } 
                     document.getElementById('YourAction').style.display='none';
                     break;
-                case 67: console.log("2");
+                case 67: 
                     catchMonster();
                     document.getElementById('YourAction').style.display='none';
                     break;
-                case 70: console.log("3");
+                case 70:
                     feedMonster();
                     document.getElementById('YourAction').style.display='none';
                     break;
-                case 82: console.log("4");
+                case 82:
                     runAway();
                     document.getElementById('YourAction').style.display='none';
-                    console.log("by action");
                     break;
             }
         }
-        if ((isGameOver || isLevelScreen) && e.keyCode == 13){
+        if ((isGameOver || isLevelScreen) && e.keyCode == 13){console.log("goh");
             isLevelScreen = false;
             isGameOver = false;
+            audioGameOver.pause();
+            audioBackground.play();
             
             if(explanation){
                 explanation = false;
@@ -94,6 +94,13 @@ window.onload = function() {
             if(fightMsg){console.log("startfight");
                 startFight();
             }
+        }
+        if(e.keyCode == 13 && lost && currText == 'Lost'){console.log("in on lost");
+            lost = false;
+            document.getElementById('Lost').style.display='none';
+            document.getElementById(currBG).style.display='none';
+            gameOver();
+            afterFight();
         }
     });
 };
