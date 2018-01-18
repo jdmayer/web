@@ -1,5 +1,4 @@
 function startFight() {
-    ///   console.log("begfight");
     audioBackground.pause();
     audioFight.play();
     chance_of_catching = 0.2;
@@ -11,8 +10,7 @@ function startFight() {
 }
 
 function redrawFight() {
-    //DOESNT DRAW::: WHY
-    if (fight) { //console.log("fight...");
+    if (fight) { 
         drawBackground();
 
         if (charFight) {
@@ -30,13 +28,10 @@ function redrawFight() {
 
 function drawBackground() {
     ctx.fillStyle = "black";
-    //  console.log("here");
     if (monster_index == -1) { //no monster
-        //    console.log("got no monster");
         ctx.drawImage(fight2, 0, 0, 650, 488);
-        //   console.log("draw.....");
     }
-    else { //console.log("draw shit");
+    else {
         ctx.drawImage(fight1, 0, 0, 650, 488);
         ctx.fillText("Attack  - Press A", 50, 415);
         ownMonster = new Monster();

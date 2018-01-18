@@ -17,7 +17,7 @@ function endFight() {
             showText();
         }
         
-        else if(caught){ console.log(fight + " caught ");
+        else if(caught){
             text = true;
             currText = 'Caught';
             showText();
@@ -39,11 +39,11 @@ function endFight() {
         text = true;
         currText = 'Lost';
         showText();
+        if(monster_index >= 0)
+            monsterStrength[monster_index] = monsterLvl[monster_index] * 8;
     }
-
     window.addEventListener("keydown", function (e) { 
         if (endingFight && e.keyCode == 13) {
-            console.log("loop fuck off");
             endingFight = false;
             afterFight();
         }
@@ -51,8 +51,7 @@ function endFight() {
 }
 
 function afterFight() {
-   // document.getElementById('YourAction').style.display = 'none';
-    console.log("!FINAL" + currText + fight + lost);
+    document.getElementById(currText).style.display = 'none';
     fight = false;
     actionIsRunning = false;
     firstAction = false;
@@ -63,6 +62,5 @@ function afterFight() {
         audioWon.pause();
         audioBackground.play();
     }
-    console.log("OUT");
     lost = false;
 }

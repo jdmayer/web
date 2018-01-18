@@ -68,7 +68,7 @@ function changeMonster(){
 //MONSTER NICHT DA
 //PRINT MSG IN ALLEN FÄLLEN
     window.addEventListener("keydown",function(e){
-        console.log("switching monsters");
+       // console.log("switching monsters");
         if(!fight){
             switch(e.keyCode){ //plus show msg if switches
                 case 48:

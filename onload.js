@@ -62,7 +62,7 @@ window.onload = function() {
                     break;
             }
         }
-        if ((isGameOver || isLevelScreen) && e.keyCode == 13){console.log("goh");
+        if ((isGameOver || isLevelScreen) && e.keyCode == 13){
             isLevelScreen = false;
             isGameOver = false;
             audioGameOver.pause();
@@ -91,16 +91,18 @@ window.onload = function() {
                 visited[gameMap[player.tileTo[1] * map.width + player.tileTo[0]]] = 10;
                 charMeet = false;
             }
-            if(fightMsg){console.log("startfight");
+            if(fightMsg){
                 startFight();
             }
         }
-        if(e.keyCode == 13 && lost && currText == 'Lost'){console.log("in on lost");
+        if(e.keyCode == 13 && lost && currText == 'Lost'){
             lost = false;
             document.getElementById('Lost').style.display='none';
             document.getElementById(currBG).style.display='none';
+            text = false;
             gameOver();
             afterFight();
         }
+    
     });
 };

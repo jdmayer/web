@@ -96,6 +96,7 @@ function drawGame(){
     }
 
     moveCharacter(currentFrameTime);
+    //console.log(text + " - " + fight);
     lastFrameTime = currentFrameTime;
 
 

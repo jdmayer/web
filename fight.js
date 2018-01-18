@@ -1,5 +1,4 @@
 function nextAction() {
-    console.log("?NEXT " + currText + firstAction);
     text = true;
     currText = 'YourAction';
     showText();
@@ -7,7 +6,6 @@ function nextAction() {
 }
 
 function runAway() {
-    console.log("?RUNAWAY");
     actionIsRunning = true;
     var fled = false;
     var r = 0;//Math.random();
@@ -20,7 +18,6 @@ function runAway() {
         window.addEventListener("keydown", function (e) {
             if (fled && e.keyCode == 13) {
                 audioFight.pause()
-                console.log("after f" + currText);
                 fled = false;
                 afterFight();
             }
@@ -32,21 +29,20 @@ function runAway() {
         showText();
         window.addEventListener("keydown", function (e) {
             if (!fled && e.keyCode == 13) {
-                monsterAttacks();
+                monsterReacts();
             }
         });
     }
 }
 
 function feedMonster() {
-    console.log("?FEED");
     var reaction = false;
     actionIsRunning = true;
     text = true;
     currText = 'Eats';
     showText();
 
-    if (monster.strength < (monster.monLevel * 8)) {
+    if (monster.strength < (monster.monLevel * 8)) { 
         monster.strength = monster.strength + 2;
     }
     chance_of_catching += 0.1; //earned trust
@@ -54,15 +50,14 @@ function feedMonster() {
     reaction = true;
     window.addEventListener("keydown", function (e) {
         if (reaction && e.keyCode == 13) {
-            console.log("react after feed");
             reaction = false;
+            redrawFight();
             monsterReacts();
         }
     });
 }
 
 function catchMonster() {
-    console.log("?CATCH");
     actionIsRunning = true;
     var r = Math.random();
     chance_of_catching = 1; //remove later - 0.2
@@ -79,8 +74,7 @@ function catchMonster() {
 
         window.addEventListener("keydown", function (e) {
             if (r <= chance_of_catching && e.keyCode == 13) {
-                chance_of_catching = 0;
-                console.log("caughloop");
+                chance_of_catching = 0
                 audioFight.pause();
                 endFight();
             }
@@ -94,7 +88,7 @@ function catchMonster() {
 
         window.addEventListener("keydown", function (e) {
             if (!caught && e.keyCode == 13) {
-                monsterAttacks();
+                monsterReacts();
             }
         });
     }
@@ -112,12 +106,10 @@ function noMonster() {
 }
 
 function monsterReacts() {
-    console.log("?REACT " + currText);
     var r = Math.random();
     var watching = false;
     if (r <= 0.4) {
         isAttacking = true;
-        console.log("in at attack" + currText);
         monsterAttacks();
     }
     else {
@@ -126,14 +118,10 @@ function monsterReacts() {
         currText = 'MonsterWatches';
         showText();
 
-        console.log("watch" + currText + text);
-
         window.addEventListener("keydown", function (e) {
             if (watching && e.keyCode == 13) {
-                console.log("was just looking" + currText + text);
-                //shouldnt need...
                 watching = false;
-                document.getElementById(currText).style.display = 'none';
+                //document.getElementById(currText).style.display = 'none';
 
                 nextAction();
             }
@@ -142,8 +130,8 @@ function monsterReacts() {
 }
 
 function attackMonster() {
-    console.log("?ATTACK " + currText);
     actionIsRunning = true;
+    var attacks = true;
     var r = Math.random();
 
     text = true;
@@ -157,63 +145,65 @@ function attackMonster() {
         monster.strength = monster.strength - Math.floor(Math.random() * monsterLvl[monster_index] + 2);
     }
 
-    if (monster.strength <= 0) { console.log("won against monster");
+    if (monster.strength <= 0) {
         monster.strength = 0;
         redrawFight();
         setTimeout(endFight, 2000);
         //need Timeout -> to show that HP == 0!
     }
-    else {console.log("monster fights on");
+    else {
         window.addEventListener("keydown", function (e) {
-            if (fight && e.keyCode == 13) {
+            if (attacks && e.keyCode == 13) {
+                attacks = false;
                 redrawFight();
-                monsterAttacks();
+                monsterReacts();
             }
         });
     }
 }
 
 function monsterAttacks() {
-    console.log("?ATTACKS" + currText);
     text = true;
     currText = 'MonsterAttacks';
     showText();
 
     //Decrement Healthpoints
-    if (monster.monLevel > monsterLvl[monster_index]) {//opponent is stronger
-        monsterStrength[monster_index] = monsterStrength[monster_index]
-            - Math.floor(Math.random() * (monster.monLevel * 2) + 2);
+    if(currText == 'MonsterAttacks'){
+        if (monster.monLevel > monsterLvl[monster_index]) {//opponent is stronger
+            monsterStrength[monster_index] = monsterStrength[monster_index]
+                - Math.floor(Math.random() * (monster.monLevel * 2) + 2);
+        }
+        else {
+            monsterStrength[monster_index] = monsterStrength[monster_index]
+                - Math.floor(Math.random() * monster.monLevel + 2)
+        }
+    
+        var deadlyAttack = '';
+        if ((monster_index >= 0 && monsterStrength[monster_index] <= 0) ||
+            (monster_index < 0 && Math.random() <= 0.4)) { //no monster
+                monsterStrength[monster_index] = 0;
+                redrawFight();
+            deadlyAttack = 'sooDeadly';
+        }
+        else if(monsterStrength[monster_index] > 0) {
+            deadlyAttack = 'justAScratch';
+        }
+    
     }
-    else {
-        monsterStrength[monster_index] = monsterStrength[monster_index]
-            - Math.floor(Math.random() * monster.monLevel + 2)
-    }
-
-    var deadlyAttack = '';
-    if ((monster_index >= 0 && monsterStrength[monster_index] <= 0) ||
-        (monster_index < 0 && Math.random() <= 0.4)) {
-        deadlyAttack = 'sooDeadly';
-    }
-    else {
-        deadlyAttack = 'justAScratch';
-    }
-
-    console.log("--"+currText + text);
+    
     window.addEventListener("keydown", function (e) {
-        if (deadlyAttack == 'justAScratch' && e.keyCode == 13) {
-            deadlyAttack = '';
-            console.log("next action at ATT");
+        if (deadlyAttack == 'justAScratch' && e.keyCode == 13 && currText != 'YourAction') {
+            deadlyAttack = 'none';
+            document.getElementById(currText).style.display = 'none';
             redrawFight();
             nextAction();
         }
     });
 
     window.addEventListener("keydown", function (e) {
-        if (deadlyAttack == 'sooDeadly' && e.keyCode == 13) {
-            deadlyAttack = '';
-            console.log("dead");
+        if (deadlyAttack == 'sooDeadly' && e.keyCode == 13 && currText != 'YourAction') {
+            deadlyAttack = 'none';
             lost = true;
-            monsterStrength[monster_index] = 0;
             redrawFight();
             endFight();
         }
