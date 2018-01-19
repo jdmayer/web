@@ -43,34 +43,39 @@ function drawBackground() {
 }
 
 function announceMonster() {
-    switch (monster.index) {
-        case 0:
-            getText('Dax');
-            break;
-        case 1:
-            getText('Flace');
-            break;
-        case 2:
-            getText('Lavora');
-            break;
-        case 3:
-            getText('Iglo');
-            break;
-        case 4:
-            getText('Looki');
-            break;
-        case 5:
-            getText('Prince');
-            break;
-        case 6:
-            getText('Intestria');
-            break;
-        case 7:
-            getText('Furry');
-            break;
-        case 8:
-            getText('Tree');
-            break;
+    if (!charFight){
+        switch (monster.index) {
+            case 0:
+                getText('Dax');
+                break;
+            case 1:
+                getText('Flace');
+                break;
+            case 2:
+                getText('Lavora');
+                break;
+            case 3:
+                getText('Iglo');
+                break;
+            case 4:
+                getText('Looki');
+                break;
+            case 5:
+                getText('Prince');
+                break;
+            case 6:
+                getText('Intestria');
+                break;
+            case 7:
+                getText('Furry');
+                break;
+            case 8:
+                getText('Tree');
+                break;
+        }   
+    }
+    else{
+        getText('KidMonster');
     }
 
     var tmp = true; // so it doesn't get stuck!

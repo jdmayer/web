@@ -4,7 +4,7 @@ function endFight() {
     if(!lost){
         audioWon.play();
         if (charFight && !lost) {
-            getText('WinKid');
+            getText('WonKid');
     
             charFight = false;
             markAsWon();

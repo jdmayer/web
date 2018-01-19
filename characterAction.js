@@ -39,7 +39,7 @@ function characterTalk(){
    */
 
    if(msgNr[gameMap[pos]] == -1){
-       randChoice = Math.floor(Math.random()*13); //12;
+       randChoice = 12;// Math.floor(Math.random()*13); //change later
        msgNr[gameMap[pos]] = randChoice;
    }
    else{
@@ -94,7 +94,6 @@ function characterTalk(){
             break;
     }
     //charMeet = false;
-    //console.log("here");
     var visit = gameMap[pos]
     if(keysDown[37] || keysDown[38] || keysDown[39] ||keysDown[40])
         visited[gameMap[pos]] = 1; 
@@ -114,10 +113,11 @@ function characterFight(){
         text = true;
         currText = 'KidFight';
         showText();
-
+        var tmp = true; //so that enter can be used only once
         window.addEventListener("keydown",function(e){
-            if(fight  && e.keyCode == 13){
+            if(tmp  && e.keyCode == 13){
                 monster = new Monster();
+                tmp = false;
                 startFight();
             }
         });
