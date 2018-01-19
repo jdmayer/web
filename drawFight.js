@@ -45,34 +45,33 @@ function drawBackground() {
 function announceMonster() {
     switch (monster.index) {
         case 0:
-            currText = 'Dax';
+            getText('Dax');
             break;
         case 1:
-            currText = 'Flace';
+            getText('Flace');
             break;
         case 2:
-            currText = 'Lavora';
+            getText('Lavora');
             break;
         case 3:
-            currText = 'Iglo';
+            getText('Iglo');
             break;
         case 4:
-            currText = 'Looki';
+            getText('Looki');
             break;
         case 5:
-            currText = 'Prince';
+            getText('Prince');
             break;
         case 6:
-            currText = 'Intestria';
+            getText('Intestria');
             break;
         case 7:
-            currText = 'Furry';
+            getText('Furry');
             break;
         case 8:
-            currText = 'Tree';
+            getText('Tree');
             break;
     }
-    getText(currText);
 
     var tmp = true; // so it doesn't get stuck!
     window.addEventListener("keydown", function (e) {

@@ -131,7 +131,7 @@ function attackMonster() {
     if (monster.strength <= 0) {
         monster.strength = 0;
         redrawFight();
-        setTimeout(endFight, 2000);
+        setTimeout(endFight, 1000);
         //need Timeout -> to show that HP == 0!
     }
     else {

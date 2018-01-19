@@ -66,9 +66,7 @@ function addItemToBag(pos){
 function fightAlert(){
     monster = new Monster();
     fightMsg = true;
-    text = true;
-    currText = 'WildMonster';
-    showText();
+    getText("WildMonster");
 }
 
 function showText(){
@@ -84,9 +82,9 @@ function showText(){
    // console.log("f: / t: " + fight + text + currText);
 }
 
-function getText(text){
-    console.log('getText: ' + text);
+function getText(msg){
+    currText = msg;
     text = true;
-    currText = text;
+    console.log('getText: ' + text + msg);
     showText();
 }
