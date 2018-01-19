@@ -147,7 +147,6 @@ function attackMonster() {
 
 function monsterAttacks() {
     getText("MonsterAttacks");
-
     //Decrement Healthpoints
     if(currText == 'MonsterAttacks'){
         if (monster.monLevel > monsterLvl[monster_index]) {//opponent is stronger
@@ -160,8 +159,18 @@ function monsterAttacks() {
         }
     
         var deadlyAttack = '';
-        if ((monster_index >= 0 && monsterStrength[monster_index] <= 0) ||
-            (monster_index < 0 && Math.random() <= 0.4)) { //no monster
+        if (monster_index < 0){ //no monster
+            if (Math.random() <= 0.5){
+                monsterStrength[monster_index] = 0;
+                redrawFight();
+                deadlyAttack = 'sooDeadly';
+            }
+            else {
+                redrawFight();
+                deadlyAttack = 'justAScratch';
+            }
+        }
+        else if ((monster_index >= 0 && monsterStrength[monster_index] <= 0)){ 
                 monsterStrength[monster_index] = 0;
                 redrawFight();
             deadlyAttack = 'sooDeadly';

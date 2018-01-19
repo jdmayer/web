@@ -50,7 +50,7 @@ function fillBackground(){
                 case 4:
                     img.src = trail1.src; //horizontal
                     break;
-                    case 5:
+                case 5:
                     img.src = trail2.src; //vertical
                     break;
                 case 6:
@@ -116,7 +116,7 @@ function fillBackground(){
                 case 25: 
                     img.src = water5.src; 
                     break; 
-                    case 26: 
+                case 26: 
                     img.src = water6.src; 
                     break; 
                 case 27: 

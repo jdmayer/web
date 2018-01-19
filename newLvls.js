@@ -16,7 +16,6 @@ function startLevel() {
 function gameOver() {
     audioFight.pause();
     audioGameOver.play();
-
     isGameOver = true;
     fight = false;
     charFight = false;
@@ -34,23 +33,25 @@ function gameOver() {
 function startNewLevel(){
         player = new Character();
         initWonMap();
+        initInteracionMaps();
         actionIsRunning = false;
         monsterStrength[monster_index] = monsterLvl[monster_index] * 8;
         explanation = true;
         if(level == 1){
+            gameMap = gameMap_level1.slice(0); //slice clones the array
             requestAnimationFrame(drawGame);
             return true;
         }
         else if(level == 2){
            // audioBackground = new Audio("ENTER OTHER THEME");
-            gameMap = gameMap_level2;
+            gameMap = gameMap_level2.slice(0);
             requestAnimationFrame(drawGame);
             return true;
  
         }
         else if(level == 3){
           //  audioBackground = new Audio("ENTER OTHER THEME");
-            gameMap=gameMap_level3;
+            gameMap=gameMap_level3.slice(0);
             requestAnimationFrame(drawGame);
             return true;
  
@@ -75,4 +76,11 @@ function lvlExplanation() {
     ctx.font = "10pt Helvetica";
     ctx.fillText("Press Enter to Continue", 250, 350);
 
+}
+
+function initInteracionMaps(){
+    for(var i = 0; i < mapSize; i++){
+        visited[i] = -1;
+        msgNr[i] = -1;
+    }
 }
