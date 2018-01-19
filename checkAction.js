@@ -83,3 +83,10 @@ function showText(){
     document.getElementById(currText).style.display='block'; 
    // console.log("f: / t: " + fight + text + currText);
 }
+
+function getText(text){
+    console.log('getText: ' + text);
+    text = true;
+    currText = text;
+    showText();
+}

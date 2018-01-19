@@ -4,41 +4,31 @@ function endFight() {
     if(!lost){
         audioWon.play();
         if (charFight && !lost) {
-            text = true
-            currText = 'WinKid';
-            showText();
+            getText('WinKid');
     
             charFight = false;
             markAsWon();
         }
         else if (!caught && !charFight && !lost) {
-            text = true
-            currText = 'WonMonster';
-            showText();
+            getText('WonMonster');
         }
         
         else if(caught){
-            text = true;
-            currText = 'Caught';
-            showText();
+            getText('Caught');
         }
         
     
         if (!lost && !caught && monster_index >= 0) {
             monsterStrength[monster_index] = monsterLvl[monster_index] * 8 + monster.monLevel * 2;
             if (Math.floor(monsterStrength[monster_index] / 8) > monsterLvl[monster_index]) {
-                text = true;
-                currText = 'LevelUp';
-                showText();
+                getText('LevelUp');
                 monsterLvl[monster_index] = monsterLvl[monster_index] + 1;
             }
         }
     }
 
     if(lost){
-        text = true;
-        currText = 'Lost';
-        showText();
+        getText('Lost');
         if(monster_index >= 0)
             monsterStrength[monster_index] = monsterLvl[monster_index] * 8;
     }

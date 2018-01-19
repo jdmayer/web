@@ -1,7 +1,5 @@
 function nextAction() {
-    text = true;
-    currText = 'YourAction';
-    showText();
+    getText("YourAction");
     actionIsRunning = false; //why need action is running?
 }
 
@@ -11,9 +9,7 @@ function runAway() {
     var r = 0;//Math.random();
     if (r <= 0.5) {
         fled = true; //not needed?
-        text = true;
-        currText = 'Ran';
-        showText();
+        getText('Ran');
 
         window.addEventListener("keydown", function (e) {
             if (fled && e.keyCode == 13) {
@@ -24,9 +20,7 @@ function runAway() {
         });
     }
     else {
-        text = true;
-        currText = 'CantRun';
-        showText();
+        getText("CantRun");
         window.addEventListener("keydown", function (e) {
             if (!fled && e.keyCode == 13) {
                 monsterReacts();
@@ -38,9 +32,7 @@ function runAway() {
 function feedMonster() {
     var reaction = false;
     actionIsRunning = true;
-    text = true;
-    currText = 'Eats';
-    showText();
+    getText("Eats");
 
     if (monster.strength < (monster.monLevel * 8)) { 
         monster.strength = monster.strength + 2;
@@ -61,9 +53,7 @@ function catchMonster() {
     actionIsRunning = true;
     var r = Math.random();
     chance_of_catching = 1; //remove later - 0.2
-    text = true;
-    currText = 'TryCatch';
-    showText();
+    getText("TryCatch");
 
     if (r <= chance_of_catching) { 
         monster_index = monster.index;
@@ -82,9 +72,7 @@ function catchMonster() {
     }
     else {
         caught = false;
-        text = true;
-        currText = 'NotCaught';
-        showText();
+        getText("NotCaught");
 
         window.addEventListener("keydown", function (e) {
             if (!caught && e.keyCode == 13) {
@@ -95,9 +83,8 @@ function catchMonster() {
 }
 
 function noMonster() {
-    text = true;
-    currText = 'NoMonsterFight';
-    showText();
+    getText("NoMonsterFight");
+
     window.addEventListener("keydown", function (e) {
         if (fight && e.keyCode == 13) {
             nextAction();
@@ -114,9 +101,7 @@ function monsterReacts() {
     }
     else {
         watching = true;
-        text = true;
-        currText = 'MonsterWatches';
-        showText();
+        getText("MonsterWatches");
 
         window.addEventListener("keydown", function (e) {
             if (watching && e.keyCode == 13) {
@@ -134,9 +119,7 @@ function attackMonster() {
     var attacks = true;
     var r = Math.random();
 
-    text = true;
-    currText = 'AttackMonster';
-    showText();
+    getText("AttackMonster");
 
     if (monster.monLevel < monsterLvl[monster_index]) {//your monster is stronger
         monster.strength = monster.strength - Math.floor(Math.random() * (monsterLvl[monster_index] * 2) + 2);
@@ -163,9 +146,7 @@ function attackMonster() {
 }
 
 function monsterAttacks() {
-    text = true;
-    currText = 'MonsterAttacks';
-    showText();
+    getText("MonsterAttacks");
 
     //Decrement Healthpoints
     if(currText == 'MonsterAttacks'){

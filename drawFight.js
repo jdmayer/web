@@ -72,8 +72,7 @@ function announceMonster() {
             currText = 'Tree';
             break;
     }
-    text = true;
-    showText();
+    getText(currText);
 
     var tmp = true; // so it doesn't get stuck!
     window.addEventListener("keydown", function (e) {
