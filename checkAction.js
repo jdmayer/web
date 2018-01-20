@@ -25,7 +25,10 @@ function checkForAction(){
                     startLevel();
                 }
                 else{
-                    textBackground('NoKey'); //got no key to get to next level
+                    //textBackground('NoKey'); //got no key to get to next level
+                    text = true;
+                    currText = 'NoKey';
+                    showText();
                 }
                 break;
             case 2:

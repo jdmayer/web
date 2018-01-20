@@ -53,6 +53,8 @@ var charFight = false;
 var charMeet = false;
 
 var mapSize = map.width * map.height;
+var gameMap = new Array(mapSize);
+
 var wonMap = new Array(mapSize);
 
 var visited = new Array(mapSize);

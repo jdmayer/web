@@ -109,7 +109,7 @@ return pos <= 9
             || pos == 22
             || pos == 23
             || pos == 24
-            || pos == 35
+            || pos == 25
             || pos == 26
             || pos == 27
             || pos == 28
