@@ -1,19 +1,21 @@
-function endFight() {
+function endFight() { console.log("IN END AFTER FIGHT");
     audioFight.pause();
-    endingFight = true;
+    var endingFight = true;
     if(!lost){
         audioWon.play();
         if (charFight && !lost) {
+            redrawFight();
             getText('WonKid');
     
             charFight = false;
             markAsWon();
         }
         else if (!caught && !charFight && !lost) {
+            redrawFight();
             getText('WonMonster');
         }
         
-        else if(caught){
+        else if(caught){ console.log("CAUGHT" + endingFight);
             getText('Caught');
         }
         
@@ -28,13 +30,18 @@ function endFight() {
     }
 
     if(lost){
+        redrawFight(); //to get rid of options
         getText('Lost');
         if(monster_index >= 0)
             monsterStrength[monster_index] = monsterLvl[monster_index] * 8;
     }
+
+    options = false;
+    var kl = true;
     window.addEventListener("keydown", function (e) { 
-        if (endingFight && e.keyCode == 13) {
+        if (endingFight && kl && e.keyCode == 13) {console.log("in loop");
             endingFight = false;
+            kl = false;
             afterFight();
         }
     });
@@ -43,6 +50,7 @@ function endFight() {
 function afterFight() {
     document.getElementById(currText).style.display = 'none';
     fight = false;
+
     actionIsRunning = false;
     firstAction = false;
     caught = false;
@@ -53,4 +61,5 @@ function afterFight() {
         audioBackground.play();
     }
     lost = false;
+    console.log("ended fight " + fight);
 }

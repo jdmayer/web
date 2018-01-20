@@ -10,20 +10,19 @@ function startFight() {
 }
 
 function redrawFight() {
-    if (fight) { 
+ //   if (fight) { 
         drawBackground();
-
         if (charFight) {
-            drawOptionsCharFight();
+            getOptions("OptionCharFight");
         }
         else if (monster_index == -1) {
-            drawOptionsNoMonster();
+            getOptions('OptionNoMonster');
         }
-        else {
-            drawOptions();
+        else if(!charFight){
+            getOptions('OptionMonster');
         }
         monster.drawOpponent();
-    }
+ //   }
 }
 
 function drawBackground() {
@@ -32,13 +31,16 @@ function drawBackground() {
         ctx.drawImage(fight2, 0, 0, 650, 488);
     }
     else {
-        ctx.drawImage(fight1, 0, 0, 650, 488);
-        ctx.fillText("Attack  - Press A", 50, 415);
-        ownMonster = new Monster();
+        ctx.drawImage(fight1, 0, 0, 650, 488);  
+        
+        ownMonster = new Monster();                 //own monster needed?
         ownMonster.index = monster_index;
         ownMonster.monLevel = monsterLvl[monster_index];
         ownMonster.strength = monsterStrength[monster_index];
         ownMonster.drawOwnMonster();
+        
+        //could make it global- for every monster 1 global -> save into array
+        //save arrays for rest
     }
 }
 
@@ -88,20 +90,19 @@ function announceMonster() {
     });
 }
 
-function drawOptionsCharFight() { //ALSO PUT INTO CSS
-    ctx.fillText("Attack  - Press A", 50, 415);
-    ctx.fillText("Feed    - Press F", 50, 435);
-    ctx.fillText("Run     - Press R", 50, 455);
+function getOptions(msg){ console.log("SHOW "+ msg);
+    options = true;
+    optionMsg = msg
+    showOptions()
 }
 
-function drawOptionsNoMonster() {
-    ctx.fillText("Catch   - Press C", 50, 415);
-    ctx.fillText("Feed    - Press F", 50, 435);
-    ctx.fillText("Run     - Press R", 50, 455);
-}
+function showOptions(){
+    document.getElementById(optionMsg).style.display='block'; 
 
-function drawOptions() {
-    ctx.fillText("Catch   - Press C", 50, 430);
-    ctx.fillText("Feed    - Press F", 50, 445);
-    ctx.fillText("Run     - Press R", 50, 460);
+    window.addEventListener("keydown", function (e) { 
+        if (fight && !options && e.keyCode == 13) {
+            console.log("BYE BYE "+optionMsg);
+            document.getElementById(optionMsg).style.display='none';         
+        }
+    });
 }

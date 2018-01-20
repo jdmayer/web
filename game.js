@@ -71,10 +71,11 @@ var chance_of_catching = 0.2;
 var caught = false;
 var firstAction = false;
 var lost = false;
-var endingFight = false;
 
 var fight = false;
 var fightMsg = false;
+var options = false;
+var optionMsg = "";
 
 
 //get Index in the map array

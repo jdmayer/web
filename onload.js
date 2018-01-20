@@ -49,8 +49,10 @@ window.onload = function() {
                     document.getElementById('YourAction').style.display='none';
                     break;
                 case 67: 
-                    catchMonster();
-                    document.getElementById('YourAction').style.display='none';
+                    if(!charFight){
+                        catchMonster();
+                        document.getElementById('YourAction').style.display='none';
+                    }
                     break;
                 case 70:
                     feedMonster();
@@ -95,7 +97,7 @@ window.onload = function() {
                 startFight();
             }
         }
-        if(e.keyCode == 13 && lost && currText == 'Lost'){
+        if(e.keyCode == 13 && lost && currText == 'Lost'){ //make without?
             lost = false;
             document.getElementById('Lost').style.display='none';
             document.getElementById(currBG).style.display='none';

@@ -1,16 +1,7 @@
 /*
 NOT RESPONSIBLE!!!
+MAKE RESPONSIBLE?
 */
-#textBackgroundFight > div{
-    position: absolute; 
-    display: none;
-    background-color: white;
-    top: 525px; 
-    left: 50%;
-    width: 300px; 
-    height: 20px;
-}
-
 #textBackgroundConversation > div{
     position: absolute;
     display: none;
@@ -22,101 +13,25 @@ NOT RESPONSIBLE!!!
     padding: 40px 40px;
 }
 
-/*for better overview*
-#Conversation > div {
+#textBackgroundFight > div{
     position: absolute; 
     display: none;
-    
-    top: 490px;
-    left: 180px;
+    top: 525px; 
+    left: 50%;
+    width: 300px; 
+    height: 20px;
 }
-/*
-    #chat0 {
-        display: none;
-    }
-    #chat1 {
-        display: none;
-    }
-    #chat2 {
-        display: none;
-    }
-    #chat3 {
-        display: none;
-    }
-    #chat4 {
-        display: none;
-    }
-    #chat5 {
-        display: none;
-    }
-    #chat6 {
-        display: none;
-    }
-    #chat7 {
-        display: none;
-    }
 
-    #NoMonster {
-        display: none;
-    }
-    #KidFight {
-        display: none;
-    }
-    #KidWon {
-        display: none;
-    }
-    #YouBeatKid {
-        display: none;
-    }
-
-    #FirstGreet {
-        display: none;
-    }
-    #AfterGreet {
-        display: none;
-    }
-*
-
-#Actions > div {
-    position: absolute; 
-    display: none;
-
-    top: 490px;
-    left: 180px;
-}
- /*   #ItemReceived {
-        top: 490px;
-        left: 360px;
-    }
-    #ItemFound {
-        top: 490px;
-        left: 360px;
-    }
-    #WildMonster {
-        top: 490px;
-        left: 340px;
-    }
-    #NoKey {             
-        top: 490px;
-        left: 300px;
-    }
-    #LevelUp {                
-        top: 490px;
-        left: 330px;
-    }
-*
-
-#MonsterAppear > div { /*all about the same length*
+.Options > div{
     position: absolute;
-    display: none;
-    top: 490px;
-    left: 360px;
+    display: none;  
+    font-size: 14px; 
+    top: 505px;   
+    left: 28%;
+    width: 300px; 
+    height: 20px;
 }
 
-#fight > div {
-    position: absolute; 
-    display: none;
-    top: 520px;
-    left: 400px;
+#OptionMonster{
+    top: 495px;   
 }
-*/
