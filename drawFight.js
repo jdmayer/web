@@ -90,7 +90,8 @@ function announceMonster() {
     });
 }
 
-function getOptions(msg){ console.log("SHOW "+ msg);
+function getOptions(msg){ 
+    //console.log("SHOW "+ msg);
     options = true;
     optionMsg = msg
     showOptions()
@@ -101,8 +102,53 @@ function showOptions(){
 
     window.addEventListener("keydown", function (e) { 
         if (fight && !options && e.keyCode == 13) {
-            console.log("BYE BYE "+optionMsg);
+           // console.log("BYE BYE "+optionMsg);
             document.getElementById(optionMsg).style.display='none';         
         }
     });
+}
+
+function drawAnimation(pic){
+    if(currText == "TryCatch"){ 
+        ctx.drawImage(pic, 140, 10, 140, 140);
+    }
+    else if(currText == "MonsterAttacks"){ //attack 
+        ctx.drawImage(pic, 400, 230, 140, 140);
+    }  
+    else if(currText == "AttackMonster"){ //attack
+        ctx.drawImage(pic, 140, 30, 140, 140);
+    }
+}
+
+function getAttack(){
+    switch(currText){
+        case "AttackMonster":
+            if(monster_index == 0 || monster_index == 2 || monster_index == 3){
+                drawAnimation(attack_fire);
+            }
+            else if(monster_index == 1 || monster_index == 7){
+                drawAnimation(attack_ice);
+            }
+            else if(monster_index == 4 || monster_index == 5){
+                drawAnimation(attack_water);
+            }
+            else if(monster_index == 6 || monster_index == 8){
+                drawAnimation(attack_plant);
+            }
+            break;
+        case "MonsterAttacks": 
+            if(monster.index == 0 || monster.index == 2 || monster.index == 3){
+                drawAnimation(attack_fire);
+            }
+            else if(monster.index == 1 || monster.index == 7){
+                drawAnimation(attack_ice);
+            }
+            else if(monster.index == 4 || monster.index == 5){
+                drawAnimation(attack_water);
+            }
+            else if(monster.index == 6 || monster.index == 8){
+                drawAnimation(attack_plant);
+            }
+            break;
+    }
 }

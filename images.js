@@ -156,6 +156,8 @@ var attack_plant = new Image();
 attack_plant.src = "./img/attack_plant.png";
 var attack_water = new Image();
 attack_water.src = "./img/attack_water.png";
+var net = new Image();
+net.src = "./img/net.png";
 
 
 //Other Characters:

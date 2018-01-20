@@ -84,7 +84,7 @@ window.onload = function() {
         } 
         if(e.keyCode == 13 && text && currText != 'YourAction'){
             //As YourAction only disappears when you move into action
-            console.log('dissapear!' + currText);
+            ///console.log('dissapear!' + currText);
             document.getElementById(currText).style.display='none';
             document.getElementById(currBG).style.display='none';
 

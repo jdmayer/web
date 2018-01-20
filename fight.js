@@ -54,6 +54,7 @@ function catchMonster() {
     var r = Math.random();
     chance_of_catching = 1; //remove later - 0.2
     getText("TryCatch");
+    drawAnimation(net);
 
     if (r <= chance_of_catching) { 
         monster_index = monster.index;
@@ -120,7 +121,9 @@ function attackMonster() {
     var r = Math.random();
 
     getText("AttackMonster");
-
+    console.log("ATTACK");
+    getAttack();
+    
     if (monster.monLevel < monsterLvl[monster_index]) {//your monster is stronger
         monster.strength = monster.strength - Math.floor(Math.random() * (monsterLvl[monster_index] * 2) + 2);
     }
@@ -147,6 +150,8 @@ function attackMonster() {
 
 function monsterAttacks() {
     getText("MonsterAttacks");
+    console.log("ATTACKS");
+    getAttack();
     //Decrement Healthpoints
     if(currText == 'MonsterAttacks'){
         if (monster.monLevel > monsterLvl[monster_index]) {//opponent is stronger

@@ -1,4 +1,4 @@
-function endFight() { console.log("IN END AFTER FIGHT");
+function endFight() { //console.log("IN END AFTER FIGHT");
     audioFight.pause();
     var endingFight = true;
     if(!lost){
@@ -15,7 +15,7 @@ function endFight() { console.log("IN END AFTER FIGHT");
             getText('WonMonster');
         }
         
-        else if(caught){ console.log("CAUGHT" + endingFight);
+        else if(caught){ 
             getText('Caught');
         }
         
@@ -37,11 +37,9 @@ function endFight() { console.log("IN END AFTER FIGHT");
     }
 
     options = false;
-    var kl = true;
     window.addEventListener("keydown", function (e) { 
-        if (endingFight && kl && e.keyCode == 13) {console.log("in loop");
+        if (endingFight && e.keyCode == 13) {//console.log("in loop");
             endingFight = false;
-            kl = false;
             afterFight();
         }
     });
