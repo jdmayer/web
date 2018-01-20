@@ -60,13 +60,14 @@ function catchMonster() {
         monster_index = monster.index;
         monsterLvl[monster_index] = monster.monLevel;
         monsterStrength[monster_index] = monster.strength;
-        caughtMonster[monster.index] = "true";
+        caughtMonster[monster.index] = true;
         caught = true;
 
         window.addEventListener("keydown", function (e) {
             if (r <= chance_of_catching && e.keyCode == 13) {
                 chance_of_catching = 0
                 audioFight.pause();
+                console.log("END - catch");
                 endFight();
             }
         });
@@ -123,7 +124,7 @@ function attackMonster() {
     getText("AttackMonster");
     console.log("ATTACK");
     getAttack();
-    
+
     if (monster.monLevel < monsterLvl[monster_index]) {//your monster is stronger
         monster.strength = monster.strength - Math.floor(Math.random() * (monsterLvl[monster_index] * 2) + 2);
     }
@@ -134,6 +135,7 @@ function attackMonster() {
     if (monster.strength <= 0) {
         monster.strength = 0;
         redrawFight();
+        console.log("END - Attack");
         setTimeout(endFight, 1000);
         //need Timeout -> to show that HP == 0!
     }
@@ -200,6 +202,7 @@ function monsterAttacks() {
             deadlyAttack = 'none';
             lost = true;
             redrawFight();
+            console.log("END - lost");
             endFight();
         }
     });

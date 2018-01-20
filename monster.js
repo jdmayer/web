@@ -64,41 +64,45 @@ function getMonIndex(){
 }
 
 function changeMonster(){
-//FEHLERBEHANDLUNG
-//MONSTER NICHT DA
-//PRINT MSG IN ALLEN FÄLLEN
     window.addEventListener("keydown",function(e){
-       // console.log("switching monsters");
         if(!fight){
-            switch(e.keyCode){ //plus show msg if switches
+            switch(e.keyCode){
                 case 48:
-                    monster_index = 0;
+                    checkChange(0);
                     break;
                 case 49: 
-                    cmonster_index = 1;
+                    checkChange(1);
                     break;
                 case 50:
-                    monster_index = 2;
+                    checkChange(2);
                     break;
                 case 51:
-                    monster_index = 3;
+                    checkChange(3);
                     break;
                 case 52:
-                    monster_index = 4;
+                    checkChange(4);
                     break;
                 case 53: 
-                    monster_index = 5;
+                    checkChange(5);
                     break;
                 case 54:
-                    monster_index = 6;
+                    checkChange(6);
                     break;
                 case 55:
-                    monster_index = 7;
+                    checkChange(7);
                     break;
                 case 56:
-                    monster_index = 8;
+                    checkChange(8);
                     break;
             }
         }
     });
+}
+
+function checkChange(newFav){
+    if(caughtMonster[newFav] == true && newFav != monster_index){        
+        monster_index = newFav; 
+        getText("ChangedMonster");
+        console.log("changed");
+    }
 }

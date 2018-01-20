@@ -165,17 +165,20 @@ function fillItemCount(){
 }
 
 function fillCaughtMonsters(){
-    ctx.fillStyle = "white";
-
     var tmpImgMon = [40, 110, 180, 250, 320, 390, 460, 530, 600];
 
+    ctx.fillStyle = "white";
+    if(monster_index >= 0)
+        ctx.fillText("►", tmpImgMon[monster_index] -25, 475);
+
+
     for(var i = 0; i < 9; i++){
-        if(caughtMonster[i] == "true"){
+        if(caughtMonster[i] == true){
             ctx.fillText(i, tmpImgMon[i] - 10, 475);
             ctx.drawImage(monsterImg[i], tmpImgMon[i], 453, 30, 30);
             ctx.fillText(monsterLvl[i], tmpImgMon[i] + 30, 485);
         }
-        else{ //prob ALL black so you dont know what they look like/ or "?" :)
+        else{
             ctx.drawImage(monsterGrey[i], tmpImgMon[i], 453, 30, 30);
         }
     }

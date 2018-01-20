@@ -1,8 +1,8 @@
 function checkForAction(){
+    console.log("CHECK");
     if (gameMap[getIndex(player.tileTo[0], player.tileTo[1])] == 1 && !text){
         var r = Math.random();
         if (r <= 0.9 && !text){ //0.20
-           // console.log("found monster");
             if(!fight){
                 fightAlert();
             }          
@@ -25,10 +25,7 @@ function checkForAction(){
                     startLevel();
                 }
                 else{
-                    //textBackground('NoKey'); //got no key to get to next level
-                    text = true;
-                    currText = 'NoKey';
-                    showText();
+                    getText("NoKey");
                 }
                 break;
             case 2:
@@ -43,51 +40,26 @@ function checkForAction(){
                 break;
         }
     }
+    else if(!text){console.log("change"); //can change monster
+         changeMonster();
+    }
 }
 
 function addItemToBag(pos){
     if (pos == 3){
         item_count++;
-        text = true;
-        currText = 'ItemFound';
-        showText();
     }
     else if (pos == 31){
         item_key_count++;
-        text = true;
-        currText = 'ItemFound';
-        showText();
     }
     else if (pos == 32){
         item_stone_count++;
-        text = true;
-        currText = 'ItemFound';
-        showText();
     }
+    getText("ItemFound");
 }
  
 function fightAlert(){
     monster = new Monster();
     fightMsg = true;
     getText("WildMonster");
-}
-
-function showText(){
-    if(fight){
-        currBG = 'textBackgroundFight';
-        document.getElementById(currBG).style.display='block';
-    }
-    else{
-        currBG = 'textBackgroundConversation';
-        document.getElementById(currBG).style.display='block'; 
-    }
-    document.getElementById(currText).style.display='block'; 
-   // console.log("f: / t: " + fight + text + currText);
-}
-
-function getText(msg){
-    currText = msg;
-    text = true;
-    console.log('getText: ' + text + msg);
-    showText();
 }

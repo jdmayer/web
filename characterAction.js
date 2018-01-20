@@ -29,14 +29,6 @@ function characterTalk(){
         currText = 'YouBeatKid';
         showText();
    }
-  /*
-   else if(visited[gameMap[pos]] != 1){
-       textBackground('FirstGreet');
-   }
-   else {
-       textBackground('AfterGreet');
-   }
-   */
 
    if(msgNr[gameMap[pos]] == -1){
        randChoice = 12;// Math.floor(Math.random()*13); //change later
