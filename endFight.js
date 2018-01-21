@@ -12,7 +12,7 @@ function endFight() {
             markAsWon();
         }
         else if (!caught && !charFight && !lost) {
-            redrawFight();
+            //redrawFight();
             getText('WonMonster');
         }
         
