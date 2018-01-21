@@ -11,8 +11,10 @@ Monster.prototype.drawOpponent = function(){
     ctx.fillText(this.name, 350, 50);
     ctx.fillText("LVL: "  + this.monLevel, 350, 70);
     ctx.fillText("HP (" + this.strength + ")", 420, 70);
-    for(var i = 1; i < this.strength; i++){
+    var i = 1;
+    while(i < this.strength && i <= 100){ //else exceedes screen!
         ctx.fillText("|", 418 +i+i, 50);
+        i++;
     }
 }
 
@@ -22,8 +24,10 @@ Monster.prototype.drawOwnMonster = function(){
     ctx.fillText(this.name, 50, 280);
     ctx.fillText("LVL: "  + this.monLevel, 50, 300);
     ctx.fillText("HP (" + this.strength + ")", 120, 300);
-    for(var i = 1; i < this.strength; i++){
+    var i = 1;
+    while(i < this.strength && i <= 100){
         ctx.fillText("|", 118 +i+i, 280);
+        i++;
     }
 }
  

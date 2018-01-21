@@ -77,10 +77,10 @@ Game Explanation
     font-size: 16px;
     text-align: center;
     line-height: 1.5em;
-    margin-left: 15px;
+    margin-left: 25px;
     position: relative;
-    top: 25%;
-    width: 90%;
+    top: 15%;
+    width: 85%;
 }
 
 .exp-opener:hover {

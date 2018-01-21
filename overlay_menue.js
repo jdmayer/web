@@ -14,7 +14,7 @@ function closeOverlay() {
 
 /*for explanation overlay*/
 function openExp() {
-    document.getElementById("explanation").style.width = "30%";
+    document.getElementById("explanation").style.width = "40%";
     expOpen = true;
 }
 
