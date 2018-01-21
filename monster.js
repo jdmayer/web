@@ -1,15 +1,12 @@
-//var monsterImg = [bird, cat, dragon, hedgehog, owl, prince, rose, wolf, tree_moni];
-
 function Monster() {
     this.index = getMonIndex();
     this.name = monsterName[this.index];
     this.monLevel = getLevel();
     this.strength = this.monLevel * 8;
-   // colorMonsterImg(this.index); //WITH IT THE BLACKENING LOWER BORDER DOESNT WORK!
+    this.maxHealth = this.strength; // to get back at it! use later
 };
  
 Monster.prototype.drawOpponent = function(){
-    //this.strength = this.monLevel * 8;
     ctx.drawImage(monsterImg[this.index], 140, 10, 140, 140);
     ctx.fillText(this.name, 350, 50);
     ctx.fillText("LVL: "  + this.monLevel, 350, 70);

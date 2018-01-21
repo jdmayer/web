@@ -50,6 +50,7 @@ window.onload = function() {
                     break;
                 case 67: 
                     if(!charFight){
+                        console.log("-Press catch");
                         catchMonster();
                         document.getElementById('YourAction').style.display='none';
                     }

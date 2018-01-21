@@ -1,5 +1,6 @@
 function nextAction() {
     getText("YourAction");
+    console.log(" Your Action");
     actionIsRunning = false; //needed for eventListener in onload
 }
 
@@ -64,10 +65,9 @@ function catchMonster() {
         caught = true;
 
         window.addEventListener("keydown", function (e) {
-            if (r <= chance_of_catching && e.keyCode == 13) {
+            if (r <= chance_of_catching && caught && e.keyCode == 13) {
                 chance_of_catching = 0
                 audioFight.pause();
-                console.log("END - catch");
                 endFight();
             }
         });
@@ -75,7 +75,6 @@ function catchMonster() {
     else {
         caught = false;
         getText("NotCaught");
-
         window.addEventListener("keydown", function (e) {
             if (!caught && e.keyCode == 13) {
                 monsterReacts();
@@ -136,8 +135,7 @@ function attackMonster() {
         monster.strength = 0;
         redrawFight();
         console.log("END - Attack");
-        setTimeout(endFight, 1000);
-        //need Timeout -> to show that HP == 0!
+        endFight();
     }
     else {
         window.addEventListener("keydown", function (e) {

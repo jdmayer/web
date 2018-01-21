@@ -84,7 +84,7 @@ function announceMonster() {
     else{
         getText('KidMonster');
     }
-
+    
     var tmp = true; // so it doesn't get stuck!
     window.addEventListener("keydown", function (e) {
         if (tmp && e.keyCode == 13) {

@@ -24,6 +24,7 @@ function endFight() {
         if (!lost && !caught && monster_index >= 0) {
             monsterStrength[monster_index] = monsterLvl[monster_index] * 8 + monster.monLevel * 2;
             if (Math.floor(monsterStrength[monster_index] / 8) > monsterLvl[monster_index]) {
+                console.log("levelup!");
                 getText('LevelUp');
                 monsterLvl[monster_index] = monsterLvl[monster_index] + 1;
             }

@@ -1,5 +1,4 @@
 function checkForAction(){
-    console.log("CHECK");
     if (gameMap[getIndex(player.tileTo[0], player.tileTo[1])] == 1 && !text){
         var r = Math.random();
         if (r <= 0.9 && !text){ //0.20
