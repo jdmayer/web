@@ -5,7 +5,7 @@ function endFight() {
     if(!lost){
         audioWon.play();
         if (charFight && !lost) {
-            redrawFight();
+            //redrawFight();
             getText('WonKid');
     
             charFight = false;
@@ -47,6 +47,7 @@ function endFight() {
 }
 
 function afterFight() {
+    document.getElementById(optionText).style.display = 'none';
     document.getElementById(currText).style.display = 'none';
     fight = false;
 

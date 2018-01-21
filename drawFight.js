@@ -1,3 +1,5 @@
+var optionText;
+
 function startFight() {
     audioBackground.pause();
     audioFight.play();
@@ -13,13 +15,16 @@ function redrawFight() {
  //   if (fight) { 
         drawBackground();
         if (charFight) {
-            getOptions("OptionCharFight");
+            getOptions('OptionCharFight');
+            optionText = 'OptionCharFight';
         }
         else if (monster_index == -1) {
             getOptions('OptionNoMonster');
+            optionText = 'OptionNoMonster';
         }
         else if(!charFight){
             getOptions('OptionMonster');
+            optionText = 'OptionMonster';
         }
         monster.drawOpponent();
  //   }

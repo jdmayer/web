@@ -1,6 +1,6 @@
 function nextAction() {
     getText("YourAction");
-    actionIsRunning = false; //why need action is running?
+    actionIsRunning = false; //needed for eventListener in onload
 }
 
 function runAway() {

@@ -1,4 +1,7 @@
 function getText(msg){
+    if (currText != null){
+        document.getElementById(currText).style.display = 'none';
+    }
     currText = msg;
     text = true;
     //console.log('getText: ' + text + msg);
@@ -21,8 +24,8 @@ function showText(){
 function getOptions(msg){ 
     //console.log("SHOW "+ msg);
     options = true;
-    optionMsg = msg
-    showOptions()
+    optionMsg = msg;
+    showOptions();
 }
 
 function showOptions(){
