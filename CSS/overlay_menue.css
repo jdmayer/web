@@ -68,18 +68,18 @@ Game Explanation
     z-index: 1;
     top: 0;
     left: 0;
-    background-color: rgba(131, 10, 10, 0.7);
+    background-color: rgb(131, 10, 10);
     overflow-x: hidden;
     transition: 0s;
 }
 
 .explanation-content {
     font-size: 16px;
-    text-align: center;
+    text-align: left;
     line-height: 1.5em;
-    margin-left: 25px;
+    margin-left: 70px;
     position: relative;
-    top: 15%;
+    top: 10%;
     width: 85%;
 }
 
@@ -96,4 +96,16 @@ Game Explanation
     top: 8px;
     left: 21px;
     font-size: 45px;
+}
+
+.eImg {
+    height: 40px;
+}
+
+.eExplMon {
+    height: 30px
+}
+
+td {
+    padding: 6px;
 }
