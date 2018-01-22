@@ -55,7 +55,12 @@ window.onload = function() {
                     }
                     break;
                 case 70:
-                    feedMonster();
+                    if(charFight){
+                        feedOwnMonster();
+                    }
+                    else {
+                        feedOtherMonster();
+                    }
                     document.getElementById('YourAction').style.display='none';
                     break;
                 case 82:

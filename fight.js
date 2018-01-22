@@ -30,7 +30,7 @@ function runAway() {
     }
 }
 
-function feedMonster() {
+function feedOtherMonster() {
     var reaction = false;
     actionIsRunning = true;
     getText("Eats");
@@ -39,6 +39,39 @@ function feedMonster() {
         monster.strength = monster.strength + 2;
     }
     chance_of_catching += 0.1; //earned trust
+
+    reaction = true;
+    window.addEventListener("keydown", function (e) {
+        if (reaction && e.keyCode == 13) {
+            reaction = false;
+            redrawFight();
+            monsterReacts();
+        }
+    });
+}
+
+function feedOwnMonster() {
+    console.log("own fed");
+    var reaction = false;
+    actionIsRunning = true;
+    if(item_count > 0){
+        getText("OwnEats");
+        item_count--;
+    
+        if (monsterStrength[monster_index] < (monsterLvl[monster_index] * 8)) { 
+            if(monsterStrength[monster_index] + 8 <= monsterLvl[monster_index] * 8){
+                monsterStrength[monster_index] = monsterStrength[monster_index] + 8;
+            }
+            else{
+                monsterStrength[monster_index] = monsterLvl[monster_index] * 8;
+            }
+        }
+        console.log(monsterStrength[monster_index]);
+    
+    }
+    else{
+        getText("NotItem");
+    }
 
     reaction = true;
     window.addEventListener("keydown", function (e) {
