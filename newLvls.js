@@ -1,4 +1,5 @@
 function startLevel() {
+    resetItems(); 
     isLevelScreen = true;
     isGameOver = false;
     ctx.fillStyle = "darkred";
@@ -83,4 +84,9 @@ function initInteracionMaps(){
         visited[i] = -1;
         msgNr[i] = -1;
     }
+}
+
+function resetItems(){
+    item_stone_count = 0;
+    item_key_count = 0;
 }

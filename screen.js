@@ -102,28 +102,28 @@ function fillBackground(){
                 //water 
                 // 
                 case 21: 
-                    img.src = water1.src; 
+                    img.src = water1.src;  //left top
                     break; 
                 case 22: 
-                    img.src = water2.src; 
+                    img.src = water2.src; //right top
                     break; 
                 case 23: 
-                    img.src = water3.src; 
+                    img.src = water3.src; //right bottom
                     break; 
                 case 24: 
-                    img.src = water4.src; 
+                    img.src = water4.src; //left bottom
                     break; 
                 case 25: 
-                    img.src = water5.src; 
+                    img.src = water5.src; //top
                     break; 
                 case 26: 
-                    img.src = water6.src; 
+                    img.src = water6.src; //right
                     break; 
                 case 27: 
-                    img.src = water7.src; 
+                    img.src = water7.src; //bottom
                     break; 
                 case 28: 
-                    img.src = water8.src; 
+                    img.src = water8.src; //left
                     break; 
                 case 29: 
                     img.src = water9.src; 
