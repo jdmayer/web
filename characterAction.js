@@ -1,12 +1,3 @@
-/*visited
--1  not visited
-1   got advice
-2   got item
-3   won fight
-4   lost fight -> restart
-*/
-//TODO
-//ADD TO EACH FUNCTION
 var noMonsterNoFight = false;
 
 function characterMeet(check){

@@ -50,7 +50,6 @@ window.onload = function() {
                     break;
                 case 67: 
                     if(!charFight){
-                        console.log("-Press catch");
                         catchMonster();
                         document.getElementById('YourAction').style.display='none';
                     }
@@ -84,8 +83,6 @@ window.onload = function() {
             gameOver(); 
         } 
         if(e.keyCode == 13 && text && currText != 'YourAction'){
-            //As YourAction only disappears when you move into action
-            ///console.log('dissapear!' + currText);
             document.getElementById(currText).style.display='none';
             document.getElementById(currBG).style.display='none';
 

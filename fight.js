@@ -8,7 +8,7 @@ function runAway() {
     actionIsRunning = true;
     var fled = false;
     var r = 0;//Math.random();
-    if (r <= 0.5) {
+    if (r <= 0.5 && !charFight) {
         fled = true; //not needed?
         getText('Ran');
 
