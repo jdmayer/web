@@ -10,7 +10,7 @@ Monster.prototype.drawOpponent = function(){
     ctx.drawImage(monsterImg[this.index], 140, 10, 140, 140);
     ctx.fillText(this.name, 350, 50);
     ctx.fillText("LVL: "  + this.monLevel, 350, 70);
-    ctx.fillText("HP (" + this.strength + ")", 420, 70);
+    ctx.fillText("HP (" + this.strength + '/' + this.monLevel*8 + ')', 420, 70);
     var i = 1;
     while(i < this.strength && i <= 100){ //else exceedes screen!
         ctx.fillText("|", 418 +i+i, 50);
@@ -23,7 +23,7 @@ Monster.prototype.drawOwnMonster = function(){
     ctx.drawImage(monsterImgBack[this.index], 400, 220, 150, 150);
     ctx.fillText(this.name, 50, 280);
     ctx.fillText("LVL: "  + this.monLevel, 50, 300);
-    ctx.fillText("HP (" + this.strength + ")", 120, 300);
+    ctx.fillText("HP (" + this.strength + '/' + this.monLevel*8 + ')', 120, 300);
     var i = 1;
     while(i < this.strength && i <= 100){
         ctx.fillText("|", 118 +i+i, 280);
