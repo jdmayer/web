@@ -22,7 +22,7 @@ function characterTalk(){
    }
 
    if(msgNr[gameMap[pos]] == -1){
-       randChoice = 12;// Math.floor(Math.random()*13); //change later
+       randChoice = Math.floor(Math.random()*13);
        msgNr[gameMap[pos]] = randChoice;
    }
    else{
@@ -92,7 +92,6 @@ function characterTalk(){
 function characterFight(){
     charFight = true;
     if(monster_index >= 0){
-        console.log("here");
         text = true;
         currText = 'KidFight';
         showText();
@@ -120,19 +119,12 @@ function characterFight(){
 
 function characterGivesItem(){
     if(visited[player.tileTo[1] * map.width + player.tileTo[0]] == 2){
-        console.log("already got item");
     }
     else{
         audioItem.play();
-/*
-        text = true;
-        currText = 'ItemReceived';
-        showText();
-*/
         item_count++;
  
-        visited[player.tileTo[1] * map.width + player.tileTo[0]] = 2;
-        
+        visited[player.tileTo[1] * map.width + player.tileTo[0]] = 2;        
         audioItem.pause();
     }
 }
@@ -144,7 +136,6 @@ function initWonMap(){
 }
 
 function markAsWon(){
-    console.log("won");
     wonMap[getIndex(player.tileTo[0], player.tileTo[1])] = true;
 }
 

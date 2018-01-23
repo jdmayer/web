@@ -36,7 +36,7 @@ function startNewLevel(){
         initWonMap();
         initInteracionMaps();
         actionIsRunning = false;
-        monsterStrength[monster_index] = monsterLvl[monster_index] * 8;
+
         explanation = true;
         if(level == 1){
             gameMap = gameMap_level1.slice(0); //slice clones the array
@@ -44,21 +44,19 @@ function startNewLevel(){
             return true;
         }
         else if(level == 2){
-           // audioBackground = new Audio("ENTER OTHER THEME");
             gameMap = gameMap_level2.slice(0);
             requestAnimationFrame(drawGame);
             return true;
  
         }
         else if(level == 3){
-          //  audioBackground = new Audio("ENTER OTHER THEME");
             gameMap=gameMap_level3.slice(0);
             requestAnimationFrame(drawGame);
             return true;
  
         }
         else if(level > 3){
-            console.log("This level has not been developed yet");
+            window.alert("This Level has not been developed yet. Restart the game for more fun!");
             lvlExplanation();
         }
 }
@@ -68,15 +66,7 @@ function lvlExplanation() {
     ctx.fillStyle = "darkred";
     ctx.fillRect(0, 0, culling.screen[0], culling.screen[1]);
 
-    ctx.fillStyle = "white";
-    ctx.font = "16pt Helvetica";
-    ctx.fillText("There is 1 key hidden in this level.", 160, 160);
-    ctx.fillText("Find it and you are free to move to the next level.", 100, 200);
-    ctx.fillText("But remember;", 250, 260);
-    ctx.fillText("There are different monsters in every level!", 120, 300);
-    ctx.font = "10pt Helvetica";
-    ctx.fillText("Press Enter to Continue", 250, 350);
-
+    document.getElementById('startExplanation').style.display='block';
 }
 
 function initInteracionMaps(){

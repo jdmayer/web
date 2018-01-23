@@ -28,7 +28,6 @@ function moveCharacter(currentFrameTime){
         if(player.tileFrom[0] != player.tileTo[0] || player.tileFrom[1] != player.tileTo[1]){
             player.timeMoved = currentFrameTime;
         }
-       // changeMonster();
     }
 }
 

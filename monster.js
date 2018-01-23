@@ -1,16 +1,29 @@
+Dax = new Monster(); 
+Flace = new Monster(); 
+Lavora = new Monster(); 
+Iglo = new Monster();   
+Looki = new Monster(); 
+Prince = new Monster(); 
+Intestria = new Monster(); 
+Furry = new Monster(); 
+Tree = new Monster(); 
+//favourite monster:
+currMonster = new Monster();
+var monsters = [Dax, Flace, Lavora, Iglo, Looki, Prince, Intestria, Furry, Tree];
+
 function Monster() {
     this.index = getMonIndex();
     this.name = monsterName[this.index];
     this.monLevel = getLevel();
     this.strength = this.monLevel * 8;
-    this.maxHealth = this.strength; // to get back at it! use later
+    this.maxHealth = this.strength; 
 };
  
 Monster.prototype.drawOpponent = function(){
     ctx.drawImage(monsterImg[this.index], 140, 10, 140, 140);
     ctx.fillText(this.name, 350, 50);
     ctx.fillText("LVL: "  + this.monLevel, 350, 70);
-    ctx.fillText("HP (" + this.strength + '/' + this.monLevel*8 + ')', 420, 70);
+    ctx.fillText("HP (" + this.strength + '/' + this.maxHealth + ')', 420, 70);
     var i = 1;
     while(i < this.strength && i <= 100){ //else exceedes screen!
         ctx.fillText("|", 418 +i+i, 50);
@@ -19,11 +32,12 @@ Monster.prototype.drawOpponent = function(){
 }
 
 Monster.prototype.drawOwnMonster = function(){
+    console.log(this.name + monster_index);
     this.name = monsterName[this.index];
     ctx.drawImage(monsterImgBack[this.index], 400, 220, 150, 150);
     ctx.fillText(this.name, 50, 280);
     ctx.fillText("LVL: "  + this.monLevel, 50, 300);
-    ctx.fillText("HP (" + this.strength + '/' + this.monLevel*8 + ')', 120, 300);
+    ctx.fillText("HP (" + this.strength + '/' + this.maxHealth + ')', 120, 300);
     var i = 1;
     while(i < this.strength && i <= 100){
         ctx.fillText("|", 118 +i+i, 280);

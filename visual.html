@@ -34,7 +34,7 @@
     <script src="getText.js"></script>
       
     <div id="header-content" class="header-content">
-        <h2>The 'Not Pokemon' Webproject</h2>
+        <h2>The Monsters Webproject</h2>
 
         <div id="overlay" class="overlay">
             <a href="javascript:void(0)" class="closebtn" onclick="closeOverlay()">&times;</a>
@@ -65,14 +65,14 @@
             Monsters is a visually rich game which enables the player to catch different
             species of monsters and train them while discovering multiple free area levels!<br><br>
 
-            Same principle as always, catch, feed, beat!
+            Same principle as always; catch, feed, beat!
             You can train multiple monsters at once but only on of each race.
 
             <table id="explTable">
                 <tr>
                     <td><img class="eImg" src="./img/item2.png" alt="Item"></td>
                     <td>&emsp;goodies</td>
-                    <td>&emsp;strenghten your monster during a trainer fight ('feed')</td>
+                    <td>&emsp;strengthen your monster during a trainer fight ('feed')</td>
                 </tr>
                 <tr>
                     <td><img class="eImg" src="./img/item_blue_stone_2.png" alt="Stone-Item"></td>
@@ -87,12 +87,12 @@
                 <tr>
                     <td><img class="eExplMon" src="./img/exArrow.png" alt="ExplMenue"></td>
                     <td>&emsp;favourite monster</td>
-                    <td>&emsp;your fighting compagnon</td>
+                    <td>&emsp;indicates your fighting compagnon</td>
                 </tr>
                 <tr>
                     <td><img class="eExplMon" src="./img/exIndex.png" alt="ExplMenue"></td>
                     <td>&emsp;monster index</td>
-                    <td>&emsp;press this number while not in a fight to change fighting monster</td>
+                    <td>&emsp;press this number while not in a fight to change your favourite monster</td>
                 </tr>
                 <tr>
                     <td><img class="eExplMon" src="./img/exLevel.png" alt="ExplMenue"></td>
@@ -101,11 +101,24 @@
             </table>
             <br>
             You will meet other trainers, who you can only battle with a monster on your side.
-            But some of them are good hearted and just want to chat.
+            But some of them are good hearted and just want to chat.<br><br>
+            (Your monsters HP's can only be restored with items, after a level up or a game over,
+            so take care)
             </div>
     </div>
 
 <!-- Conversation within Game -->
+    <div id="startExplanation">
+        <h3>Level Explanation</h3>
+        <p>There is 1 key hidden in every level. Find it and you are free to move to the next one!</p>
+        <p>But take your time and explore every level. There are different monsters waiting
+            to be discovered.</p>
+        <p>If you befriend them or fight them is up to you. But when you meet a trainer 
+            who is eager to fight, you should have already befriended at least one of those creatures!
+        </p>
+        <p>Have fun playing and take care!</p>
+        <h5>Press Enter to Start</h5>
+    </div>
     <div id="textBackgroundConversation">
         <div id="chat0">Some people will give you items, if you talk to them. ▼</div>
         <div id="chat1">I once farted in an elevator. It was wrong on so many levels. ▼</div>
@@ -127,7 +140,6 @@
         <div id="ItemFound">You found an item! ▼</div>
         <div id="WildMonster">A wild Monster attacks you! ▼</div>
         <div id="NoKey">You need a key to get to the next Level! ▼</div>
-        <div id="LevelUp">Your monster levels up! ▼</div>
     </div>
 
     <div id="textBackgroundFight">
@@ -159,6 +171,7 @@
         <div id="Lost">You lost. ▼</div>
         <div id="WonMonster">You beat the monster! ▼</div>
         <div id="WonKid">You beat the kid! ▼</div>
+        <div id="LevelUp">Your monster levels up! ▼</div>
     </div>
 
     <div class="Options">

@@ -1,15 +1,14 @@
 function nextAction() {
     getText("YourAction");
-    console.log(" Your Action");
     actionIsRunning = false; //needed for eventListener in onload
 }
 
 function runAway() {
     actionIsRunning = true;
     var fled = false;
-    var r = 0;//Math.random();
+    var r = Math.random();
     if (r <= 0.5 && !charFight) {
-        fled = true; //not needed?
+        fled = true;
         getText('Ran');
 
         window.addEventListener("keydown", function (e) {
@@ -51,23 +50,20 @@ function feedOtherMonster() {
 }
 
 function feedOwnMonster() {
-    console.log("own fed");
     var reaction = false;
     actionIsRunning = true;
     if(item_count > 0){
         getText("OwnEats");
         item_count--;
-    
-        if (monsterStrength[monster_index] < (monsterLvl[monster_index] * 8)) { 
-            if(monsterStrength[monster_index] + 8 <= monsterLvl[monster_index] * 8){
-                monsterStrength[monster_index] = monsterStrength[monster_index] + 8;
+
+        if(currMonster.strength < currMonster.maxHealth) {
+            if(currMonster.strength + 8 <= currMonster.maxHealth){
+                currMonster.strength = currMonster.strength + 8;
             }
             else{
-                monsterStrength[monster_index] = monsterLvl[monster_index] * 8;
+                currMonster.strength = currMonster.maxHealth;
             }
-        }
-        console.log(monsterStrength[monster_index]);
-    
+        }    
     }
     else{
         getText("NotItem");
@@ -86,14 +82,13 @@ function feedOwnMonster() {
 function catchMonster() {
     actionIsRunning = true;
     var r = Math.random();
-    chance_of_catching = 1; //remove later - 0.2
     getText("TryCatch");
     drawAnimation(net);
 
     if (r <= chance_of_catching) { 
         monster_index = monster.index;
-        monsterLvl[monster_index] = monster.monLevel;
-        monsterStrength[monster_index] = monster.strength;
+        monsters[monster_index] = monster;
+
         caughtMonster[monster.index] = true;
         caught = true;
 
@@ -129,7 +124,7 @@ function noMonster() {
 function monsterReacts() {
     var r = Math.random();
     var watching = false;
-    if (r <= 0.4) {
+    if (r <= 0.6) {
         isAttacking = true;
         monsterAttacks();
     }
@@ -140,8 +135,6 @@ function monsterReacts() {
         window.addEventListener("keydown", function (e) {
             if (watching && e.keyCode == 13) {
                 watching = false;
-                //document.getElementById(currText).style.display = 'none';
-
                 nextAction();
             }
         });
@@ -154,20 +147,18 @@ function attackMonster() {
     var r = Math.random();
 
     getText("AttackMonster");
-    console.log("ATTACK");
     getAttack();
 
-    if (monster.monLevel < monsterLvl[monster_index]) {//your monster is stronger
-        monster.strength = monster.strength - Math.floor(Math.random() * (monsterLvl[monster_index] * 2) + 2);
+    if (monster.monLevel < currMonster.monLevel) {//your monster is stronger
+        monster.strength = monster.strength - Math.floor(Math.random() * (currMonster.monLevel * 2) + 2);
     }
     else {
-        monster.strength = monster.strength - Math.floor(Math.random() * monsterLvl[monster_index] + 2);
+        monster.strength = monster.strength - Math.floor(Math.random() * currMonster.monLevel + 2);
     }
 
     if (monster.strength <= 0) {
         monster.strength = 0;
         redrawFight();
-        console.log("END - Attack");
         endFight();
     }
     else {
@@ -183,23 +174,22 @@ function attackMonster() {
 
 function monsterAttacks() {
     getText("MonsterAttacks");
-    console.log("ATTACKS");
     getAttack();
     //Decrement Healthpoints
     if(currText == 'MonsterAttacks'){
-        if (monster.monLevel > monsterLvl[monster_index]) {//opponent is stronger
-            monsterStrength[monster_index] = monsterStrength[monster_index]
+        if (monster.monLevel > currMonster.monLevel){//opponent is stronger
+            currMonster.strength = currMonster.strength
                 - Math.floor(Math.random() * (monster.monLevel * 2) + 2);
         }
         else {
-            monsterStrength[monster_index] = monsterStrength[monster_index]
+            currMonster.strength = currMonster.strength
                 - Math.floor(Math.random() * monster.monLevel + 2)
         }
     
         var deadlyAttack = '';
         if (monster_index < 0){ //no monster
             if (Math.random() <= 0.5){
-                monsterStrength[monster_index] = 0;
+                currMonster.strength = 0;
                 redrawFight();
                 deadlyAttack = 'sooDeadly';
             }
@@ -208,12 +198,12 @@ function monsterAttacks() {
                 deadlyAttack = 'justAScratch';
             }
         }
-        else if ((monster_index >= 0 && monsterStrength[monster_index] <= 0)){ 
-                monsterStrength[monster_index] = 0;
+        else if ((monster_index >= 0 && currMonster.strength <= 0)){
+                currMonster.strength = 0;
                 redrawFight();
             deadlyAttack = 'sooDeadly';
         }
-        else if(monsterStrength[monster_index] > 0) {
+        else if(currMonster.strength > 0) {
             deadlyAttack = 'justAScratch';
         }
     
@@ -233,7 +223,6 @@ function monsterAttacks() {
             deadlyAttack = 'none';
             lost = true;
             redrawFight();
-            console.log("END - lost");
             endFight();
         }
     });

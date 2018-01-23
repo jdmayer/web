@@ -1,7 +1,7 @@
 function checkForAction(){
     if (gameMap[getIndex(player.tileTo[0], player.tileTo[1])] == 1 && !text){
         var r = Math.random();
-        if (r <= 1.0 && !text){ //0.20
+        if (r <= 0.1 && !text){
             if(!fight){
                 fightAlert();
             }          
@@ -16,30 +16,11 @@ function checkForAction(){
     }
     //exit
     else if (gameMap[getIndex(player.tileTo[0], player.tileTo[1])] == 20){
-        switch(level){
-            case 1:
-                if(item_key_count == 1){
-                    player = new Character();
-                    level++;
-                    startLevel();
-                }
-                else{
-                    getText("NoKey");
-                }
-                break;
-            case 2:
-                player = new Character();
-                level++;
-                startLevel();
-                break;
-            case 3:
-                //level++;
-                player = new Character();
-                startLevel();
-                break;
+        if(level <= 3){
+            checkKey();
         }
     }
-    else if(!text){console.log("change"); //can change monster
+    else if(!text){ //can change monster
          changeMonster();
     }
 }
@@ -61,4 +42,16 @@ function fightAlert(){
     monster = new Monster();
     fightMsg = true;
     getText("WildMonster");
+}
+
+function checkKey(){
+    if(item_key_count == 1){
+        player = new Character();
+        level++;
+        startLevel();
+    }
+    else{
+        getText("NoKey");
+    }
+    break;
 }

@@ -1,13 +1,28 @@
-/*
-NOT RESPONSIBLE!!!
-MAKE RESPONSIBLE?
-*/
+#startExplanation{
+    color: white;
+    font-size: 16px;
+    position: absolute;
+    display: none;   
+    text-align: center;
+    left: 25%;
+    right: 25%;
+    top: 25%;
+}
+
+#parent {display: table;}
+
+#child {
+    display: table-cell;
+    vertical-align: middle;
+}
+
 #textBackgroundConversation > div{
     position: absolute;
     display: none;
     background-color: white;   
     top: 450px;   
     left: 25%;
+    right: 25%;
     width: 500px; 
     height: 20px;
     padding: 40px 40px;

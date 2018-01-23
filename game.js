@@ -34,21 +34,13 @@ var currBG;
 var monsterImg = [bird, cat, dragon, hedgehog, owl, prince, rose, wolf, tree_moni];
 var monsterImgBack = [bird_back, cat_back, dragon_back, hedgehog_back, 
                       owl_back, prince_back, rose_back, wolf_back, tree_moni_back];
-//var monsterIcon = [bird_grey, cat_grey, dragon_grey, hedgehog_grey, owl_grey, prince_grey, rose_grey, wolf_grey, tree_moni_grey];
 var monsterGrey = [bird_grey, cat_grey, dragon_grey, hedgehog_grey, owl_grey, prince_grey, rose_grey, wolf_grey, tree_moni_grey];
 var monsterName = ["Dax", "Flace", "Lavora", "Iglo", "Looki", "Prince", "Intestria", "Furry", "Tree"];
-
-//for?
 var caughtMonster = [false, false, false, false, false, false, false, false, false];
-
-//to save various monsters
-var monsterLvl = ["0", "0", "0", "0", "0", "0", "0", "0", "0"];
-var monsterStrength = ["0", "0", "0", "0", "0", "0", "0", "0", "0"];
 
 var monster;
 var monster_index = -1; 
 
-//for character interaction
 var charFight = false;
 var charMeet = false;
 
@@ -99,9 +91,7 @@ function drawGame(){
     }
 
     moveCharacter(currentFrameTime);
-    //console.log(text + " - " + fight);
     lastFrameTime = currentFrameTime;
-
 
     requestAnimationFrame(drawGame);
 }

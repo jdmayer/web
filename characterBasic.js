@@ -5,7 +5,6 @@ function Character() {
     this.dimensions = [30,30];
     this.position = [45,45];
     this.speed = 200; 
-    //after testing change speed
 };
 
 Character.prototype.placeAt = function(x, y) {
@@ -46,8 +45,6 @@ Character.prototype.moves = function(t){
             this.position[1] += (this.tileTo[1] < this.tileFrom[1] ? 0 - diff : diff);
         }
 
-        //could be needed with smaller tiles
-        //delete if not needed after last testing!!
         this.position[0] = Math.round(this.position[0]);
         this.position[1] = Math.round(this.position[1]);
     }

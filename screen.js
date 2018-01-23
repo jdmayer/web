@@ -176,7 +176,7 @@ function fillCaughtMonsters(){
         if(caughtMonster[i] == true){
             ctx.fillText(i, tmpImgMon[i] - 10, 475);
             ctx.drawImage(monsterImg[i], tmpImgMon[i], 453, 30, 30);
-            ctx.fillText(monsterLvl[i], tmpImgMon[i] + 30, 485);
+            ctx.fillText(monsters[i].monLevel, tmpImgMon[i] + 30, 485);
         }
         else{
             ctx.drawImage(monsterGrey[i], tmpImgMon[i], 453, 30, 30);

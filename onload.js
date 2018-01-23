@@ -4,9 +4,7 @@ var audioBackground;
 window.onload = function() {
     canvas = document.getElementById('game');
     ctx = canvas.getContext('2d');
-    //requestAnimationFrame(startLevel);
-
-
+    
     //initiating screen measures for culling
     culling.screen = [
         document.getElementById("game").width,
@@ -70,6 +68,7 @@ window.onload = function() {
             }
         }
         if ((isGameOver || isLevelScreen) && e.keyCode == 13){
+            document.getElementById('startExplanation').style.display='none';
             isLevelScreen = false;
             isGameOver = false;
             audioGameOver.pause();
@@ -87,7 +86,7 @@ window.onload = function() {
             noMonsterNoFight = false; 
             gameOver(); 
         } 
-        if(e.keyCode == 13 && text && currText != 'YourAction'){
+        if(e.keyCode == 13 && text && currText != "YourAction"){
             document.getElementById(currText).style.display='none';
             document.getElementById(currBG).style.display='none';
 
@@ -100,7 +99,7 @@ window.onload = function() {
                 startFight();
             }
         }
-        if(e.keyCode == 13 && lost && currText == 'Lost'){ //make without?
+        if(e.keyCode == 13 && lost && currText == 'Lost'){
             lost = false;
             document.getElementById('Lost').style.display='none';
             document.getElementById(currBG).style.display='none';
@@ -108,6 +107,5 @@ window.onload = function() {
             gameOver();
             afterFight();
         }
-    
     });
 };
