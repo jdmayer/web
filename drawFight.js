@@ -38,18 +38,7 @@ function drawBackground() {
     else {
         ctx.drawImage(fight1, 0, 0, 650, 488);  
         currMonster = monsters[monster_index];
-        console.log(monster_index + " - " +currMonster.maxHealth + currMonster.name);
         currMonster.drawOwnMonster();
-        /*
-        ownMonster = new Monster();                 //own monster needed?
-        ownMonster.index = monster_index;
-        ownMonster.monLevel = monsterLvl[monster_index];
-        ownMonster.strength = monsterStrength[monster_index];
-        ownMonster.drawOwnMonster();
-        */
-        //could make it global- for every monster 1 global -> save into array
-        //save arrays for rest
-
     }
 }
 

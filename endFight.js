@@ -1,4 +1,5 @@
 function endFight() { 
+    console.log("begin the end");
     audioFight.pause();
     var endingFight = true;
     if(!lost){
@@ -44,7 +45,8 @@ function endFight() {
         monsters[monster_index] = currMonster;
     }
 
-    options = false;
+    options = false; console.log("ending Fight/opt "+fight + options);
+    redrawFight(); //get rid of options
     window.addEventListener("keydown", function (e) { 
         if (endingFight && e.keyCode == 13){
             endingFight = false;
@@ -54,11 +56,13 @@ function endFight() {
 }
 
 function afterFight() {
+    console.log("after fight");
     document.getElementById(optionText).style.display = 'none';
     document.getElementById(currText).style.display = 'none';
     fight = false;
 
     actionIsRunning = false;
+    fightAction = false; //to exit eventually
     firstAction = false;
     caught = false;
     text = false;
@@ -67,5 +71,9 @@ function afterFight() {
         audioWon.pause();
         audioBackground.play();
     }
+    else{
+        gameOver();
+    }
     lost = false;
+    console.log("FINALLY");
 }

@@ -27,9 +27,9 @@ function getOptions(msg){
 
 function showOptions(){
     document.getElementById(optionMsg).style.display='block'; 
-
+    console.log("Options +"+ fight + options);
     window.addEventListener("keydown", function (e) { 
-        if (fight && !options && e.keyCode == 13) {
+        if (fight && !options && e.keyCode == 13) {console.log("--OPTIONs "+fight + options);
             document.getElementById(optionMsg).style.display='none';         
         }
     });

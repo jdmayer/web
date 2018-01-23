@@ -35,7 +35,7 @@ window.onload = function() {
     });
 
     window.addEventListener("keydown",function(e){
-        if(fight && !actionIsRunning && firstAction){
+        if(fight && !actionIsRunning && firstAction){ console.log("HERE");
             switch(e.keyCode){
                 case 65:
                     if(monster_index >= 0) { 
@@ -100,6 +100,7 @@ window.onload = function() {
             }
         }
         if(e.keyCode == 13 && lost && currText == 'Lost'){
+            console.log("lost on load");
             lost = false;
             document.getElementById('Lost').style.display='none';
             document.getElementById(currBG).style.display='none';

@@ -32,7 +32,6 @@ Monster.prototype.drawOpponent = function(){
 }
 
 Monster.prototype.drawOwnMonster = function(){
-    console.log(this.name + monster_index);
     this.name = monsterName[this.index];
     ctx.drawImage(monsterImgBack[this.index], 400, 220, 150, 150);
     ctx.fillText(this.name, 50, 280);
