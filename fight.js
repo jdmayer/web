@@ -93,6 +93,7 @@ function catchMonster() {
 
         caughtMonster[monster.index] = true;
         caught = true;
+        lost = false;
 
         window.addEventListener("keydown", function (e) {
             if (r <= chance_of_catching && caught && e.keyCode == 13) {
@@ -107,8 +108,10 @@ function catchMonster() {
         console.log("not caught");
         caught = false;
         getText("NotCaught");
+        var tmp = true;
         window.addEventListener("keydown", function (e) {
-            if (!caught && e.keyCode == 13) {
+            if (tmp && !caught && e.keyCode == 13) {
+                tmp = false;
                 redrawFight();
                 monsterReacts();
             }

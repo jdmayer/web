@@ -1,7 +1,7 @@
 function checkForAction(){
     if (gameMap[getIndex(player.tileTo[0], player.tileTo[1])] == 1 && !text){
         var r = Math.random();
-        if (r <= 0 && !text){
+        if (r <= 0.4 && !text){
             fightAction = true;
             if(!fight){
                 fightAlert();

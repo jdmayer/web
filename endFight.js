@@ -46,7 +46,7 @@ function endFight() {
     }
 
     options = false; console.log("ending Fight/opt "+fight + options);
-    redrawFight(); //get rid of options
+    //redrawFight(); //get rid of options
     window.addEventListener("keydown", function (e) { 
         if (endingFight && e.keyCode == 13){
             endingFight = false;
