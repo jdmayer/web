@@ -21,6 +21,14 @@ function checkForAction(){
             checkKey();
         }
     }
+    else if (gameMap[getIndex(player.tileTo[0], player.tileTo[1]) == 33]){
+        //healing point
+        getText("HP");
+        console.log("YOUR MONSTERS WERE HEALED");
+        for(var i = 0; i < 9; i++){
+            monsters[i].strength = monsters[i].maxHealth;
+        }
+    }
     else if(!text){ //can change monster
          changeMonster();
     }
