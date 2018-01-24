@@ -4,9 +4,10 @@ function characterMeet(check){
    var pos = player.tileTo[1] * map.width + player.tileTo[0];
    if ((gameMap[pos - 1] == 14 || gameMap[pos - 1]  == 17 ||
        gameMap[pos - map.width]  == 12 || gameMap[pos - map.width]  == 16 ||
-       gameMap[pos + 1] == 15 || gameMap[pos + 1]  == 15)
+       gameMap[pos + 1] == 15 || gameMap[pos + 1]  == 13)
     && visited[gameMap[player.tileTo[1] * map.width + player.tileTo[0]]] != 10)  {
             characterTalk();
+            console.log("talk person");
    }
 }
 
@@ -118,9 +119,7 @@ function characterFight(){
 }
 
 function characterGivesItem(){
-    if(visited[player.tileTo[1] * map.width + player.tileTo[0]] == 2){
-    }
-    else{
+    if(visited[player.tileTo[1] * map.width + player.tileTo[0]] != 2){
         audioItem.play();
         item_count++;
  
@@ -136,6 +135,9 @@ function initWonMap(){
 }
 
 function markAsWon(){
+    console.log("AS WON - get Item" + wonMap[getIndex(player.tileTo[0], player.tileTo[1])]);
+    ++item_count; 
+
     wonMap[getIndex(player.tileTo[0], player.tileTo[1])] = true;
 }
 

@@ -4,7 +4,7 @@ function Character() {
     this.timeMoved = 0;
     this.dimensions = [30,30];
     this.position = [45,45];
-    this.speed = 200; 
+    this.speed = 250; 
 };
 
 Character.prototype.placeAt = function(x, y) {

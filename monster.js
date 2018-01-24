@@ -54,7 +54,7 @@ function getLevel(){
             tmpLvl = Math.floor(Math.random()* 7 + 4); //4-11
             break;
         case 3:
-            tmpLvl = Math.floor(Math.random() * 10 + 9); //9-19
+            tmpLvl = Math.floor(Math.random() * 6 + 9); //9-16
             break;
     }
     return tmpLvl;

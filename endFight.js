@@ -35,6 +35,7 @@ function endFight() {
     }
 
     if(lost){
+        console.log("redraw LOST");
         redrawFight(); //to get rid of options
         getText('Lost');
         if(monster_index >= 0)

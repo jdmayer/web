@@ -1,6 +1,6 @@
 function startLevel() {
     resetItems(); 
-    console.log("new level");
+
     isLevelScreen = true;
     isGameOver = false;
     ctx.fillStyle = "darkred";
@@ -21,8 +21,6 @@ function gameOver() {
     isGameOver = true;
     fight = false;
     charFight = false;
-    item_stone_count = 0;
-    item_key_count = 0;
 
     ctx.fillStyle = "black";
     ctx.fillRect(0, 0, 650, 488);
@@ -37,7 +35,7 @@ function gameOver() {
 function startNewLevel(){
         player = new Character();
         initWonMap();
-       // initInteracionMaps(); //for?
+        initInteracionMaps(); //for?
         actionIsRunning = false;
 
         explanation = true;

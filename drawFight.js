@@ -11,7 +11,7 @@ function startFight() {
     announceMonster();
 }
 
-function redrawFight() {
+function redrawFight() { console.log("into redraw fight");
  //   if (fight) { 
         drawBackground();
         if (charFight) {
