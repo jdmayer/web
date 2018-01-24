@@ -137,6 +137,9 @@ function fillBackground(){
                 case 32: 
                     img.src = item_stone.src; 
                     break; 
+                case 33:
+                    img.src = heal.src;
+                    break;
             }
             ctx.drawImage(img, culling.offset[0] + x*tile.width,
                 culling.offset[1] + y*tile.height,tile.width,tile.height);

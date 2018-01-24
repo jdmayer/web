@@ -103,6 +103,7 @@ return pos <= 9
     || pos == 20
     || pos == 31
     || pos == 32
+    || pos == 33
     || (item_stone_count > 0 
         && ( pos == 21 
             || pos == 22

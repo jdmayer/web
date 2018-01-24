@@ -34,6 +34,8 @@ var fight2 = new Image();
 fight2.src = "./img/fight_back2.png";
 var next_level = new Image();
 next_level.src = "./img/next_level.png"
+var heal = new Image();
+heal.src = "./img/heal.png";
 
 var item_stone = new Image();
 item_stone.src = "./img/item_blue_stone.png";
