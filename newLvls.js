@@ -42,18 +42,18 @@ function startNewLevel(){
 
         explanation = true;
         if(level == 1){
-            gameMap = gameMap_level1.slice(0); //slice clones the array
+            gameMap = gameMap_level1; //.slice(0); //slice clones the array
             requestAnimationFrame(drawGame);
             return true;
         }
         else if(level == 2){
-            gameMap = gameMap_level2.slice(0);
+            gameMap = gameMap_level2;//.slice(0);
             requestAnimationFrame(drawGame);
             return true;
  
         }
         else if(level == 3){
-            gameMap=gameMap_level3.slice(0);
+            gameMap=gameMap_level3;//.slice(0);
             requestAnimationFrame(drawGame);
             return true;
  

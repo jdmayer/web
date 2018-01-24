@@ -65,10 +65,10 @@ function getMonIndex(){
     var tmpIndex = 0;
     switch(level){
         case 1:
-            tmpIndex = Math.floor(Math.random()* 4); //0-3
+            tmpIndex = Math.floor(Math.random()* 3); //0-2
             break;
         case 2:
-            tmpIndex = Math.floor(Math.random()* 4 + 3); //3-6
+            tmpIndex = Math.floor(Math.random()* 3 + 3); //3-5
             break;
         case 3:
             tmpIndex = Math.floor(Math.random() * 3 + 6); //6-8

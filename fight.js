@@ -1,5 +1,4 @@
 function nextAction() {
-    console.log("in action");
     getText("YourAction");
     actionIsRunning = false; //needed for eventListener in onload
 }
@@ -22,8 +21,10 @@ function runAway() {
     }
     else {
         getText("CantRun");
+        var tmp = false;
         window.addEventListener("keydown", function (e) {
-            if (!fled && e.keyCode == 13) {
+            if (!tmp && !fled && e.keyCode == 13) {
+                tmp = true;
                 monsterReacts();
             }
         });
@@ -81,7 +82,6 @@ function feedOwnMonster() {
 }
 
 function catchMonster() {
-    console.log("CATCHING");
     actionIsRunning = true;
     var r = Math.random();
     getText("TryCatch");
@@ -105,7 +105,6 @@ function catchMonster() {
         });
     }
     else {
-        console.log("not caught");
         caught = false;
         getText("NotCaught");
         var tmp = true;
@@ -124,37 +123,32 @@ function noMonster() {
 
     window.addEventListener("keydown", function (e) {
         if (fight && e.keyCode == 13) {
-            console.log("A");
             nextAction();
         }
     });
 }
 
 function monsterReacts() {
-    console.log("monster reacts");
     var r = Math.random();
     var watching = false;
     if (r <= 0.6) {
-        console.log("-attack");
         isAttacking = true;
         monsterAttacks();
     }
     else {
-        console.log("-watch");
         watching = true;
         getText("MonsterWatches");
 
         window.addEventListener("keydown", function (e) {
             if (watching && e.keyCode == 13) {
                 watching = false;
-                console.log("after watching");
                 nextAction();
             }
         });
     }
 }
 
-function attackMonster() { console.log("Attack monster");
+function attackMonster() { 
     actionIsRunning = true;
     var attacks = true;
     var r = Math.random();
@@ -214,22 +208,18 @@ function monsterAttacks() {
         else if ((monster_index >= 0 && currMonster.strength <= 0)){
                 currMonster.strength = 0;
                 redrawFight();
-                console.log("DEADLY ATTACK");
                 deadlyAttack = 'sooDeadly';
         }
         else if(currMonster.strength > 0 && monster_index >= 0) {
-            console.log("just scratch");
             deadlyAttack = 'justAScratch';
         }
     
     }
-    console.log("deadly: "+deadlyAttack);
     window.addEventListener("keydown", function (e) {
         if (deadlyAttack == 'justAScratch' && e.keyCode == 13 && currText != 'YourAction' && !lost) {
             deadlyAttack = 'none';
             document.getElementById(currText).style.display = 'none';
             redrawFight();
-            console.log("pls not here") + lost;
             nextAction();
         }
     });
@@ -239,7 +229,6 @@ function monsterAttacks() {
             deadlyAttack = 'none';
             options = false;
             lost = true;
-            console.log("DEADLY ATTACK END");
             
             redrawFight();
             endFight();
