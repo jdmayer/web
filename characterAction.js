@@ -11,7 +11,7 @@ function characterMeet(check){
 }
 
 function characterTalk(){ 
-    charMeet = true;
+   charMeet = true;
    var pos = player.tileTo[1] * map.width + player.tileTo[0];
    var randChoice;
 

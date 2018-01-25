@@ -96,7 +96,9 @@ function catchMonster() {
         lost = false;
 
         window.addEventListener("keydown", function (e) {
-            if (r <= chance_of_catching && caught && e.keyCode == 13) {
+            var tmp = true;
+            if (tmp && r <= chance_of_catching && caught && e.keyCode == 13) {
+                tmp = false;
                 options = false;
                 chance_of_catching = 0
                 audioFight.pause();
@@ -120,10 +122,11 @@ function catchMonster() {
 
 function noMonster() {
     getText("NoMonsterFight");
-
+    var tmp = true;
     window.addEventListener("keydown", function (e) {
-        if (fight && e.keyCode == 13) {
+        if (tmp && fight && e.keyCode == 13) {
             nextAction();
+            tmp = false;
         }
     });
 }
@@ -136,8 +139,8 @@ function monsterReacts() {
         monsterAttacks();
     }
     else {
-        watching = true;
         getText("MonsterWatches");
+        watching = true;
 
         window.addEventListener("keydown", function (e) {
             if (watching && e.keyCode == 13) {
@@ -169,6 +172,7 @@ function attackMonster() {
         endFight();
     }
     else {
+        var attacks = true;
         window.addEventListener("keydown", function (e) {
             if (attacks && e.keyCode == 13) {
                 attacks = false;
@@ -195,7 +199,7 @@ function monsterAttacks() {
     
         var deadlyAttack = '';
         if (monster_index < 0){ //no monster
-            if (Math.random() <= 0.5){
+            if (Math.random() <= 0.4){
                 currMonster.strength = 0;
                 redrawFight();
                 deadlyAttack = 'sooDeadly';
