@@ -1,9 +1,9 @@
 
 Projekt-Name:	Monsters
 Projekt-Typ:	Webgame
-Gruppenprojekt:	mit Iris Schlager (HIER MEINEN NAMEN)
+Gruppenprojekt:	mit Iris Schlager
 Externe JS/CSS Bibliotheken:	Nein, alles selbst geschrieben
-Zeitaufwand:	zirka 100h (HIER DEINE h)
+Zeitaufwand:	zirka 100h 
 
 Projektbeschreibung:
 Die Idee des Projektes lässt sich auf die 1996er Version des Spieles Pokemon zurückführen. Natürlich hebt sich ‚Monsters‘ deutlich von diesem ab.
@@ -15,5 +15,4 @@ Alle eingebundenen Bilder wurden von meiner Partnerin Iris Schlager entworfen un
 Die durchgehende Background-Musik wurde von einer Freundin (Marie Heng) zur Verfügung gestellt.
 Alle weiteren musikalischen Stücke wurden von verschiedenen Websites welche copyright freie Musik anbieten verwendet.
 
-Monsters
 

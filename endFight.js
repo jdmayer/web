@@ -1,5 +1,4 @@
 function endFight() { 
-    console.log("begin the end");
     audioFight.pause();
     var endingFight = true;
     if(!lost){
@@ -35,7 +34,6 @@ function endFight() {
     }
 
     if(lost){
-        console.log("redraw LOST");
         redrawFight(); //to get rid of options
         getText('Lost');
         if(monster_index >= 0)
@@ -46,7 +44,7 @@ function endFight() {
         monsters[monster_index] = currMonster;
     }
 
-    options = false; console.log("ending Fight/opt "+fight + options);
+    options = false; 
     //redrawFight(); //get rid of options
     window.addEventListener("keydown", function (e) { 
         if (endingFight && e.keyCode == 13){
@@ -57,7 +55,6 @@ function endFight() {
 }
 
 function afterFight() {
-    console.log("after fight");
     document.getElementById(optionText).style.display = 'none';
     document.getElementById(currText).style.display = 'none';
     fight = false;
@@ -76,5 +73,4 @@ function afterFight() {
         gameOver();
     }
     lost = false;
-    console.log("FINALLY");
 }

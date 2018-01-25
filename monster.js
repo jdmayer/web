@@ -117,6 +117,5 @@ function checkChange(newFav){
     if(caughtMonster[newFav] == true && newFav != monster_index){        
         monster_index = newFav; 
         getText("ChangedMonster");
-        console.log("changed");
     }
 }

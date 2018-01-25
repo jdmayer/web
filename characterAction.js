@@ -7,7 +7,6 @@ function characterMeet(check){
        gameMap[pos + 1] == 15 || gameMap[pos + 1]  == 13)
     && visited[gameMap[player.tileTo[1] * map.width + player.tileTo[0]]] != 10)  {
             characterTalk();
-            console.log("talk person");
    }
 }
 
@@ -135,7 +134,6 @@ function initWonMap(){
 }
 
 function markAsWon(){
-    console.log("AS WON - get Item" + wonMap[getIndex(player.tileTo[0], player.tileTo[1])]);
     ++item_count; 
 
     wonMap[getIndex(player.tileTo[0], player.tileTo[1])] = true;

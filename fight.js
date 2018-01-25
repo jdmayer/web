@@ -75,7 +75,6 @@ function feedOwnMonster() {
     window.addEventListener("keydown", function (e) {
         if (reaction && e.keyCode == 13) {
             reaction = false;
-            console.log("FEED REDRAW");
             redrawFight();
             monsterReacts();
         }
