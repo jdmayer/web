@@ -1,7 +1,6 @@
 function endFight() { 
     console.log("begin the end");
     audioFight.pause();
-    var endingFight = true;
     if(!lost){
         audioWon.play();
         if (charFight && !lost) {
@@ -48,6 +47,7 @@ function endFight() {
 
     options = false; console.log("ending Fight/opt "+fight + options);
     //redrawFight(); //get rid of options
+    var endingFight = true;
     window.addEventListener("keydown", function (e) { 
         if (endingFight && e.keyCode == 13){
             endingFight = false;
@@ -57,7 +57,6 @@ function endFight() {
 }
 
 function afterFight() {
-    console.log("after fight");
     document.getElementById(optionText).style.display = 'none';
     document.getElementById(currText).style.display = 'none';
     fight = false;
